@@ -10,5 +10,5 @@ package ClassVO;
  * @author alanm
  */
 public class UsuarioVO {
-    
+    //Te amo Yuniel
 }
