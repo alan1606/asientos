@@ -7,6 +7,7 @@ package Vista;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import rojerusan.RSAnimation;
 
 /**
@@ -15,6 +16,12 @@ import rojerusan.RSAnimation;
  */
 public class BienvenidoCoordinador extends javax.swing.JDialog {
 
+    private String nombre;
+
+    public void setLblNombre(String nombre) {
+        this.lblNombre.setText(nombre);
+    }
+    
     /**
      * Creates new form BienvenidoCoordinador
      */
@@ -36,7 +43,7 @@ public class BienvenidoCoordinador extends javax.swing.JDialog {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
         btnAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -47,7 +54,7 @@ public class BienvenidoCoordinador extends javax.swing.JDialog {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/001-usuario-4.png"))); // NOI18N
 
-        jLabel3.setText("Nombre del Coordinador");
+        lblNombre.setText("Nombre del Coordinador");
 
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -71,7 +78,7 @@ public class BienvenidoCoordinador extends javax.swing.JDialog {
                         .addGap(12, 12, 12)
                         .addComponent(jLabel2)
                         .addGap(44, 44, 44)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
@@ -89,7 +96,7 @@ public class BienvenidoCoordinador extends javax.swing.JDialog {
                         .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(73, 73, 73)
-                        .addComponent(jLabel3)
+                        .addComponent(lblNombre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(btnAceptar)
                 .addGap(34, 34, 34))
@@ -154,6 +161,6 @@ public class BienvenidoCoordinador extends javax.swing.JDialog {
     private javax.swing.JButton btnAceptar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblNombre;
     // End of variables declaration//GEN-END:variables
 }

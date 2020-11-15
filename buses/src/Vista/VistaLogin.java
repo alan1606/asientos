@@ -146,10 +146,22 @@ public class VistaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        new BienvenidoAdmin(this, true).setVisible(true);
-        new BienvenidoCoordinador(this, true).setVisible(true);
+        abrirBienvenidoAdmin("Yuniel");
+        abrirBienvenidoCoordinador("Alan");
+     
     }//GEN-LAST:event_btnIngresarActionPerformed
 
+    private void abrirBienvenidoAdmin(String nombre){
+        BienvenidoAdmin vAdmin = new BienvenidoAdmin(this, true);
+        vAdmin.setLblNombre(nombre);
+        vAdmin.setVisible(true);
+    }
+    
+    private void abrirBienvenidoCoordinador(String nombre){
+        BienvenidoCoordinador vCoordinador = new BienvenidoCoordinador(this, true);
+        vCoordinador.setLblNombre(nombre);
+        vCoordinador.setVisible(true);
+    }
     /**
      * @param args the command line arguments
      */

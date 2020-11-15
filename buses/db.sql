@@ -49,3 +49,10 @@ create table detalle(
     constraint fk_id_viaje_detalle foreign key (id_viaje) references viaje (id),
 	constraint fk_id_cliente_detalle  foreign key (id_cliente) references cliente (id)
 );
+
+create table usuario (
+	usuario varchar (100), 
+	pass varchar(100) not null, 
+    tipo enum("Administrador", "Coordinador") not null,
+    constraint pk_usuario primary key (usuario)
+);
