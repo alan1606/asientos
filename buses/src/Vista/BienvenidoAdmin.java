@@ -18,7 +18,7 @@ public class BienvenidoAdmin extends javax.swing.JDialog {
     public BienvenidoAdmin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        RSAnimation.setBajar(-310, 280, 2, 2, this);
+        RSAnimation.setBajar(-230, 150, 2, 2, this);
         this.setLocationRelativeTo(this);
     }
 
@@ -97,9 +97,13 @@ public class BienvenidoAdmin extends javax.swing.JDialog {
 
     private void bntAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAceptarActionPerformed
         try {
-            RSAnimation.setSubir(280, -310, 2, 2, this);
+            RSAnimation.setSubir(150, -230, 2, 2, this);
             Thread.sleep(500);
             this.dispose();
+            MenuAdmin menu = new MenuAdmin();
+             menu.setLocationRelativeTo(null);
+             menu.setVisible(true);
+             hide();
         } catch (InterruptedException ex) {
             Logger.getLogger(BienvenidoAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }

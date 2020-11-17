@@ -28,7 +28,7 @@ public class BienvenidoCoordinador extends javax.swing.JDialog {
     public BienvenidoCoordinador(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        RSAnimation.setBajar(-310, 280, 2, 2, this);
+        RSAnimation.setBajar(-230, 150, 2, 2, this);
         this.setLocationRelativeTo(this);
     }
 
@@ -107,9 +107,13 @@ public class BienvenidoCoordinador extends javax.swing.JDialog {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         try {
-            RSAnimation.setSubir(280, -310, 2, 2, this);
+            RSAnimation.setSubir(150, -230, 2, 2, this);
             Thread.sleep(500);
             this.dispose();
+            MenuCoordinador menu = new MenuCoordinador();
+            menu.setLocationRelativeTo(menu);
+            menu.setVisible(true);
+            hide();
         } catch (InterruptedException ex) {
             Logger.getLogger(BienvenidoCoordinador.class.getName()).log(Level.SEVERE, null, ex);
         }
