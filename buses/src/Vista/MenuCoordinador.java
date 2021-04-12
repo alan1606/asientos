@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import ClassVO.UsuarioVO;
 import rojerusan.RSAnimation;
 
 /**
@@ -12,6 +13,12 @@ import rojerusan.RSAnimation;
  * @author Alex Duarte
  */
 public class MenuCoordinador extends javax.swing.JFrame {
+
+    UsuarioVO usuario;
+
+    public void setUsuario(UsuarioVO usuario) {
+        this.usuario = usuario;
+    }
 
     /**
      * Creates new form MenuCoordinador

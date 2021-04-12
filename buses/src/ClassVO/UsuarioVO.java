@@ -5,23 +5,65 @@
  */
 package ClassVO;
 
+
+import java.math.BigInteger;
+import java.security.MessageDigest;
+
+
 /**
  *
  * @author alanm
  */
 public class UsuarioVO {
+    private int id;
     private String usuario;
     private String pass;
+    private String nombre;
     private String tipo;
 
+    public String getMD5(String input) {
+         try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] encBytes = md.digest(input.getBytes());
+            BigInteger numero = new BigInteger(1, encBytes);
+            String encString = numero.toString(16);
+            while (encString.length() < 32) {
+                encString = "0" + encString;
+            }
+            return encString;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
     public UsuarioVO() {
     }
 
-    public UsuarioVO(String usuario, String pass, String tipo) {
+    public UsuarioVO(int id, String usuario, String pass, String nombre, String tipo) {
+        this.id = id;
         this.usuario = usuario;
         this.pass = pass;
         this.tipo = tipo;
+        this.nombre = nombre;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+ 
+    
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
     
     public String getUsuario() {
         return usuario;

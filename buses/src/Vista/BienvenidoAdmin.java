@@ -1,4 +1,5 @@
 package Vista;
+import ClassVO.UsuarioVO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -6,7 +7,14 @@ import rojerusan.RSAnimation;
 public class BienvenidoAdmin extends javax.swing.JDialog {
 
     private String nombre;
+    UsuarioVO usuario;
 
+    public void setUsuario(UsuarioVO usuario) {
+        this.usuario = usuario;
+    }
+
+    
+    
     public void setLblNombre(String nombre) {
         this.lblNombre.setText(nombre);
     }
@@ -103,6 +111,7 @@ public class BienvenidoAdmin extends javax.swing.JDialog {
             MenuAdmin menu = new MenuAdmin();
              menu.setLocationRelativeTo(null);
              menu.setVisible(true);
+             menu.setUsuario(usuario);
              hide();
         } catch (InterruptedException ex) {
             Logger.getLogger(BienvenidoAdmin.class.getName()).log(Level.SEVERE, null, ex);

@@ -12,7 +12,7 @@ package ClassVO;
 public class DetalleVO {
     private int idViaje;
     private int idCliente;
-    private String vendedor;
+    private int idUsuario;
     private int personas;
     private String sube;
     private String habitacion;
@@ -21,16 +21,27 @@ public class DetalleVO {
     public DetalleVO() {
     }
 
-    public DetalleVO(int idViaje, int idCliente, String vendedor, int personas, String sube, String habitacion, double costo) {
+    
+    
+    public DetalleVO(int idViaje, int idCliente, int idUsuario, int personas, String sube, String habitacion, double costo) {
         this.idViaje = idViaje;
         this.idCliente = idCliente;
-        this.vendedor = vendedor;
         this.personas = personas;
         this.sube = sube;
         this.habitacion = habitacion;
         this.costo = costo;
+        this.idUsuario = idUsuario;
     }
 
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    
     public int getIdViaje() {
         return idViaje;
     }
@@ -47,13 +58,6 @@ public class DetalleVO {
         this.idCliente = idCliente;
     }
 
-    public String getVendedor() {
-        return vendedor;
-    }
-
-    public void setVendedor(String vendedor) {
-        this.vendedor = vendedor;
-    }
 
     public int getPersonas() {
         return personas;
@@ -89,7 +93,7 @@ public class DetalleVO {
 
     @Override
     public String toString() {
-        return "idViaje=" + idViaje + ", idCliente=" + idCliente + ", vendedor=" + vendedor + ", personas=" + personas + ", sube=" + sube + ", habitacion=" + habitacion + ", costo=" + costo ;
+        return "idViaje=" + idViaje + ", idCliente=" + idCliente + ", personas=" + personas + ", sube=" + sube + ", habitacion=" + habitacion + ", costo=" + costo ;
     }
     
     
