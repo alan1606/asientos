@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import ClassVO.UsuarioVO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -17,11 +18,16 @@ import rojerusan.RSAnimation;
 public class BienvenidoCoordinador extends javax.swing.JDialog {
 
     private String nombre;
+    UsuarioVO usuario;
+
+    public void setUsuario(UsuarioVO usuario) {
+        this.usuario = usuario;
+    }
 
     public void setLblNombre(String nombre) {
         this.lblNombre.setText(nombre);
     }
-    
+
     /**
      * Creates new form BienvenidoCoordinador
      */
@@ -113,6 +119,7 @@ public class BienvenidoCoordinador extends javax.swing.JDialog {
             MenuCoordinador menu = new MenuCoordinador();
             menu.setLocationRelativeTo(menu);
             menu.setVisible(true);
+            menu.setUsuario(usuario);
             hide();
         } catch (InterruptedException ex) {
             Logger.getLogger(BienvenidoCoordinador.class.getName()).log(Level.SEVERE, null, ex);

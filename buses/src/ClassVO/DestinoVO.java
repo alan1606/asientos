@@ -16,6 +16,12 @@ public class DestinoVO {
     public DestinoVO() {
     }
 
+    public DestinoVO(int id, String ciudad) {
+        this.id = id;
+        this.ciudad = ciudad;
+    }
+
+    
     public int getId() {
         return id;
     }

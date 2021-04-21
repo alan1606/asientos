@@ -1,6 +1,7 @@
-
 package Vista;
 
+import ClassDAO.UsuarioDAO;
+import ClassVO.UsuarioVO;
 import javax.swing.JOptionPane;
 
 /**
@@ -8,6 +9,9 @@ import javax.swing.JOptionPane;
  * @author Alex Duarte
  */
 public class VistaLogin extends javax.swing.JFrame {
+
+    UsuarioVO usuario;
+
     public VistaLogin() {
         initComponents();
         this.setLocationRelativeTo(this);
@@ -146,49 +150,87 @@ public class VistaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        if (datosValidos()) {
+            checaLogin();
+        }
 
-        if (verificarAdmin() == true) {
-            this.dispose();
-            abrirBienvenidoAdmin("Javier Duarte");
-        }else if(verificarCoordinador() == true){
-            this.dispose();
-            abrirBienvenidoCoordinador("Lizbeth");
-        }
     }//GEN-LAST:event_btnIngresarActionPerformed
-   //Login para hacer pruebas
-    private boolean verificarAdmin(){
-        String user = txtUsuario.getText();
-        String password = txtPass.getText();
-        if (user.equals("Admin") && password.equals("123")){
-            return true;
-           // abrirBienvenidoAdmin("Yuniel");
-        }else{
-        //JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
-        }
-   return false;
-   }
-    private boolean verificarCoordinador(){
-        String user = txtUsuario.getText();
-        String password = txtPass.getText();
-        if (user.equals("Liz")&& password.equals("123")) {
-            return true;
+    //Login para hacer pruebas
+
+     private void checaLogin() {
+        if (existeUsuario()) {
+            if (passwordEsCorrecta()) {
+                if (esAdmin()) {
+                    this.dispose();
+                    abrirBienvenidoAdmin();
+                } else {
+                    this.dispose();
+                    abrirBienvenidoCoordinador();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
+            JOptionPane.showMessageDialog(null, "El usuario no está registrado");
+            clean();
+        }
+    }
+
+    private void clean(){
+        txtUsuario.setText("");
+        txtPass.setText("");
+    }
+    
+    private boolean existeUsuario() {
+        usuario = UsuarioDAO.encontrar(txtUsuario.getText());
+        if (usuario.getId() == -1) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean datosValidos() {
+        if (txtUsuario.getText().length() == 0) {
+            return false;
+        }
+        if (txtPass.getText().length() == 0) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean esAdmin() {
+        if ("Administrador".equals(usuario.getTipo())) {
+            return true;
         }
         return false;
     }
-   
-    private void abrirBienvenidoAdmin(String nombre){
+
+    private boolean passwordEsCorrecta() {
+        if (usuario.getUsuario().equals(txtUsuario.getText()) && usuario.getPass().equals(usuario.getMD5(txtPass.getText()))) {
+            return true;
+        }
+        return false;
+    }
+
+    private void abrirBienvenidoAdmin() {
         BienvenidoAdmin vAdmin = new BienvenidoAdmin(this, true);
-        vAdmin.setLblNombre(nombre);
+        vAdmin.setLblNombre(usuario.getNombre());
         vAdmin.setVisible(true);
+        vAdmin.setUsuario(usuario);
+    }
+
+    private void abrirBienvenidoCoordinador() {
+        BienvenidoCoordinador vCoordinador = new BienvenidoCoordinador(this, true);
+        vCoordinador.setLblNombre(usuario.getNombre());
+        vCoordinador.setVisible(true);
+        vCoordinador.setUsuario(usuario);
     }
     
-    private void abrirBienvenidoCoordinador(String nombre){
-        BienvenidoCoordinador vCoordinador = new BienvenidoCoordinador(this, true);
-        vCoordinador.setLblNombre(nombre);
-        vCoordinador.setVisible(true);
-    }
+
+
+
+
     /**
      * @param args the command line arguments
      */
