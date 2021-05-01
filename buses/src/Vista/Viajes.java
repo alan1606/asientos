@@ -5,6 +5,11 @@
  */
 package Vista;
 
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author alanm
@@ -16,8 +21,23 @@ public class Viajes extends javax.swing.JFrame {
      */
     public Viajes() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        backArrow();
+    }
+private void backArrow(){
+    try {
+        ImageIcon arrow;
+        arrow = new ImageIcon(getClass().getResource("/Assets/back_arrow.png"));
+        Icon arrowIcon = new ImageIcon(arrow.getImage().getScaledInstance(lbl_back.getWidth(),
+                lbl_back.getHeight(), Image.SCALE_SMOOTH));
+        lbl_back.setIcon(arrowIcon);
+        
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Ha ocurrido un error inesperado al cargar los recursos");
+        System.out.println("error");
     }
 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,88 +49,143 @@ public class Viajes extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        lbl_rergesar = new javax.swing.JLabel();
+        lbl_destino = new javax.swing.JLabel();
+        lbl_fecha1 = new javax.swing.JLabel();
+        lbl_asientos = new javax.swing.JLabel();
+        lbl_back = new javax.swing.JLabel();
+        cmbox_destinos = new javax.swing.JComboBox<>();
+        cmbox_asientos = new javax.swing.JComboBox<>();
+        date1 = new com.toedter.calendar.JDateChooser();
+        btn_crear = new javax.swing.JButton();
+        btn_modificar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
+        lbl_destino2 = new javax.swing.JLabel();
+        cmbox_destino2 = new javax.swing.JComboBox<>();
+        lbl_fecha2 = new javax.swing.JLabel();
+        date2 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Ventana de Viajes");
+        setIconImages(null);
+        setResizable(false);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Regresar");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 46, -1, -1));
+        lbl_rergesar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl_rergesar.setText("Regresar");
+        jPanel2.add(lbl_rergesar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, 20));
 
-        jLabel3.setText("Destino");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 110, -1, -1));
+        lbl_destino.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl_destino.setText("Destino");
+        jPanel2.add(lbl_destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
-        jLabel4.setText("Fecha");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 177, -1, -1));
+        lbl_fecha1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl_fecha1.setText("Fecha");
+        jPanel2.add(lbl_fecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
 
-        jLabel5.setText("Asientos");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 252, -1, -1));
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 107, 179, -1));
-        jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 249, 179, -1));
+        lbl_asientos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl_asientos.setText("Asientos");
+        jPanel2.add(lbl_asientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 245, -1, 30));
 
-        jButton1.setText("Crear viaje");
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 299, -1, -1));
+        lbl_back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_backMouseClicked(evt);
+            }
+        });
+        jPanel2.add(lbl_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 30, 40));
 
-        jButton2.setText("Modificar");
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 350, 85, -1));
+        cmbox_destinos.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel2.add(cmbox_destinos, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 107, 179, -1));
+
+        cmbox_asientos.setBackground(new java.awt.Color(153, 204, 255));
+        cmbox_asientos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbox_asientosActionPerformed(evt);
+            }
+        });
+        jPanel2.add(cmbox_asientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 249, 179, -1));
+
+        date1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(date1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 170, 30));
+
+        btn_crear.setBackground(new java.awt.Color(5, 101, 249));
+        btn_crear.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_crear.setForeground(new java.awt.Color(255, 255, 255));
+        btn_crear.setText("Crear viaje");
+        btn_crear.setBorder(null);
+        btn_crear.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel2.add(btn_crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 299, 100, 30));
+
+        btn_modificar.setBackground(new java.awt.Color(0, 102, 255));
+        btn_modificar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_modificar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_modificar.setText("Modificar");
+        jPanel2.add(btn_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 350, 100, -1));
 
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 370, 340));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 370, 340));
 
-        jLabel6.setText("Destino");
+        jPanel3.setBackground(new java.awt.Color(228, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Busqueda"));
 
-        jLabel2.setText("Fecha");
+        lbl_destino2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl_destino2.setText("Destino");
+
+        cmbox_destino2.setBackground(new java.awt.Color(153, 204, 255));
+
+        lbl_fecha2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl_fecha2.setText("Fecha");
+
+        date2.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel6))
+                    .addComponent(lbl_fecha2)
+                    .addComponent(lbl_destino2))
                 .addGap(18, 18, 18)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cmbox_destino2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(13, 13, 13))
+                    .addComponent(lbl_destino2)
+                    .addComponent(cmbox_destino2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_fecha2))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 420, 60));
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 370, 100));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -126,6 +201,14 @@ public class Viajes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmbox_asientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbox_asientosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbox_asientosActionPerformed
+
+    private void lbl_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_backMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbl_backMouseClicked
 
     /**
      * @param args the command line arguments
@@ -163,21 +246,24 @@ public class Viajes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton btn_crear;
+    private javax.swing.JButton btn_modificar;
+    private javax.swing.JComboBox<String> cmbox_asientos;
+    private javax.swing.JComboBox<String> cmbox_destino2;
+    private javax.swing.JComboBox<String> cmbox_destinos;
+    private com.toedter.calendar.JDateChooser date1;
+    private com.toedter.calendar.JDateChooser date2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lbl_asientos;
+    private javax.swing.JLabel lbl_back;
+    private javax.swing.JLabel lbl_destino;
+    private javax.swing.JLabel lbl_destino2;
+    private javax.swing.JLabel lbl_fecha1;
+    private javax.swing.JLabel lbl_fecha2;
+    private javax.swing.JLabel lbl_rergesar;
     // End of variables declaration//GEN-END:variables
 }

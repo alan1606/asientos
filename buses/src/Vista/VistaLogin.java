@@ -79,6 +79,8 @@ public class VistaLogin extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/004-usuario-2.png"))); // NOI18N
 
+        btnIngresar.setBackground(new java.awt.Color(0, 102, 255));
+        btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
         btnIngresar.setText("Ingresar");
         btnIngresar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 102, 255), null, null));
         btnIngresar.setBorderPainted(false);
