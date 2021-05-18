@@ -2,6 +2,7 @@ package Vista;
 
 import ClassDAO.UsuarioDAO;
 import ClassVO.UsuarioVO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,6 +16,10 @@ public class VistaLogin extends javax.swing.JFrame {
     public VistaLogin() {
         initComponents();
         this.setLocationRelativeTo(this);
+        icono();
+    }
+    private void icono(){
+        setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
     }
 
     /**

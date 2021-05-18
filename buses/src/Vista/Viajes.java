@@ -23,6 +23,10 @@ public class Viajes extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         backArrow();
+        icono();
+    }
+    private void icono(){
+        setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
     }
 private void backArrow(){
     try {
@@ -37,6 +41,11 @@ private void backArrow(){
         System.out.println("error");
     }
 
+    }
+    private void menu(){
+        MenuAdmin ma = new MenuAdmin();
+        ma.setVisible(true);
+        this.dispose();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -208,6 +217,7 @@ private void backArrow(){
 
     private void lbl_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_backMouseClicked
         // TODO add your handling code here:
+        menu();
     }//GEN-LAST:event_lbl_backMouseClicked
 
     /**

@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Alex Duarte
@@ -17,6 +19,10 @@ public class NuevoHotel extends javax.swing.JFrame {
     public NuevoHotel() {
         initComponents();
         this.setLocationRelativeTo(null);
+        icono();
+    }
+    private void icono(){
+        setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
     }
     private void closeWindow(){
     this.dispose();

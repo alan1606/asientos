@@ -8,6 +8,7 @@ package Vista;
 import ClassVO.UsuarioVO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import rojerusan.RSAnimation;
 
@@ -36,6 +37,10 @@ public class BienvenidoCoordinador extends javax.swing.JDialog {
         initComponents();
         RSAnimation.setBajar(-230, 150, 2, 2, this);
         this.setLocationRelativeTo(this);
+        icono();
+    }
+    private void icono(){
+        setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
     }
 
     /**

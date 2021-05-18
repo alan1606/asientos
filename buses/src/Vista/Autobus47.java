@@ -23,7 +23,11 @@ public class Autobus47 extends javax.swing.JFrame {
         lblArreglo();
         setDesignLabels();
         camion();
+        icono();
         this.setLocationRelativeTo(null);
+    }
+    private void icono(){
+        setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
     }
 
     private void camion(){
@@ -218,6 +222,7 @@ public class Autobus47 extends javax.swing.JFrame {
         lbl_fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Autobus de 47 plazas");
 
         panelAutobus.setBackground(new java.awt.Color(255, 255, 255));
         panelAutobus.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

@@ -23,6 +23,10 @@ public class Hoteles extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         backArrow();
+        icono();
+    }
+    private void icono(){
+        setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
     }
 private void backArrow(){
     try {
@@ -61,7 +65,7 @@ private void openWindowNewHotel(){
         lbl_back = new javax.swing.JLabel();
         lbl_rergesar = new javax.swing.JLabel();
         cmbox_hoteles = new javax.swing.JComboBox<>();
-        btn_añadir2 = new javax.swing.JButton();
+        btn_hotel = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -104,15 +108,15 @@ private void openWindowNewHotel(){
 
         cmbox_hoteles.setBackground(new java.awt.Color(153, 204, 255));
 
-        btn_añadir2.setBackground(new java.awt.Color(5, 101, 249));
-        btn_añadir2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btn_añadir2.setForeground(new java.awt.Color(255, 255, 255));
-        btn_añadir2.setText("Crear nuevo hotel");
-        btn_añadir2.setBorder(null);
-        btn_añadir2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btn_añadir2.addActionListener(new java.awt.event.ActionListener() {
+        btn_hotel.setBackground(new java.awt.Color(5, 101, 249));
+        btn_hotel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_hotel.setForeground(new java.awt.Color(255, 255, 255));
+        btn_hotel.setText("Crear nuevo hotel");
+        btn_hotel.setBorder(null);
+        btn_hotel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_hotel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_añadir2ActionPerformed(evt);
+                btn_hotelActionPerformed(evt);
             }
         });
 
@@ -140,7 +144,7 @@ private void openWindowNewHotel(){
                                     .addGap(30, 30, 30)
                                     .addComponent(cmbox_destinos, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btn_añadir2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                                .addComponent(btn_hotel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
                                 .addComponent(btn_añadir1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
@@ -164,7 +168,7 @@ private void openWindowNewHotel(){
                 .addGap(84, 84, 84)
                 .addComponent(btn_añadir1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btn_añadir2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_hotel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(114, Short.MAX_VALUE))
         );
 
@@ -274,9 +278,9 @@ private void openWindowNewHotel(){
         // TODO add your handling code here:
     }//GEN-LAST:event_lbl_backMouseClicked
 
-    private void btn_añadir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_añadir2ActionPerformed
+    private void btn_hotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hotelActionPerformed
         openWindowNewHotel();
-    }//GEN-LAST:event_btn_añadir2ActionPerformed
+    }//GEN-LAST:event_btn_hotelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -315,8 +319,8 @@ private void openWindowNewHotel(){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_añadir1;
-    private javax.swing.JButton btn_añadir2;
     private javax.swing.JButton btn_borrar;
+    private javax.swing.JButton btn_hotel;
     private javax.swing.JButton btn_modificar;
     private javax.swing.JComboBox<String> cmbox_destinos;
     private javax.swing.JComboBox<String> cmbox_destinos1;

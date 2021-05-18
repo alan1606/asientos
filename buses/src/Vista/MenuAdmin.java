@@ -1,6 +1,7 @@
 package Vista;
 
 import ClassVO.UsuarioVO;
+import javax.swing.ImageIcon;
 import rojerusan.RSAnimation;
 
 /**
@@ -22,8 +23,31 @@ public class MenuAdmin extends javax.swing.JFrame {
         initComponents();
         RSAnimation.setBajar(-230, 150, 2, 2, this);
         this.setLocationRelativeTo(this);
+        icono();
     }
-
+    private void icono(){
+        setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
+    }
+    private void asientos(){
+        Autobus47 asientos = new Autobus47();
+        asientos.setVisible(true);
+        this.dispose();
+    }
+    private void destinos(){
+        Destinos des = new Destinos();
+        des.setVisible(true);
+        this.dispose();
+    }
+    private void viajes(){
+        Viajes v = new Viajes();
+        v.setVisible(true);
+        this.dispose();
+    }
+    private void clientes(){
+        ClientesAdmin clientesA = new ClientesAdmin();
+        clientesA.setVisible(true);
+        this.dispose();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,24 +77,45 @@ public class MenuAdmin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menú del administrador");
 
         btnAsientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/005-asientos.png"))); // NOI18N
-        btnAsientos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAsientos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAsientos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsientosActionPerformed(evt);
+            }
+        });
 
         btnDestinos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/002-destino.png"))); // NOI18N
-        btnDestinos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDestinos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnDestinos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDestinosActionPerformed(evt);
+            }
+        });
 
         btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/003-cliente.png"))); // NOI18N
-        btnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClientesActionPerformed(evt);
+            }
+        });
 
         btnDetalles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/006-informacion.png"))); // NOI18N
-        btnDetalles.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDetalles.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         btnViajes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/007-viajes.png"))); // NOI18N
-        btnViajes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnViajes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnViajes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViajesActionPerformed(evt);
+            }
+        });
 
         btnAnadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/008-anadir.png"))); // NOI18N
-        btnAnadir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAnadir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel3.setText("Asientos");
 
@@ -210,6 +255,23 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAsientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsientosActionPerformed
+        asientos();
+    }//GEN-LAST:event_btnAsientosActionPerformed
+
+    private void btnDestinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDestinosActionPerformed
+        destinos();
+    }//GEN-LAST:event_btnDestinosActionPerformed
+
+    private void btnViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViajesActionPerformed
+        viajes();
+    }//GEN-LAST:event_btnViajesActionPerformed
+
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+        // TODO add your handling code here
+        clientes();
+    }//GEN-LAST:event_btnClientesActionPerformed
 
     /**
      * @param args the command line arguments

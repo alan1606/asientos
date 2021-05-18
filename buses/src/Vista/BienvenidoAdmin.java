@@ -2,6 +2,7 @@ package Vista;
 import ClassVO.UsuarioVO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import rojerusan.RSAnimation;
 public class BienvenidoAdmin extends javax.swing.JDialog {
@@ -28,6 +29,10 @@ public class BienvenidoAdmin extends javax.swing.JDialog {
         initComponents();
         RSAnimation.setBajar(-230, 150, 2, 2, this);
         this.setLocationRelativeTo(this);
+        icono();
+    }
+    private void icono(){
+        setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
     }
 
     /**
@@ -45,6 +50,7 @@ public class BienvenidoAdmin extends javax.swing.JDialog {
         lblNombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Bienvenido");
 
         jLabel1.setFont(new java.awt.Font("Open Sans", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

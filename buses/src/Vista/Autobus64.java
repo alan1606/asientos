@@ -24,11 +24,15 @@ public class Autobus64 extends javax.swing.JFrame {
     private JLabel[] arreglo;
     public Autobus64() {
         initComponents();
+        this.setLocationRelativeTo(null);
         lblArreglo();
         setDesignLabels();
         camion();
+        icono();
     }
-    
+    private void icono(){
+        setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
+    }
     private void camion(){
      ImageIcon fondo;
         fondo = new ImageIcon(getClass().getResource("/Assets/autobus64.png"));
@@ -250,6 +254,7 @@ public class Autobus64 extends javax.swing.JFrame {
         lbl_fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Autobus de 64 plazas");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
