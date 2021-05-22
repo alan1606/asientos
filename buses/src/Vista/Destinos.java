@@ -73,9 +73,9 @@ public class Destinos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tCiudades = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        txtEstado = new javax.swing.JTextField();
-        txtPais = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        comboPais = new javax.swing.JComboBox<>();
+        comboEstado = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,7 +106,7 @@ public class Destinos extends javax.swing.JFrame {
         btn_modificar.setText("Modificar");
         btn_modificar.setBorder(null);
         btn_modificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.add(btn_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 338, 87, 28));
+        jPanel1.add(btn_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, 87, 28));
 
         btn_añadir1.setBackground(new java.awt.Color(5, 101, 249));
         btn_añadir1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -114,7 +114,7 @@ public class Destinos extends javax.swing.JFrame {
         btn_añadir1.setText("Añadir");
         btn_añadir1.setBorder(null);
         btn_añadir1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.add(btn_añadir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 290, 87, 30));
+        jPanel1.add(btn_añadir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 87, 30));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Busar ciudad"));
@@ -162,17 +162,13 @@ public class Destinos extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Estado:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 166, -1, -1));
-
-        txtEstado.setMinimumSize(new java.awt.Dimension(5, 25));
-        jPanel1.add(txtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 193, 250, -1));
-
-        txtPais.setMinimumSize(new java.awt.Dimension(5, 25));
-        jPanel1.add(txtPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 252, 250, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("País:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 225, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+        jPanel1.add(comboPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 250, -1));
+        jPanel1.add(comboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 250, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -218,6 +214,7 @@ public class Destinos extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Destinos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -230,6 +227,8 @@ public class Destinos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_añadir1;
     private javax.swing.JButton btn_modificar;
+    private javax.swing.JComboBox<String> comboEstado;
+    private javax.swing.JComboBox<String> comboPais;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -243,7 +242,5 @@ public class Destinos extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_rergesar;
     private javax.swing.JTable tCiudades;
     private javax.swing.JTextField txtCiudad;
-    private javax.swing.JTextField txtEstado;
-    private javax.swing.JTextField txtPais;
     // End of variables declaration//GEN-END:variables
 }

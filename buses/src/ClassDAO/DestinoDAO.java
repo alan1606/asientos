@@ -25,13 +25,16 @@ public class DestinoDAO {
     private static final String SQL_SELECT_BY_ID = "SELECT * "
             + " FROM destino WHERE id=?";
 
+    private static final String SQL_SELECT_BY_ID_ESTADO = "SELECT * "
+            + " FROM destino WHERE id_estado=?";
+    
     /*private static final String SQL_SELECT_BY_NAME = "SELECT * "
             + " FROM categoria WHERE nombre = ?";*/
     private static final String SQL_UPDATE = "UPDATE destino "
-            + " SET ciudad= ? WHERE id=?";
+            + " SET ciudad= ?, id_estado = ? WHERE id=?";
 
     private static final String SQL_INSERT = "INSERT INTO destino "
-            + " VALUES(null,?)";
+            + " VALUES(null,?, ?)";
 
     private static final String SQL_DELETE = "DELETE FROM destino WHERE id=?";
 
@@ -48,8 +51,9 @@ public class DestinoDAO {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String ciudad = rs.getString("ciudad");
-
-                destino = new DestinoVO(id, ciudad);
+                int idEstado = rs.getInt("id_estado");
+                
+                destino = new DestinoVO(id, ciudad,idEstado);
                 destinos.add(destino);
             }
         } catch (SQLException ex) {
@@ -75,7 +79,9 @@ public class DestinoDAO {
             if (rs.next()) {
                 int id = rs.getInt("id");
                 String ciudad = rs.getString("ciudad");
-                destino = new DestinoVO(id, ciudad);
+                int idEstado = rs.getInt("id_estado");
+                
+                destino = new DestinoVO(id, ciudad,idEstado);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -87,6 +93,33 @@ public class DestinoDAO {
         return destino;
     }
 
+    public static DestinoVO encontrarEstado(int _idEstado) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        DestinoVO destino= null;
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_BY_ID_ESTADO);
+            stmt.setInt(1, _idEstado);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                String ciudad = rs.getString("ciudad");
+                int idEstado = rs.getInt("id_estado");
+                
+                destino = new DestinoVO(id, ciudad,idEstado);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return destino;
+    }
+    
     public static int insertar(DestinoVO destino) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -95,7 +128,7 @@ public class DestinoDAO {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
             stmt.setString(1, destino.getCiudad());
-
+            stmt.setInt(2, destino.getIdEstado());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -116,8 +149,9 @@ public class DestinoDAO {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_UPDATE);
             stmt.setString(1, destino.getCiudad());
-            stmt.setInt(2, destino.getId());
-
+            stmt.setInt(2, destino.getIdEstado());
+            stmt.setInt(3, destino.getId());
+                
 
             
             rows = stmt.executeUpdate();

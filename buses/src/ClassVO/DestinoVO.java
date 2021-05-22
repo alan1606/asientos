@@ -12,13 +12,23 @@ package ClassVO;
 public class DestinoVO {
     private int id;
     private String ciudad;
-
+    private int idEstado;
+    
     public DestinoVO() {
     }
 
-    public DestinoVO(int id, String ciudad) {
+    public DestinoVO(int id, String ciudad, int idEstado) {
         this.id = id;
         this.ciudad = ciudad;
+        this.idEstado = idEstado;
+    }
+
+    public int getIdEstado() {
+        return idEstado;
+    }
+
+    public void setIdEstado(int idEstado) {
+        this.idEstado = idEstado;
     }
 
     
