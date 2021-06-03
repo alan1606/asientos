@@ -5,8 +5,9 @@
  */
 package ClassDAO;
 
-import ClassVO.AsientoVO;
+import ClassVO.EstadoVO;
 import Conexion.Conexion;
+import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,42 +18,41 @@ import java.util.ArrayList;
  *
  * @author alanm
  */
-public class AsientoDAO {
+public class EstadoDAO {
 
     private static final String SQL_SELECT = "SELECT * "
-            + " FROM asiento";
+            + " FROM estado";
 
-    private static final String SQL_SELECT_BY_ID = "SELECT * "
-            + " FROM asiento WHERE numero = ? and id_viaje = ?";
+    private static final String SQL_SELECT_BY_ID_PAIS = "SELECT * "
+            + " FROM estado WHERE id_pais=?";
 
     /*private static final String SQL_SELECT_BY_NAME = "SELECT * "
             + " FROM categoria WHERE nombre = ?";*/
-    private static final String SQL_UPDATE = "UPDATE asiento "
-            + " SET id_cliente= ?, disponible=? WHERE numero=? and id_viaje =?";
+    private static final String SQL_UPDATE = "UPDATE estado "
+            + " SET id_pais = ?, nombre = ? WHERE id=?";
 
-    private static final String SQL_INSERT = "INSERT INTO asiento "
-            + " VALUES(?,?,?,?)";
+    private static final String SQL_INSERT = "INSERT INTO estado "
+            + " VALUES(null,?, ?)";
 
-    private static final String SQL_DELETE = "DELETE FROM asiento WHERE numero = ? and id_viaje=?";
+    private static final String SQL_DELETE = "DELETE FROM estado WHERE id=?";
 
-    public ArrayList<AsientoVO> listar() {
+    public ArrayList<EstadoVO> listar() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        AsientoVO asiento = null;
-        ArrayList<AsientoVO> asientos = new ArrayList<>();
+        EstadoVO estado = null;
+        ArrayList<EstadoVO> estados = new ArrayList<>();
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int numero = rs.getInt("numero");
-                int idViaje = rs.getInt("id_viaje");
-                int idCliente = rs.getInt("id_cliente");
-                boolean disponible = rs.getBoolean("disponible");
+                int id = rs.getInt("id");
+                int idPais = rs.getInt("id_pais");
+                String nombre = rs.getString("nombre");
 
-                asiento = new AsientoVO(numero, idViaje, idCliente, disponible);
-                asientos.add(asiento);
+                estado = new EstadoVO(id, idPais, nombre);
+                estados.add(estado);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -61,27 +61,25 @@ public class AsientoDAO {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
-        return asientos;
+        return estados;
     }
 
-    public AsientoVO encontrar(int _numero, int _idViaje) {
+    public EstadoVO encontrar(int _idPais) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        AsientoVO asiento = null;
+        EstadoVO estado = null;
         try {
             conn = Conexion.getConnection();
-            stmt = conn.prepareStatement(SQL_SELECT_BY_ID);
-            stmt.setInt(1, _numero);
-            stmt.setInt(2, _idViaje);
+            stmt = conn.prepareStatement(SQL_SELECT_BY_ID_PAIS);
+            stmt.setInt(1, _idPais);
             rs = stmt.executeQuery();
             if (rs.next()) {
-                int numero = rs.getInt("numero");
-                int idViaje = rs.getInt("id_viaje");
-                int idCliente = rs.getInt("id_cliente");
-                boolean disponible = rs.getBoolean("disponible");
+                int id = rs.getInt("id");
+                int idPais = rs.getInt("id_pais");
+                String nombre = rs.getString("nombre");
 
-                asiento = new AsientoVO(numero, idViaje, idCliente, disponible);
+                estado = new EstadoVO(id, idPais, nombre);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -90,20 +88,18 @@ public class AsientoDAO {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
-        return asiento;
+        return estado;
     }
 
-    public int insertar(AsientoVO asiento) {
+    public int insertar(EstadoVO estado) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setInt(1, asiento.getNumero());
-            stmt.setInt(2, asiento.getIdViaje());
-            stmt.setInt(3, asiento.getIdCliente());
-            stmt.setBoolean(4, asiento.isDisponible());
+            stmt.setInt(1, estado.getIdPais());
+            stmt.setString(2, estado.getNombre());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -115,20 +111,17 @@ public class AsientoDAO {
         return rows;
     }
 
-    
-    public int actualizar(AsientoVO asiento) {
+    public int actualizar(EstadoVO estado) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_UPDATE);
-            stmt.setInt(1, asiento.getIdCliente());
-            stmt.setBoolean(2, asiento.isDisponible());
-            stmt.setInt(3, asiento.getNumero());
-            stmt.setInt(4, asiento.getIdViaje());
+            stmt.setInt(1, estado.getIdPais());
+            stmt.setString(2, estado.getNombre());
+            stmt.setInt(3, estado.getId());
 
-            
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -138,17 +131,15 @@ public class AsientoDAO {
         }
         return rows;
     }
-     
-    
-    public int eliminar(AsientoVO asiento) {
+
+    public int eliminar(EstadoVO estado) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setInt(1, asiento.getNumero());
-            stmt.setInt(2, asiento.getIdViaje());
+            stmt.setInt(1, estado.getId());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {

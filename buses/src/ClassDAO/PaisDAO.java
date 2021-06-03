@@ -5,7 +5,7 @@
  */
 package ClassDAO;
 
-import ClassVO.AsientoVO;
+import ClassVO.PaisVO;
 import Conexion.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,42 +17,39 @@ import java.util.ArrayList;
  *
  * @author alanm
  */
-public class AsientoDAO {
-
+public class PaisDAO {
     private static final String SQL_SELECT = "SELECT * "
-            + " FROM asiento";
+            + " FROM pais";
 
-    private static final String SQL_SELECT_BY_ID = "SELECT * "
-            + " FROM asiento WHERE numero = ? and id_viaje = ?";
+    private static final String SQL_SELECT_BY_ID_PAIS = "SELECT * "
+            + " FROM pais WHERE id=?";
 
     /*private static final String SQL_SELECT_BY_NAME = "SELECT * "
             + " FROM categoria WHERE nombre = ?";*/
-    private static final String SQL_UPDATE = "UPDATE asiento "
-            + " SET id_cliente= ?, disponible=? WHERE numero=? and id_viaje =?";
+    private static final String SQL_UPDATE = "UPDATE pais "
+            + " SET nombre = ? WHERE id=?";
 
-    private static final String SQL_INSERT = "INSERT INTO asiento "
-            + " VALUES(?,?,?,?)";
+    private static final String SQL_INSERT = "INSERT INTO pais "
+            + " VALUES(null,?)";
 
-    private static final String SQL_DELETE = "DELETE FROM asiento WHERE numero = ? and id_viaje=?";
+    private static final String SQL_DELETE = "DELETE FROM pais WHERE id=?";
 
-    public ArrayList<AsientoVO> listar() {
+    public ArrayList<PaisVO> listar() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        AsientoVO asiento = null;
-        ArrayList<AsientoVO> asientos = new ArrayList<>();
+        PaisVO pais = null;
+        ArrayList<PaisVO> estados = new ArrayList<>();
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int numero = rs.getInt("numero");
-                int idViaje = rs.getInt("id_viaje");
-                int idCliente = rs.getInt("id_cliente");
-                boolean disponible = rs.getBoolean("disponible");
+                int id = rs.getInt("id");
+                String nombre = rs.getString("nombre");
 
-                asiento = new AsientoVO(numero, idViaje, idCliente, disponible);
-                asientos.add(asiento);
+                pais = new PaisVO(id, nombre);
+                estados.add(pais);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -61,27 +58,24 @@ public class AsientoDAO {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
-        return asientos;
+        return estados;
     }
 
-    public AsientoVO encontrar(int _numero, int _idViaje) {
+    public PaisVO encontrar(int _id) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        AsientoVO asiento = null;
+        PaisVO pais = null;
         try {
             conn = Conexion.getConnection();
-            stmt = conn.prepareStatement(SQL_SELECT_BY_ID);
-            stmt.setInt(1, _numero);
-            stmt.setInt(2, _idViaje);
+            stmt = conn.prepareStatement(SQL_SELECT_BY_ID_PAIS);
+            stmt.setInt(1, _id);
             rs = stmt.executeQuery();
             if (rs.next()) {
-                int numero = rs.getInt("numero");
-                int idViaje = rs.getInt("id_viaje");
-                int idCliente = rs.getInt("id_cliente");
-                boolean disponible = rs.getBoolean("disponible");
+                int id = rs.getInt("id");
+                String nombre = rs.getString("nombre");
 
-                asiento = new AsientoVO(numero, idViaje, idCliente, disponible);
+                pais = new PaisVO(id, nombre);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -90,20 +84,17 @@ public class AsientoDAO {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
-        return asiento;
+        return pais;
     }
 
-    public int insertar(AsientoVO asiento) {
+    public int insertar(PaisVO pais) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setInt(1, asiento.getNumero());
-            stmt.setInt(2, asiento.getIdViaje());
-            stmt.setInt(3, asiento.getIdCliente());
-            stmt.setBoolean(4, asiento.isDisponible());
+            stmt.setString(1, pais.getNombre());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -115,20 +106,16 @@ public class AsientoDAO {
         return rows;
     }
 
-    
-    public int actualizar(AsientoVO asiento) {
+    public int actualizar(PaisVO pais) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_UPDATE);
-            stmt.setInt(1, asiento.getIdCliente());
-            stmt.setBoolean(2, asiento.isDisponible());
-            stmt.setInt(3, asiento.getNumero());
-            stmt.setInt(4, asiento.getIdViaje());
+            stmt.setString(1, pais.getNombre());
+            stmt.setInt(2, pais.getId());
 
-            
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -138,17 +125,15 @@ public class AsientoDAO {
         }
         return rows;
     }
-     
-    
-    public int eliminar(AsientoVO asiento) {
+
+    public int eliminar(PaisVO pais) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setInt(1, asiento.getNumero());
-            stmt.setInt(2, asiento.getIdViaje());
+            stmt.setInt(1, pais.getId());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {

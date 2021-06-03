@@ -5,11 +5,7 @@
  */
 package Vista;
 
-import ClassVO.UsuarioVO;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import rojerusan.RSAnimation;
 
 
@@ -18,17 +14,6 @@ import rojerusan.RSAnimation;
  * @author Alex Duarte
  */
 public class BienvenidoCoordinador extends javax.swing.JDialog {
-
-    private String nombre;
-    UsuarioVO usuario;
-
-    public void setUsuario(UsuarioVO usuario) {
-        this.usuario = usuario;
-    }
-
-    public void setLblNombre(String nombre) {
-        this.lblNombre.setText(nombre);
-    }
 
     /**
      * Creates new form BienvenidoCoordinador
@@ -118,18 +103,7 @@ public class BienvenidoCoordinador extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        try {
-            RSAnimation.setSubir(150, -230, 2, 2, this);
-            Thread.sleep(500);
-            this.dispose();
-            MenuCoordinador menu = new MenuCoordinador();
-            menu.setLocationRelativeTo(menu);
-            menu.setVisible(true);
-            menu.setUsuario(usuario);
-            hide();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(BienvenidoCoordinador.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
@@ -175,9 +149,9 @@ public class BienvenidoCoordinador extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAceptar;
+    public javax.swing.JButton btnAceptar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel lblNombre;
+    public javax.swing.JLabel lblNombre;
     // End of variables declaration//GEN-END:variables
 }

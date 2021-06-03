@@ -35,7 +35,7 @@ public class DetalleDAO {
 
     private static final String SQL_DELETE = "DELETE FROM detalle WHERE id_viaje=? and id_cliente = ? and id_usuario = ?";
 
-    public static ArrayList<DetalleVO> listar() {
+    public ArrayList<DetalleVO> listar() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -67,7 +67,7 @@ public class DetalleDAO {
         return detalles;
     }
 
-    public static DetalleVO encontrar(int _idViaje, int _idCliente, int _idUsuario) {
+    public DetalleVO encontrar(int _idViaje, int _idCliente, int _idUsuario) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -100,7 +100,7 @@ public class DetalleDAO {
         return detalle;
     }
 
-    public static int insertar(DetalleVO detalle) {
+    public int insertar(DetalleVO detalle) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -125,7 +125,7 @@ public class DetalleDAO {
         return rows;
     }
 
-    public static int actualizar(DetalleVO detalle) {
+    public int actualizar(DetalleVO detalle) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -150,7 +150,7 @@ public class DetalleDAO {
         return rows;
     }
 
-    public static int eliminar(DetalleVO detalle) {
+    public int eliminar(DetalleVO detalle) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;

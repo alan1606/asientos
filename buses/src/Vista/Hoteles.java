@@ -88,6 +88,7 @@ private void openWindowNewHotel(){
 
         cmbox_destinos.setBackground(new java.awt.Color(153, 204, 255));
 
+        lbl_hotel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl_hotel.setText("Hotel");
 
         btn_añadir1.setBackground(new java.awt.Color(5, 101, 249));

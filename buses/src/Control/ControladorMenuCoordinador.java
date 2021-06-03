@@ -1,0 +1,85 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Control;
+
+import ClassVO.UsuarioVO;
+
+import Vista.Clientes;
+import Vista.Destinos;
+import Vista.MenuCoordinador;
+import Vista.Viajes;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+/**
+ *
+ * @author alanm
+ */
+public class ControladorMenuCoordinador implements ActionListener{
+
+    private MenuCoordinador vista;
+    private UsuarioVO usuario;
+    
+    public ControladorMenuCoordinador(MenuCoordinador vista, UsuarioVO usuario) {
+        this.vista = vista;
+        this.usuario = usuario;
+        
+        this.vista.btnAsientos.addActionListener(this);
+        this.vista.btnDestinos.addActionListener(this);
+        this.vista.btnViajes.addActionListener(this);
+        this.vista.btnClientes.addActionListener(this);
+        this.vista.btnDetalles.addActionListener(this);
+
+        //Se agrega un action listener por cada objeto
+    }
+    
+     public void iniciar() {
+        vista.setTitle("Menú de coordinador");
+        vista.setVisible(true);
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        if(ae.getSource() == vista.btnAsientos){
+            abrirAsientos();
+        }
+        if(ae.getSource() == vista.btnDestinos){
+            abrirDestinos();
+        }
+        if(ae.getSource() == vista.btnViajes){
+            abrirViajes();
+        }
+        if(ae.getSource() == vista.btnClientes){
+            abrirClientes();
+        }
+        if(ae.getSource() == vista.btnDetalles){
+            abrirDetalles();
+        }
+    }
+    
+     private void abrirAsientos(){
+         
+    }
+    private void abrirDestinos(){
+        Destinos des = new Destinos();
+        des.setVisible(true);
+        vista.dispose();
+    }
+    private void abrirViajes(){
+        Viajes v = new Viajes();
+        v.setVisible(true);
+        vista.dispose();
+    }
+    private void abrirClientes(){
+        Clientes clientes = new Clientes();
+        clientes.setVisible(true);
+        vista.dispose();
+    }
+    private void abrirDetalles(){
+       
+    }
+    
+}

@@ -224,9 +224,19 @@ public class MenuCoordinador extends javax.swing.JFrame {
 
         btnAsientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/005-asientos.png"))); // NOI18N
         btnAsientos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAsientos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsientosActionPerformed(evt);
+            }
+        });
 
         btnDestinos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/002-destino.png"))); // NOI18N
         btnDestinos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnDestinos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDestinosActionPerformed(evt);
+            }
+        });
 
         btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/003-cliente.png"))); // NOI18N
         btnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -236,6 +246,11 @@ public class MenuCoordinador extends javax.swing.JFrame {
 
         btnViajes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/007-viajes.png"))); // NOI18N
         btnViajes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnViajes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViajesActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("Asientos");
 
@@ -335,6 +350,18 @@ public class MenuCoordinador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAsientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsientosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAsientosActionPerformed
+
+    private void btnDestinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDestinosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDestinosActionPerformed
+
+    private void btnViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViajesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnViajesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -371,11 +398,11 @@ public class MenuCoordinador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAsientos;
-    private javax.swing.JButton btnClientes;
-    private javax.swing.JButton btnDestinos;
-    private javax.swing.JButton btnDetalles;
-    private javax.swing.JButton btnViajes;
+    public javax.swing.JButton btnAsientos;
+    public javax.swing.JButton btnClientes;
+    public javax.swing.JButton btnDestinos;
+    public javax.swing.JButton btnDetalles;
+    public javax.swing.JButton btnViajes;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

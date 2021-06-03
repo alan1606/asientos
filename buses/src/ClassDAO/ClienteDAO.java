@@ -35,7 +35,7 @@ public class ClienteDAO {
 
     private static final String SQL_DELETE = "DELETE FROM cliente WHERE id=?";
 
-    public static ArrayList<ClienteVO> listar() {
+    public ArrayList<ClienteVO> listar() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -63,7 +63,7 @@ public class ClienteDAO {
         return clientes;
     }
 
-    public static ClienteVO encontrar(int _id) {
+    public ClienteVO encontrar(int _id) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -90,7 +90,7 @@ public class ClienteDAO {
         return cliente;
     }
 
-    public static int insertar(ClienteVO cliente) {
+    public int insertar(ClienteVO cliente) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -112,7 +112,7 @@ public class ClienteDAO {
     }
 
     
-    public static int actualizar(ClienteVO cliente) {
+    public int actualizar(ClienteVO cliente) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -135,7 +135,7 @@ public class ClienteDAO {
     }
      
     
-    public static int eliminar(ClienteVO cliente) {
+    public int eliminar(ClienteVO cliente) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;

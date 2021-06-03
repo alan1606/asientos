@@ -38,7 +38,7 @@ public class DestinoDAO {
 
     private static final String SQL_DELETE = "DELETE FROM destino WHERE id=?";
 
-    public static ArrayList<DestinoVO> listar() {
+    public ArrayList<DestinoVO> listar() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -66,7 +66,7 @@ public class DestinoDAO {
         return destinos;
     }
 
-    public static DestinoVO encontrar(int _id) {
+    public DestinoVO encontrar(int _id) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -93,7 +93,7 @@ public class DestinoDAO {
         return destino;
     }
 
-    public static DestinoVO encontrarEstado(int _idEstado) {
+    public DestinoVO encontrarEstado(int _idEstado) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -120,7 +120,7 @@ public class DestinoDAO {
         return destino;
     }
     
-    public static int insertar(DestinoVO destino) {
+    public int insertar(DestinoVO destino) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -141,7 +141,7 @@ public class DestinoDAO {
     }
 
     
-    public static int actualizar(DestinoVO destino) {
+    public int actualizar(DestinoVO destino) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -165,7 +165,7 @@ public class DestinoDAO {
     }
      
     
-    public static int eliminar(DestinoVO destino) {
+    public int eliminar(DestinoVO destino) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;

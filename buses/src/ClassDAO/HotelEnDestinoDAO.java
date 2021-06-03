@@ -5,7 +5,7 @@
  */
 package ClassDAO;
 
-import ClassVO.UsuarioVO;
+import ClassVO.HotelEnDestinoVO;
 import Conexion.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,46 +17,45 @@ import java.util.ArrayList;
  *
  * @author alanm
  */
-public class UsuarioDAO {
+public class HotelEnDestinoDAO {
 
     private static final String SQL_SELECT = "SELECT * "
-            + " FROM usuario";
+            + " FROM hotel_destino";
 
-    private static final String SQL_SELECT_BY_ID = "SELECT * "
-            + " FROM usuario WHERE id = ?";
-    
-    private static final String SQL_SELECT_BY_USER = "SELECT * "
-            + " FROM usuario WHERE usuario = ?";
+    private static final String SQL_SELECT_BY_ID_HOTEL = "SELECT * "
+            + " FROM hotel_destino WHERE id_hotel=?";
+
+    private static final String SQL_SELECT_BY_ID_DESTINO = "SELECT * "
+            + " FROM hotel_destino WHERE id_destino=?";
+
+    private static final String SQL_SELECT_BY_IDS = "SELECT * "
+            + " FROM hotel_destino WHERE id_hotel = ? and id_destino=?";
 
     /*private static final String SQL_SELECT_BY_NAME = "SELECT * "
             + " FROM categoria WHERE nombre = ?";*/
-    private static final String SQL_UPDATE = "UPDATE usuario "
-            + " SET pass= ?, nombre=?, tipo=? WHERE id =?";
+ /* private static final String SQL_UPDATE = "UPDATE hotel_destino "
+            + " SET nombre = ? WHERE id=?";*/
+    private static final String SQL_INSERT = "INSERT INTO hotel_destino "
+            + " VALUES(?,?)";
 
-    private static final String SQL_INSERT = "INSERT INTO usuario "
-            + " VALUES(null,?,?,?, ?)";
+    private static final String SQL_DELETE = "DELETE FROM hotel_destino WHERE id_hotel=? and id_destino=?";
 
-    private static final String SQL_DELETE = "DELETE FROM usuario WHERE id=?";
-
-    public ArrayList<UsuarioVO> listar() {
+    public ArrayList<HotelEnDestinoVO> listar() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        UsuarioVO usuario = null;
-        ArrayList<UsuarioVO> usuarios = new ArrayList<>();
+        HotelEnDestinoVO hotelEnDestino = null;
+        ArrayList<HotelEnDestinoVO> hoteles = new ArrayList<>();
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("id");
-                String usuarioName = rs.getString("usuario");
-                String pass = rs.getString("pass");
-                String nombre = rs.getString("nombre");
-                String tipo = rs.getString("tipo");
+                int idHotel = rs.getInt("id_hotel");
+                int idDestino = rs.getInt("id_destino");
 
-                usuario = new UsuarioVO(id, usuarioName, pass, nombre, tipo);
-                usuarios.add(usuario);
+                hotelEnDestino = new HotelEnDestinoVO(idHotel, idDestino);
+                hoteles.add(hotelEnDestino);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -65,27 +64,25 @@ public class UsuarioDAO {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
-        return usuarios;
+        return hoteles;
     }
 
-    public UsuarioVO encontrar(int _id) {
+    public HotelEnDestinoVO encontrar(int _idHotel, int _idDestino) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        UsuarioVO usuario = null;
+        HotelEnDestinoVO hotel = null;
         try {
             conn = Conexion.getConnection();
-            stmt = conn.prepareStatement(SQL_SELECT_BY_ID);
-            stmt.setInt(1, _id);
+            stmt = conn.prepareStatement(SQL_SELECT_BY_IDS);
+            stmt.setInt(1, _idHotel);
+            stmt.setInt(2, _idDestino);
             rs = stmt.executeQuery();
             if (rs.next()) {
-                int id = rs.getInt("id");
-                String usuarioName = rs.getString("usuario");
-                String pass = rs.getString("pass");
-                String nombre = rs.getString("nombre");
-                String tipo = rs.getString("tipo");
+                int idHotel = rs.getInt("id_hotel");
+                int idDestino = rs.getInt("id_destino");
 
-                usuario = new UsuarioVO(id, usuarioName, pass, nombre, tipo);
+                hotel = new HotelEnDestinoVO(idHotel, idDestino);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -94,51 +91,44 @@ public class UsuarioDAO {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
-        return usuario;
-    }
-
-    public UsuarioVO encontrar(String _usuario) {
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        UsuarioVO usuario = new UsuarioVO();
-        usuario.setId(-1);
-        try {
-            conn = Conexion.getConnection();
-            stmt = conn.prepareStatement(SQL_SELECT_BY_USER);
-            stmt.setString(1, _usuario);
-            rs = stmt.executeQuery();
-            if (rs.next()) {
-                int id = rs.getInt("id");
-                String usuarioName = rs.getString("usuario");
-                String pass = rs.getString("pass");
-                String nombre = rs.getString("nombre");
-                String tipo = rs.getString("tipo");
-
-                usuario = new UsuarioVO(id, usuarioName, pass, nombre, tipo);
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace(System.out);
-        } finally {
-            Conexion.close(rs);
-            Conexion.close(stmt);
-            Conexion.close(conn);
-        }
-        return usuario;
+        return hotel;
     }
     
-    public int insertar(UsuarioVO usuario) {
+    public HotelEnDestinoVO encontrar(int _idHotel) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        HotelEnDestinoVO hotel = null;
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_BY_ID_HOTEL);
+            stmt.setInt(1, _idHotel);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                int idHotel = rs.getInt("id_hotel");
+                int idDestino = rs.getInt("id_destino");
+
+                hotel = new HotelEnDestinoVO(idHotel, idDestino);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return hotel;
+    }
+
+    public int insertar(HotelEnDestinoVO hotelEnDestino) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setInt(1, usuario.getId());
-            stmt.setString(2, usuario.getUsuario());
-            stmt.setString(3, usuario.getPass());
-            stmt.setString(4, usuario.getNombre());
-            stmt.setString(5, usuario.getTipo());
+            stmt.setInt(1, hotelEnDestino.getIdHotel());
+            stmt.setInt(2, hotelEnDestino.getIdDestino());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -150,18 +140,16 @@ public class UsuarioDAO {
         return rows;
     }
 
-    public int actualizar(UsuarioVO usuario) {
+    /*public static int actualizar(HotelEnDestinoVO hotelEnDestino) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_UPDATE);
-            stmt.setString(1, usuario.getPass());
-            stmt.setString(2, usuario.getNombre());
-            stmt.setString(3, usuario.getTipo());
-            stmt.setInt(4, usuario.getId());
-            
+            stmt.setString(1, hotelEnDestino.getNombre());
+            stmt.setInt(2, hotelEnDestino.getId());
+
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -170,16 +158,16 @@ public class UsuarioDAO {
             Conexion.close(conn);
         }
         return rows;
-    }
-
-    public int eliminar(UsuarioVO usuario) {
+    }*/
+    public int eliminar(HotelEnDestinoVO hotelEnDestino) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setInt(1, usuario.getId());
+            stmt.setInt(1, hotelEnDestino.getIdHotel());
+            stmt.setInt(2, hotelEnDestino.getIdDestino());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {

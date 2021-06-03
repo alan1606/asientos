@@ -12,7 +12,7 @@ import Vista.BienvenidoCoordinador;
 import Vista.VistaLogin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ImageIcon;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -71,6 +71,8 @@ public class ControladorLogin implements ActionListener {
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+                vista.txtPass.setText("");
+                vista.txtPass.requestFocus();
             }
         } else {
             JOptionPane.showMessageDialog(null, "El usuario no está registrado");
@@ -79,13 +81,13 @@ public class ControladorLogin implements ActionListener {
     }
 
     private boolean existeUsuario() {
-        usuario = UsuarioDAO.encontrar(vista.txtUsuario.getText());
+        usuario = modelo.encontrar(vista.txtUsuario.getText());
         if (usuario.getId() == -1) {
             return false;
         }
         return true;
     }
-    
+
     private boolean esAdmin() {
         if ("Administrador".equals(usuario.getTipo())) {
             return true;
@@ -102,22 +104,19 @@ public class ControladorLogin implements ActionListener {
 
     private void abrirBienvenidoAdmin() { //Debería instanciar controladores y vistas, pasar "cookie de usuario"
         BienvenidoAdmin vAdmin = new BienvenidoAdmin(vista, true);
-        vAdmin.setLblNombre(usuario.getNombre());
-        vAdmin.setVisible(true);
-        vAdmin.setUsuario(usuario);
+        ControladorBienvenidoAdmin controladorBienvenidoAdmin = new ControladorBienvenidoAdmin(vAdmin, usuario);
+        controladorBienvenidoAdmin.iniciar();
     }
 
     private void abrirBienvenidoCoordinador() { //Debería instanciar controladores y vistas, pasar "cookie de usuario"
         BienvenidoCoordinador vCoordinador = new BienvenidoCoordinador(vista, true);
-        vCoordinador.setLblNombre(usuario.getNombre());
-        vCoordinador.setVisible(true);
-        vCoordinador.setUsuario(usuario);
+        ControladorBienvenidoCoordinador controladorBienvenidoCoordinador= new ControladorBienvenidoCoordinador(vCoordinador, usuario);
+        controladorBienvenidoCoordinador.iniciar();
     }
 
-     private void clean(){
+    private void clean() {
         vista.txtUsuario.setText("");
         vista.txtPass.setText("");
     }
 
-    
 }

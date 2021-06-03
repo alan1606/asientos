@@ -1,6 +1,5 @@
 package Vista;
 
-import ClassVO.UsuarioVO;
 import javax.swing.ImageIcon;
 import rojerusan.RSAnimation;
 
@@ -10,11 +9,6 @@ import rojerusan.RSAnimation;
  */
 public class MenuAdmin extends javax.swing.JFrame {
 
-    UsuarioVO usuario;
-
-    public void setUsuario(UsuarioVO usuario) {
-        this.usuario = usuario;
-    }
 
     /**
      * Creates new form MenuAdmin
@@ -28,26 +22,7 @@ public class MenuAdmin extends javax.swing.JFrame {
     private void icono(){
         setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
     }
-    private void asientos(){
-        Autobus47 asientos = new Autobus47();
-        asientos.setVisible(true);
-        this.dispose();
-    }
-    private void destinos(){
-        Destinos des = new Destinos();
-        des.setVisible(true);
-        this.dispose();
-    }
-    private void viajes(){
-        Viajes v = new Viajes();
-        v.setVisible(true);
-        this.dispose();
-    }
-    private void clientes(){
-        ClientesAdmin clientesA = new ClientesAdmin();
-        clientesA.setVisible(true);
-        this.dispose();
-    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,6 +80,11 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         btnDetalles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/006-informacion.png"))); // NOI18N
         btnDetalles.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnDetalles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetallesActionPerformed(evt);
+            }
+        });
 
         btnViajes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/007-viajes.png"))); // NOI18N
         btnViajes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -116,6 +96,11 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         btnAnadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/008-anadir.png"))); // NOI18N
         btnAnadir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAnadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnadirActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Asientos");
 
@@ -257,21 +242,28 @@ public class MenuAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAsientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsientosActionPerformed
-        asientos();
+   
     }//GEN-LAST:event_btnAsientosActionPerformed
 
     private void btnDestinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDestinosActionPerformed
-        destinos();
+ 
     }//GEN-LAST:event_btnDestinosActionPerformed
 
     private void btnViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViajesActionPerformed
-        viajes();
+
     }//GEN-LAST:event_btnViajesActionPerformed
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-        // TODO add your handling code here
-        clientes();
+
     }//GEN-LAST:event_btnClientesActionPerformed
+
+    private void btnDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetallesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDetallesActionPerformed
+
+    private void btnAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAnadirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -309,12 +301,12 @@ public class MenuAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAnadir;
-    private javax.swing.JButton btnAsientos;
-    private javax.swing.JButton btnClientes;
-    private javax.swing.JButton btnDestinos;
-    private javax.swing.JButton btnDetalles;
-    private javax.swing.JButton btnViajes;
+    public javax.swing.JButton btnAnadir;
+    public javax.swing.JButton btnAsientos;
+    public javax.swing.JButton btnClientes;
+    public javax.swing.JButton btnDestinos;
+    public javax.swing.JButton btnDetalles;
+    public javax.swing.JButton btnViajes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

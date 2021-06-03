@@ -36,7 +36,7 @@ public class ViajeDAO {
 
     private static final String SQL_DELETE = "DELETE FROM viaje WHERE id=?";
 
-    public static ArrayList<ViajeVO> listar() {
+    public ArrayList<ViajeVO> listar() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -65,7 +65,7 @@ public class ViajeDAO {
         return viajes;
     }
 
-    public static ViajeVO encontrar(int _id) {
+    public ViajeVO encontrar(int _id) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -93,7 +93,7 @@ public class ViajeDAO {
         return viaje;
     }
     
-    public static ViajeVO encontrarByDestino(int _id) {
+    public ViajeVO encontrarByDestino(int _id) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -121,7 +121,7 @@ public class ViajeDAO {
         return viaje;
     }
 
-    public static int insertar(ViajeVO viaje) {
+    public int insertar(ViajeVO viaje) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -143,7 +143,7 @@ public class ViajeDAO {
         return rows;
     }
 
-    public static int actualizar(ViajeVO viaje) {
+    public int actualizar(ViajeVO viaje) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -166,7 +166,7 @@ public class ViajeDAO {
         return rows;
     }
 
-    public static int eliminar(ViajeVO viaje) {
+    public int eliminar(ViajeVO viaje) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;

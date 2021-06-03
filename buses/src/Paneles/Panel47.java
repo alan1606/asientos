@@ -1,44 +1,43 @@
-
-package Vista;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Paneles;
 
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
-public class Autobus47 extends javax.swing.JFrame {
+/**
+ *
+ * @author alanm
+ */
+public class Panel47 extends javax.swing.JPanel {
+
+    private JLabel[] arreglo;
 
     /**
-     * Creates new form Autobus47
+     * Creates new form Panel47
      */
-    private JLabel[] arreglo;
-    public Autobus47() {
+    public Panel47() {
         initComponents();
         lblArreglo();
         setDesignLabels();
         camion();
-        icono();
-        this.setLocationRelativeTo(null);
-    }
-    private void icono(){
-        setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
     }
 
-    private void camion(){
-     ImageIcon fondo;
+    private void camion() {
+        ImageIcon fondo;
         fondo = new ImageIcon(getClass().getResource("/Assets/autobus47.png"));
-        Icon fondoIcono = new ImageIcon(fondo.getImage().getScaledInstance(lbl_fondo.getWidth(),
-                lbl_fondo.getHeight(), Image.SCALE_SMOOTH));
+        Icon fondoIcono = new ImageIcon(fondo.getImage().getScaledInstance(250,650, Image.SCALE_SMOOTH));
         lbl_fondo.setIcon(fondoIcono);
     }
-    
-    private void lblArreglo(){
+
+    private void lblArreglo() {
         arreglo = new JLabel[47];
         arreglo[0] = lbl1;
         arreglo[1] = lbl2;
@@ -88,80 +87,89 @@ public class Autobus47 extends javax.swing.JFrame {
         arreglo[45] = lbl46;
         arreglo[46] = lbl47;
     }
-    private void setDesignLabels(){
+
+    private void setDesignLabels() {
         for (int i = 0; i < 47; i++) {
             this.arreglo[i].setBackground(new Color(51, 255, 51, 160));
             this.arreglo[i].setOpaque(true);
             actualizarPantalla();
         }
     }
-    private void setDesignOcupado(){
+
+    private void setDesignOcupado() {
         for (int i = 0; i < 47; i++) {
             this.arreglo[i].setBackground(new Color(255, 0, 0, 160));
             this.arreglo[i].setOpaque(true);
             actualizarPantalla();
         }
     }
-    private void setDesignApartado(){
-        for (int i = 0; i < 47; i++){
+
+    private void setDesignApartado() {
+        for (int i = 0; i < 47; i++) {
             this.arreglo[i].setBackground(new Color(247, 255, 0, 160));
             this.arreglo[i].setOpaque(true);
             actualizarPantalla();
         }
     }
-    public void actualizarPantalla(){
+
+    public void actualizarPantalla() {
 //        SwingUtilities.updateComponentTreeUI(this);
 //        this.validateTree();
     }
-    public boolean eliminar(){
-        Object[] opcion = { "Eliminar", "Cancelar" }; 
-    int op = JOptionPane.showOptionDialog(null, "¿Esta seguro que desea eliminar la información de este elemento?", 
-            "Confirmar Eliminar", 
-    JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, 
-    opcion, opcion[0]);
+
+    public boolean eliminar() {
+        Object[] opcion = {"Eliminar", "Cancelar"};
+        int op = JOptionPane.showOptionDialog(null, "¿Esta seguro que desea eliminar la información de este elemento?",
+                "Confirmar Eliminar",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
+                opcion, opcion[0]);
         if (op == 0) {
             return true;
-        }else if(op == 1){
-        return false;
+        } else if (op == 1) {
+            return false;
         }
         return false;
     }
-    public boolean vendido(){
-        Object[] opcion = { "Vender", "Eliminar" }; 
-    int op = JOptionPane.showOptionDialog(null, "¿Esta seguro de querer vender este lugar?", 
-            "Confirmar Vender", 
-    JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, 
-    opcion, opcion[0]);
+
+    public boolean vendido() {
+        Object[] opcion = {"Vender", "Eliminar"};
+        int op = JOptionPane.showOptionDialog(null, "¿Esta seguro de querer vender este lugar?",
+                "Confirmar Vender",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null,
+                opcion, opcion[0]);
         if (op == 0) {
             return true;
-        }else if(op == 1){
-        return false;
+        } else if (op == 1) {
+            return false;
         }
         return false;
     }
-    public boolean dialogo(){
-        Object[] opcion = { "Apartar", "Vender", "Eliminar" }; 
-    int op = JOptionPane.showOptionDialog(null, "¿Que desea hacer?", "Formulario", 
-    JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, 
-    opcion, opcion[0]);
-        if(op == 1){
-        setDesignOcupado();
-        }else if(op == 0){
-           setDesignApartado();
-        }else if(op==2){
-            if(eliminar()==true){
+
+    public boolean dialogo() {
+        Object[] opcion = {"Apartar", "Vender", "Eliminar"};
+        int op = JOptionPane.showOptionDialog(null, "¿Que desea hacer?", "Formulario",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                opcion, opcion[0]);
+        if (op == 1) {
+            setDesignOcupado();
+        } else if (op == 0) {
+            setDesignApartado();
+        } else if (op == 2) {
+            if (eliminar() == true) {
                 setDesignLabels();
             }
         }
         return true;
     }
-    String [] arreglolbl = {"1","2","3","4","5","6","7","8","9","10",};
-    private void pane(){
+    String[] arreglolbl = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10",};
+
+    private void pane() {
         for (String i : arreglolbl) {
             JOptionPane.showMessageDialog(null, "Jalando label" + i);
         }
 //        JOptionPane.showMessageDialog(null, "Jalando label");
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -220,9 +228,6 @@ public class Autobus47 extends javax.swing.JFrame {
         lbl46 = new javax.swing.JLabel();
         lbl47 = new javax.swing.JLabel();
         lbl_fondo = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Autobus de 47 plazas");
 
         panelAutobus.setBackground(new java.awt.Color(255, 255, 255));
         panelAutobus.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -700,59 +705,20 @@ public class Autobus47 extends javax.swing.JFrame {
         lbl_fondo.setBackground(new java.awt.Color(255, 255, 255));
         panelAutobus.add(lbl_fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 250, 650));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelAutobus, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(283, Short.MAX_VALUE))
+            .addComponent(panelAutobus, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelAutobus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lbl25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl25MouseClicked
-        // TODO add your handling code here:
-        pane();
-    }//GEN-LAST:event_lbl25MouseClicked
-
-    private void lbl46MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl46MouseClicked
-        // TODO add your handling code here:
-        pane();
-    }//GEN-LAST:event_lbl46MouseClicked
-
-    private void lbl26MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl26MouseClicked
-        // TODO add your handling code here:
-        pane();
-    }//GEN-LAST:event_lbl26MouseClicked
-
-    private void lbl29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl29MouseClicked
-        // TODO add your handling code here:
-        pane();
-    }//GEN-LAST:event_lbl29MouseClicked
-
-    private void lbl30MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl30MouseClicked
-        // TODO add your handling code here:
-        pane();
-    }//GEN-LAST:event_lbl30MouseClicked
-
-    private void lbl33MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl33MouseClicked
-        // TODO add your handling code here:
-        pane();
-    }//GEN-LAST:event_lbl33MouseClicked
-
-    private void lbl34MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl34MouseClicked
-        // TODO add your handling code here:
-        pane();
-    }//GEN-LAST:event_lbl34MouseClicked
-
     private void lbl1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl1MouseClicked
-        if(lbl1.isEnabled()){
+        if (lbl1.isEnabled()) {
             dialogo();
         }
     }//GEN-LAST:event_lbl1MouseClicked
@@ -761,6 +727,14 @@ public class Autobus47 extends javax.swing.JFrame {
         // TODO add your handling code here:
         pane();
     }//GEN-LAST:event_lbl2MouseClicked
+
+    private void lbl3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbl3MouseClicked
+
+    private void lbl4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbl4MouseClicked
 
     private void lbl5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl5MouseClicked
         // TODO add your handling code here:
@@ -772,6 +746,14 @@ public class Autobus47 extends javax.swing.JFrame {
         pane();
     }//GEN-LAST:event_lbl6MouseClicked
 
+    private void lbl7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl7MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbl7MouseClicked
+
+    private void lbl8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl8MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbl8MouseClicked
+
     private void lbl9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl9MouseClicked
         // TODO add your handling code here:
         pane();
@@ -781,6 +763,14 @@ public class Autobus47 extends javax.swing.JFrame {
         // TODO add your handling code here:
         pane();
     }//GEN-LAST:event_lbl10MouseClicked
+
+    private void lbl11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl11MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbl11MouseClicked
+
+    private void lbl12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl12MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbl12MouseClicked
 
     private void lbl13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl13MouseClicked
         // TODO add your handling code here:
@@ -792,25 +782,13 @@ public class Autobus47 extends javax.swing.JFrame {
         pane();
     }//GEN-LAST:event_lbl14MouseClicked
 
-    private void lbl37MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl37MouseClicked
+    private void lbl15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl15MouseClicked
         // TODO add your handling code here:
-        pane();
-    }//GEN-LAST:event_lbl37MouseClicked
+    }//GEN-LAST:event_lbl15MouseClicked
 
-    private void lbl38MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl38MouseClicked
+    private void lbl16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl16MouseClicked
         // TODO add your handling code here:
-        pane();
-    }//GEN-LAST:event_lbl38MouseClicked
-
-    private void lbl41MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl41MouseClicked
-        // TODO add your handling code here:
-        pane();
-    }//GEN-LAST:event_lbl41MouseClicked
-
-    private void lbl42MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl42MouseClicked
-        // TODO add your handling code here:
-        pane();
-    }//GEN-LAST:event_lbl42MouseClicked
+    }//GEN-LAST:event_lbl16MouseClicked
 
     private void lbl17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl17MouseClicked
         // TODO add your handling code here:
@@ -822,10 +800,13 @@ public class Autobus47 extends javax.swing.JFrame {
         pane();
     }//GEN-LAST:event_lbl18MouseClicked
 
-    private void lbl45MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl45MouseClicked
+    private void lbl19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl19MouseClicked
         // TODO add your handling code here:
-        pane();
-    }//GEN-LAST:event_lbl45MouseClicked
+    }//GEN-LAST:event_lbl19MouseClicked
+
+    private void lbl20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl20MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbl20MouseClicked
 
     private void lbl21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl21MouseClicked
         // TODO add your handling code here:
@@ -837,14 +818,41 @@ public class Autobus47 extends javax.swing.JFrame {
         pane();
     }//GEN-LAST:event_lbl22MouseClicked
 
-    private void lbl47MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl47MouseClicked
+    private void lbl23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl23MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbl23MouseClicked
+
+    private void lbl24MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl24MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbl24MouseClicked
+
+    private void lbl25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl25MouseClicked
         // TODO add your handling code here:
         pane();
-    }//GEN-LAST:event_lbl47MouseClicked
+    }//GEN-LAST:event_lbl25MouseClicked
+
+    private void lbl26MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl26MouseClicked
+        // TODO add your handling code here:
+        pane();
+    }//GEN-LAST:event_lbl26MouseClicked
+
+    private void lbl27MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl27MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbl27MouseClicked
 
     private void lbl28MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl28MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_lbl28MouseClicked
+
+    private void lbl29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl29MouseClicked
+        // TODO add your handling code here:
+        pane();
+    }//GEN-LAST:event_lbl29MouseClicked
+
+    private void lbl30MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl30MouseClicked
+        // TODO add your handling code here:
+        pane();
+    }//GEN-LAST:event_lbl30MouseClicked
 
     private void lbl31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl31MouseClicked
         // TODO add your handling code here:
@@ -854,6 +862,16 @@ public class Autobus47 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lbl32MouseClicked
 
+    private void lbl33MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl33MouseClicked
+        // TODO add your handling code here:
+        pane();
+    }//GEN-LAST:event_lbl33MouseClicked
+
+    private void lbl34MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl34MouseClicked
+        // TODO add your handling code here:
+        pane();
+    }//GEN-LAST:event_lbl34MouseClicked
+
     private void lbl35MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl35MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_lbl35MouseClicked
@@ -861,6 +879,16 @@ public class Autobus47 extends javax.swing.JFrame {
     private void lbl36MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl36MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_lbl36MouseClicked
+
+    private void lbl37MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl37MouseClicked
+        // TODO add your handling code here:
+        pane();
+    }//GEN-LAST:event_lbl37MouseClicked
+
+    private void lbl38MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl38MouseClicked
+        // TODO add your handling code here:
+        pane();
+    }//GEN-LAST:event_lbl38MouseClicked
 
     private void lbl39MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl39MouseClicked
         // TODO add your handling code here:
@@ -870,6 +898,16 @@ public class Autobus47 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lbl40MouseClicked
 
+    private void lbl41MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl41MouseClicked
+        // TODO add your handling code here:
+        pane();
+    }//GEN-LAST:event_lbl41MouseClicked
+
+    private void lbl42MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl42MouseClicked
+        // TODO add your handling code here:
+        pane();
+    }//GEN-LAST:event_lbl42MouseClicked
+
     private void lbl43MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl43MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_lbl43MouseClicked
@@ -878,92 +916,21 @@ public class Autobus47 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lbl44MouseClicked
 
-    private void lbl3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl3MouseClicked
+    private void lbl45MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl45MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_lbl3MouseClicked
+        pane();
+    }//GEN-LAST:event_lbl45MouseClicked
 
-    private void lbl4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl4MouseClicked
+    private void lbl46MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl46MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_lbl4MouseClicked
+        pane();
+    }//GEN-LAST:event_lbl46MouseClicked
 
-    private void lbl7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl7MouseClicked
+    private void lbl47MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl47MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_lbl7MouseClicked
+        pane();
+    }//GEN-LAST:event_lbl47MouseClicked
 
-    private void lbl8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl8MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lbl8MouseClicked
-
-    private void lbl11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl11MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lbl11MouseClicked
-
-    private void lbl12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl12MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lbl12MouseClicked
-
-    private void lbl15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl15MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lbl15MouseClicked
-
-    private void lbl16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl16MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lbl16MouseClicked
-
-    private void lbl19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl19MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lbl19MouseClicked
-
-    private void lbl20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl20MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lbl20MouseClicked
-
-    private void lbl23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl23MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lbl23MouseClicked
-
-    private void lbl24MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl24MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lbl24MouseClicked
-
-    private void lbl27MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl27MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lbl27MouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Autobus47.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Autobus47.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Autobus47.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Autobus47.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Autobus47().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lbl1;
