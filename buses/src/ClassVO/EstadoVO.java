@@ -55,7 +55,7 @@ public class EstadoVO {
 
     @Override
     public String toString() {
-        return "EstadoVO{" + "id=" + id + ", idPais=" + idPais + ", nombre=" + nombre + '}';
+        return  nombre;
     }
     
     

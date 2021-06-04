@@ -65,7 +65,9 @@ public class ControladorMenuCoordinador implements ActionListener {
     }
 
     private void abrirDestinos() {
-
+        vista.dispose();
+        ControladorDestinos destinos = new ControladorDestinos(new Destinos(), usuario);
+        destinos.iniciar();
     }
 
     private void abrirViajes() {

@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Vista;
-import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -44,11 +43,7 @@ public class Destinos extends javax.swing.JFrame {
     }
 
     }
-    private void menu(){
-        MenuAdmin ma = new MenuAdmin();
-        ma.setVisible(true);
-        this.dispose();
-    }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,18 +59,19 @@ public class Destinos extends javax.swing.JFrame {
         lbl_back = new javax.swing.JLabel();
         txtCiudad = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        btn_modificar = new javax.swing.JButton();
-        btn_añadir1 = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnAnadir = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
         lbl_buscar = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tCiudades = new javax.swing.JTable();
+        tablaDestinos = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         comboPais = new javax.swing.JComboBox<>();
         comboEstado = new javax.swing.JComboBox<>();
+        btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,21 +96,26 @@ public class Destinos extends javax.swing.JFrame {
         jLabel2.setText("Ciudad:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 107, -1, -1));
 
-        btn_modificar.setBackground(new java.awt.Color(5, 101, 249));
-        btn_modificar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btn_modificar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_modificar.setText("Modificar");
-        btn_modificar.setBorder(null);
-        btn_modificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.add(btn_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, 87, 28));
+        btnModificar.setBackground(new java.awt.Color(5, 101, 249));
+        btnModificar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnModificar.setForeground(new java.awt.Color(255, 255, 255));
+        btnModificar.setText("Modificar");
+        btnModificar.setBorder(null);
+        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, 87, 28));
 
-        btn_añadir1.setBackground(new java.awt.Color(5, 101, 249));
-        btn_añadir1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btn_añadir1.setForeground(new java.awt.Color(255, 255, 255));
-        btn_añadir1.setText("Añadir");
-        btn_añadir1.setBorder(null);
-        btn_añadir1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.add(btn_añadir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 87, 30));
+        btnAnadir.setBackground(new java.awt.Color(5, 101, 249));
+        btnAnadir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAnadir.setForeground(new java.awt.Color(255, 255, 255));
+        btnAnadir.setText("Añadir");
+        btnAnadir.setBorder(null);
+        btnAnadir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAnadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnadirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 87, 30));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Busar ciudad"));
@@ -130,35 +131,37 @@ public class Destinos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lbl_buscar)
                 .addGap(14, 14, 14)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_buscar))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(328, 12, 410, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(328, 12, 520, -1));
 
-        jScrollPane1.setViewportView(tCiudades);
+        jScrollPane1.setViewportView(tablaDestinos);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 113, 401, -1));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 113, 510, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Estado:");
@@ -170,23 +173,39 @@ public class Destinos extends javax.swing.JFrame {
         jPanel1.add(comboPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 250, -1));
         jPanel1.add(comboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 250, -1));
 
+        btnEliminar.setBackground(new java.awt.Color(5, 101, 249));
+        btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setBorder(null);
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 450, 87, 28));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void lbl_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_backMouseClicked
-        menu();
+
     }//GEN-LAST:event_lbl_backMouseClicked
+
+    private void btnAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAnadirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,10 +244,11 @@ public class Destinos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_añadir1;
-    private javax.swing.JButton btn_modificar;
-    private javax.swing.JComboBox<String> comboEstado;
-    private javax.swing.JComboBox<String> comboPais;
+    public javax.swing.JButton btnAnadir;
+    public javax.swing.JButton btnEliminar;
+    public javax.swing.JButton btnModificar;
+    public javax.swing.JComboBox<String> comboEstado;
+    public javax.swing.JComboBox<String> comboPais;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -236,11 +256,11 @@ public class Destinos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JLabel lbl_back;
+    public javax.swing.JLabel lbl_back;
     private javax.swing.JLabel lbl_buscar;
     private javax.swing.JLabel lbl_rergesar;
-    private javax.swing.JTable tCiudades;
-    private javax.swing.JTextField txtCiudad;
+    public javax.swing.JTable tablaDestinos;
+    public javax.swing.JTextField txtBuscar;
+    public javax.swing.JTextField txtCiudad;
     // End of variables declaration//GEN-END:variables
 }

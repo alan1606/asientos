@@ -43,7 +43,7 @@ public class PaisVO {
 
     @Override
     public String toString() {
-        return "PaisVO{" + "id=" + id + ", nombre=" + nombre + '}';
+        return nombre ;
     }
     
     

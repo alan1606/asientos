@@ -17,7 +17,6 @@ import Vista.VistaLogin;
 public class Main {
 
     public static void main(String[] Args) {
-
         UsuarioVO usuario= new UsuarioVO();
         UsuarioDAO modelo= new UsuarioDAO();
         VistaLogin vistaLogin = new VistaLogin();

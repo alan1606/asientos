@@ -21,10 +21,10 @@ import java.util.ArrayList;
 public class EstadoDAO {
 
     private static final String SQL_SELECT = "SELECT * "
-            + " FROM estado";
+            + " FROM estado order by nombre";
 
     private static final String SQL_SELECT_BY_ID_PAIS = "SELECT * "
-            + " FROM estado WHERE id_pais=?";
+            + " FROM estado WHERE id_pais=? order by nombre";
 
     /*private static final String SQL_SELECT_BY_NAME = "SELECT * "
             + " FROM categoria WHERE nombre = ?";*/
@@ -64,22 +64,25 @@ public class EstadoDAO {
         return estados;
     }
 
-    public EstadoVO encontrar(int _idPais) {
+   
+    public ArrayList<EstadoVO> encontrar(int _idPais) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         EstadoVO estado = null;
+        ArrayList<EstadoVO> estados = new ArrayList<>();
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT_BY_ID_PAIS);
             stmt.setInt(1, _idPais);
             rs = stmt.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 int id = rs.getInt("id");
                 int idPais = rs.getInt("id_pais");
                 String nombre = rs.getString("nombre");
 
                 estado = new EstadoVO(id, idPais, nombre);
+                estados.add(estado);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -88,7 +91,7 @@ public class EstadoDAO {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
-        return estado;
+        return estados;
     }
 
     public int insertar(EstadoVO estado) {

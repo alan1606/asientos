@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public class PaisDAO {
     private static final String SQL_SELECT = "SELECT * "
-            + " FROM pais";
+            + " FROM pais order by nombre";
 
     private static final String SQL_SELECT_BY_ID_PAIS = "SELECT * "
             + " FROM pais WHERE id=?";

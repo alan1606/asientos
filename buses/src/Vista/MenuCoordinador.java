@@ -28,7 +28,7 @@ public class MenuCoordinador extends javax.swing.JFrame {
         initComponents();
         RSAnimation.setBajar(-230, 150, 2, 2, this);
         this.setLocationRelativeTo(null);
-        icono();
+       // icono();
     }
     private void icono(){
         setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());

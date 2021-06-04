@@ -23,7 +23,7 @@ public class BienvenidoCoordinador extends javax.swing.JDialog {
         initComponents();
         RSAnimation.setBajar(-230, 150, 2, 2, this);
         this.setLocationRelativeTo(this);
-        icono();
+       // icono();
     }
     private void icono(){
         setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());

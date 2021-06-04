@@ -23,6 +23,13 @@ public class DestinoVO {
         this.idEstado = idEstado;
     }
 
+    public DestinoVO(String ciudad, int idEstado) {
+        this.ciudad = ciudad;
+        this.idEstado = idEstado;
+    }
+
+    
+    
     public int getIdEstado() {
         return idEstado;
     }

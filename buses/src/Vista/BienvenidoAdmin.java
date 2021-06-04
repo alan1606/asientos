@@ -13,7 +13,7 @@ public class BienvenidoAdmin extends javax.swing.JDialog {
         initComponents();
         RSAnimation.setBajar(-230, 150, 2, 2, this);
         this.setLocationRelativeTo(this);
-        icono();
+        //icono();
     }
     
     private void icono(){
