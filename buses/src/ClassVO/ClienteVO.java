@@ -13,16 +13,31 @@ public class ClienteVO {
     private int id;
     private String nombre;
     private String telefono;
+    private String correo;
+    private String tipo;
 
     public ClienteVO() {
     }
 
-    public ClienteVO(int id, String nombre, String telefono) {
+    public ClienteVO(int id, String nombre, String telefono, String correo, String tipo) {
         this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
+        this.correo = correo;
+        this.tipo = tipo;
     }
 
+    public ClienteVO(String nombre, String telefono, String correo, String tipo) {
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.tipo = tipo;
+    }
+
+ 
+    
+    
+    
     public int getId() {
         return id;
     }
@@ -47,6 +62,24 @@ public class ClienteVO {
         this.telefono = telefono;
     }
 
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    
+    
     @Override
     public String toString() {
         return nombre + " : " + telefono;

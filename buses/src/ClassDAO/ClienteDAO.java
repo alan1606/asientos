@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * @author alanm
  */
 public class ClienteDAO {
-    
+
     private static final String SQL_SELECT = "SELECT * "
             + " FROM cliente";
 
@@ -28,10 +28,10 @@ public class ClienteDAO {
     /*private static final String SQL_SELECT_BY_NAME = "SELECT * "
             + " FROM categoria WHERE nombre = ?";*/
     private static final String SQL_UPDATE = "UPDATE cliente "
-            + " SET nombre= ?, telefono=? WHERE id=?";
+            + " SET nombre= ?, telefono=?, correo=?, tipo=? WHERE id=?";
 
     private static final String SQL_INSERT = "INSERT INTO cliente "
-            + " VALUES(null,?,?)";
+            + " VALUES(null,?,?,?,?)";
 
     private static final String SQL_DELETE = "DELETE FROM cliente WHERE id=?";
 
@@ -49,8 +49,10 @@ public class ClienteDAO {
                 int id = rs.getInt("id");
                 String nombre = rs.getString("nombre");
                 String telefono = rs.getString("telefono");
+                String correo = rs.getString("correo");
+                String tipo = rs.getString("tipo");
 
-                cliente = new ClienteVO(id, nombre, telefono);
+                cliente = new ClienteVO(id, nombre, telefono, correo, tipo);
                 clientes.add(cliente);
             }
         } catch (SQLException ex) {
@@ -77,8 +79,10 @@ public class ClienteDAO {
                 int id = rs.getInt("id");
                 String nombre = rs.getString("nombre");
                 String telefono = rs.getString("telefono");
+                String correo = rs.getString("correo");
+                String tipo = rs.getString("tipo");
 
-                cliente = new ClienteVO(id, nombre, telefono);
+                cliente = new ClienteVO(id, nombre, telefono, correo, tipo);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -90,6 +94,99 @@ public class ClienteDAO {
         return cliente;
     }
 
+     public ArrayList<ClienteVO> encontrarNombre(String _nombre) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ClienteVO cliente = null;
+        ArrayList<ClienteVO> clientes = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(  "SELECT * FROM cliente WHERE nombre like '" + _nombre +"%'");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                
+                int id = rs.getInt("id");
+                String nombre = rs.getString("nombre");
+                String telefono = rs.getString("telefono");
+                String correo = rs.getString("correo");
+                String tipo = rs.getString("tipo");
+
+                cliente = new ClienteVO(id, nombre, telefono, correo, tipo);
+                clientes.add(cliente);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return clientes;
+    }
+     
+     public ArrayList<ClienteVO> encontrarTelefono(String _telefono) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ClienteVO cliente = null;
+        ArrayList<ClienteVO> clientes = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(  "SELECT * FROM cliente WHERE telefono like '" + _telefono +"%'");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                
+                int id = rs.getInt("id");
+                String nombre = rs.getString("nombre");
+                String telefono = rs.getString("telefono");
+                String correo = rs.getString("correo");
+                String tipo = rs.getString("tipo");
+
+                cliente = new ClienteVO(id, nombre, telefono, correo, tipo);
+                clientes.add(cliente);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return clientes;
+    }
+    
+     public ArrayList<ClienteVO> encontrarCorreo(String _correo) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ClienteVO cliente = null;
+        ArrayList<ClienteVO> clientes = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(  "SELECT * FROM cliente WHERE correo like '" + _correo +"%'");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                
+                int id = rs.getInt("id");
+                String nombre = rs.getString("nombre");
+                String telefono = rs.getString("telefono");
+                String correo = rs.getString("correo");
+                String tipo = rs.getString("tipo");
+
+                cliente = new ClienteVO(id, nombre, telefono, correo, tipo);
+                clientes.add(cliente);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return clientes;
+    }
+     
     public int insertar(ClienteVO cliente) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -99,7 +196,8 @@ public class ClienteDAO {
             stmt = conn.prepareStatement(SQL_INSERT);
             stmt.setString(1, cliente.getNombre());
             stmt.setString(2, cliente.getTelefono());
-
+            stmt.setString(3, cliente.getCorreo());
+            stmt.setString(4, cliente.getTipo());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -111,7 +209,6 @@ public class ClienteDAO {
         return rows;
     }
 
-    
     public int actualizar(ClienteVO cliente) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -121,9 +218,10 @@ public class ClienteDAO {
             stmt = conn.prepareStatement(SQL_UPDATE);
             stmt.setString(1, cliente.getNombre());
             stmt.setString(2, cliente.getTelefono());
-            stmt.setInt(3, cliente.getId());
+            stmt.setString(3, cliente.getCorreo());
+            stmt.setString(4, cliente.getTipo());
+            stmt.setInt(5, cliente.getId());
 
-            
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -133,8 +231,7 @@ public class ClienteDAO {
         }
         return rows;
     }
-     
-    
+
     public int eliminar(ClienteVO cliente) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -143,7 +240,6 @@ public class ClienteDAO {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_DELETE);
             stmt.setInt(1, cliente.getId());
-
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {

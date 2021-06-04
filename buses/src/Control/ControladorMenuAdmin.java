@@ -66,27 +66,21 @@ public class ControladorMenuAdmin implements ActionListener{
         
     }
     private void abrirDestinos(){
-        Destinos des = new Destinos();
-        des.setVisible(true);
-        vista.dispose();
+        
     }
     private void abrirViajes(){
-        Viajes v = new Viajes();
-        v.setVisible(true);
-        vista.dispose();
+       
     }
     private void abrirClientes(){
-        Clientes clientes = new Clientes();
-        clientes.setVisible(true);
         vista.dispose();
+        ControladorClientes clientes = new ControladorClientes(new Clientes(), usuario);
+        clientes.iniciar();
     }
     private void abrirDetalles(){
        
     }
     private void abrirAnadir(){
-        Clientes clientesA = new Clientes();
-        clientesA.setVisible(true);
-        vista.dispose();
+        
     }
     
 }
