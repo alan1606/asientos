@@ -65,7 +65,7 @@ private void backArrow(){
         lbl_back = new javax.swing.JLabel();
         cmbox_destinos = new javax.swing.JComboBox<>();
         cmbox_asientos = new javax.swing.JComboBox<>();
-        date1 = new com.toedter.calendar.JDateChooser();
+        btn_crear1 = new javax.swing.JButton();
         btn_crear = new javax.swing.JButton();
         btn_modificar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -74,7 +74,10 @@ private void backArrow(){
         lbl_destino2 = new javax.swing.JLabel();
         cmbox_destino2 = new javax.swing.JComboBox<>();
         lbl_fecha2 = new javax.swing.JLabel();
-        date2 = new com.toedter.calendar.JDateChooser();
+        Date2 = new com.toedter.calendar.JDateChooser();
+        Date1 = new com.toedter.calendar.JDateChooser();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ventana de Viajes");
@@ -118,8 +121,13 @@ private void backArrow(){
         });
         jPanel2.add(cmbox_asientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 249, 179, -1));
 
-        date1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(date1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 170, 30));
+        btn_crear1.setBackground(new java.awt.Color(5, 101, 249));
+        btn_crear1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_crear1.setForeground(new java.awt.Color(255, 255, 255));
+        btn_crear1.setText("Asignar Hab.");
+        btn_crear1.setBorder(null);
+        btn_crear1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel2.add(btn_crear1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 90, 30));
 
         btn_crear.setBackground(new java.awt.Color(5, 101, 249));
         btn_crear.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -127,13 +135,13 @@ private void backArrow(){
         btn_crear.setText("Crear viaje");
         btn_crear.setBorder(null);
         btn_crear.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel2.add(btn_crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 299, 100, 30));
+        jPanel2.add(btn_crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 370, 100, 30));
 
         btn_modificar.setBackground(new java.awt.Color(0, 102, 255));
         btn_modificar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btn_modificar.setForeground(new java.awt.Color(255, 255, 255));
         btn_modificar.setText("Modificar");
-        jPanel2.add(btn_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 350, 100, -1));
+        jPanel2.add(btn_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 420, 100, -1));
 
         jScrollPane1.setViewportView(jTable1);
 
@@ -150,8 +158,6 @@ private void backArrow(){
         lbl_fecha2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl_fecha2.setText("Fecha");
 
-        date2.setBackground(new java.awt.Color(255, 255, 255));
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -163,8 +169,8 @@ private void backArrow(){
                     .addComponent(lbl_destino2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cmbox_destino2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbox_destino2, 0, 281, Short.MAX_VALUE)
+                    .addComponent(Date2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(21, 21, 21))
         );
         jPanel3Layout.setVerticalGroup(
@@ -175,12 +181,20 @@ private void backArrow(){
                     .addComponent(cmbox_destino2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_fecha2))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addComponent(lbl_fecha2)
+                    .addComponent(Date2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 370, 100));
+        jPanel2.add(Date1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 180, 30));
+
+        jTextField1.setToolTipText("");
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 120, 30));
+        jTextField1.getAccessibleContext().setAccessibleDescription("N° de Habitaciones");
+
+        jLabel1.setText("N° de Habitaciones");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, -1, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -256,18 +270,21 @@ private void backArrow(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser Date1;
+    private com.toedter.calendar.JDateChooser Date2;
     private javax.swing.JButton btn_crear;
+    private javax.swing.JButton btn_crear1;
     private javax.swing.JButton btn_modificar;
     private javax.swing.JComboBox<String> cmbox_asientos;
     private javax.swing.JComboBox<String> cmbox_destino2;
     private javax.swing.JComboBox<String> cmbox_destinos;
-    private com.toedter.calendar.JDateChooser date1;
-    private com.toedter.calendar.JDateChooser date2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbl_asientos;
     private javax.swing.JLabel lbl_back;
     private javax.swing.JLabel lbl_destino;

@@ -28,18 +28,18 @@ public class Hoteles extends javax.swing.JFrame {
     private void icono(){
         setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
     }
-private void backArrow(){
-    try {
-        ImageIcon arrow;
-        arrow = new ImageIcon(getClass().getResource("/Assets/back_arrow.png"));
-        Icon arrowIcon = new ImageIcon(arrow.getImage().getScaledInstance(lbl_back.getWidth(),
-                lbl_back.getHeight(), Image.SCALE_SMOOTH));
-        lbl_back.setIcon(arrowIcon);
-        
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Ha ocurrido un error inesperado al cargar los recursos");
-        System.out.println("error");
-    }
+    private void backArrow(){
+        try {
+            ImageIcon arrow;
+            arrow = new ImageIcon(getClass().getResource("/Assets/back_arrow.png"));
+            Icon arrowIcon = new ImageIcon(arrow.getImage().getScaledInstance(lbl_back.getWidth(),
+                    lbl_back.getHeight(), Image.SCALE_SMOOTH));
+            lbl_back.setIcon(arrowIcon);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error inesperado al cargar los recursos");
+            System.out.println("error");
+        }
 
     }
 private void openWindowNewHotel(){
