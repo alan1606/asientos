@@ -5,6 +5,7 @@
  */
 package ClassDAO;
 
+import ClassVO.HotelEnDestinoVO;
 import ClassVO.HotelVO;
 import Conexion.Conexion;
 import java.sql.Connection;
@@ -18,11 +19,13 @@ import java.util.ArrayList;
  * @author alanm
  */
 public class HotelDAO {
-     private static final String SQL_SELECT = "SELECT * "
+
+    private static final String SQL_SELECT = "SELECT * "
             + " FROM hotel";
 
     private static final String SQL_SELECT_BY_ID = "SELECT * "
             + " FROM hotel WHERE id=?";
+
 
     /*private static final String SQL_SELECT_BY_NAME = "SELECT * "
             + " FROM categoria WHERE nombre = ?";*/
@@ -33,6 +36,10 @@ public class HotelDAO {
             + " VALUES(null,?)";
 
     private static final String SQL_DELETE = "DELETE FROM hotel WHERE id=?";
+
+    private static final String SQL_SELECT_ON_DESTINATION = "select hotel.id as id, hotel.nombre as nombre from hotel_destino "
+            +  " join hotel on hotel.id = hotel_destino.id_hotel where id_destino =  ?;";
+  
 
     public ArrayList<HotelVO> listar() {
         Connection conn = null;
@@ -85,6 +92,34 @@ public class HotelDAO {
             Conexion.close(conn);
         }
         return hotel;
+    }
+
+ public ArrayList encontrarByDestino(int _id) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        HotelVO hotel = null;
+        ArrayList<HotelVO> hoteles = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_ON_DESTINATION);
+            stmt.setInt(1, _id);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                int idHotel = rs.getInt("id");
+                String nombre = rs.getString("nombre");
+
+                hotel = new HotelVO(idHotel, nombre);
+                hoteles.add(hotel);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return hoteles;
     }
 
     public int insertar(HotelVO hotel) {

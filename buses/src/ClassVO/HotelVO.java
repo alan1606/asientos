@@ -43,7 +43,7 @@ public class HotelVO {
 
     @Override
     public String toString() {
-        return "HotelVO{" + "id=" + id + ", nombre=" + nombre + '}';
+        return nombre;
     }
     
     

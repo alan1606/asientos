@@ -6,6 +6,7 @@
 package ClassDAO;
 
 import ClassVO.HotelEnDestinoVO;
+import ClassVO.HotelVO;
 import Conexion.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -93,7 +94,7 @@ public class HotelEnDestinoDAO {
         }
         return hotel;
     }
-    
+
     public HotelEnDestinoVO encontrar(int _idHotel) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -118,6 +119,34 @@ public class HotelEnDestinoDAO {
             Conexion.close(conn);
         }
         return hotel;
+    }
+
+    public ArrayList encontrarByDestino(int _id) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        HotelEnDestinoVO hotel = null;
+        ArrayList<HotelEnDestinoVO> hoteles = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_BY_ID_DESTINO);
+            stmt.setInt(1, _id);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                int idHotel = rs.getInt("id_hotel");
+                int idDestino = rs.getInt("id_destino");
+
+                hotel = new HotelEnDestinoVO(idHotel, idDestino);
+                hoteles.add(hotel);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return hoteles;
     }
 
     public int insertar(HotelEnDestinoVO hotelEnDestino) {

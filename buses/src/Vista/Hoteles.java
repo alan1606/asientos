@@ -42,10 +42,7 @@ public class Hoteles extends javax.swing.JFrame {
         }
 
     }
-private void openWindowNewHotel(){
-    NuevoHotel nh = new NuevoHotel();
-    nh.setVisible(true);
-}
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,21 +56,23 @@ private void openWindowNewHotel(){
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lbl_destino = new javax.swing.JLabel();
-        cmbox_destinos = new javax.swing.JComboBox<>();
+        comboDestino = new javax.swing.JComboBox<>();
         lbl_hotel = new javax.swing.JLabel();
-        btn_añadir1 = new javax.swing.JButton();
+        btnAnadir = new javax.swing.JButton();
         lbl_back = new javax.swing.JLabel();
         lbl_rergesar = new javax.swing.JLabel();
-        cmbox_hoteles = new javax.swing.JComboBox<>();
-        btn_hotel = new javax.swing.JButton();
+        comboHotel = new javax.swing.JComboBox<>();
+        btnNuevoHotel = new javax.swing.JButton();
+        lbl_hotel1 = new javax.swing.JLabel();
+        txtModificar = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        cmbox_destinos1 = new javax.swing.JComboBox<>();
+        comboDestinoSearch = new javax.swing.JComboBox<>();
         lbl_destino1 = new javax.swing.JLabel();
-        btn_borrar = new javax.swing.JButton();
-        btn_modificar = new javax.swing.JButton();
+        btnBorrar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableHoteles = new rojerusan.RSTableMetro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hoteles");
@@ -82,184 +81,104 @@ private void openWindowNewHotel(){
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbl_destino.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl_destino.setText("Destino");
+        jPanel2.add(lbl_destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 101, -1, -1));
 
-        cmbox_destinos.setBackground(new java.awt.Color(153, 204, 255));
+        comboDestino.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel2.add(comboDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 94, 179, 30));
 
         lbl_hotel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl_hotel.setText("Hotel");
+        jPanel2.add(lbl_hotel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
 
-        btn_añadir1.setBackground(new java.awt.Color(5, 101, 249));
-        btn_añadir1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btn_añadir1.setForeground(new java.awt.Color(255, 255, 255));
-        btn_añadir1.setText("Añadir");
-        btn_añadir1.setBorder(null);
-        btn_añadir1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAnadir.setBackground(new java.awt.Color(5, 101, 249));
+        btnAnadir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAnadir.setForeground(new java.awt.Color(255, 255, 255));
+        btnAnadir.setText("Añadir");
+        btnAnadir.setBorder(null);
+        btnAnadir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel2.add(btnAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 127, 30));
 
         lbl_back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbl_backMouseClicked(evt);
             }
         });
+        jPanel2.add(lbl_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 30, 40));
 
         lbl_rergesar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl_rergesar.setText("Regresar");
+        jPanel2.add(lbl_rergesar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 21, -1, 20));
 
-        cmbox_hoteles.setBackground(new java.awt.Color(153, 204, 255));
+        comboHotel.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel2.add(comboHotel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 179, 30));
 
-        btn_hotel.setBackground(new java.awt.Color(5, 101, 249));
-        btn_hotel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btn_hotel.setForeground(new java.awt.Color(255, 255, 255));
-        btn_hotel.setText("Crear nuevo hotel");
-        btn_hotel.setBorder(null);
-        btn_hotel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btn_hotel.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevoHotel.setBackground(new java.awt.Color(5, 101, 249));
+        btnNuevoHotel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnNuevoHotel.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevoHotel.setText("Crear nuevo hotel");
+        btnNuevoHotel.setBorder(null);
+        btnNuevoHotel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNuevoHotel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_hotelActionPerformed(evt);
+                btnNuevoHotelActionPerformed(evt);
             }
         });
+        jPanel2.add(btnNuevoHotel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 127, 30));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lbl_back, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(lbl_rergesar))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(lbl_hotel)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cmbox_hoteles, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(lbl_destino)
-                                    .addGap(30, 30, 30)
-                                    .addComponent(cmbox_destinos, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btn_hotel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                                .addComponent(btn_añadir1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(29, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_back, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(lbl_rergesar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(43, 43, 43)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_destino)
-                    .addComponent(cmbox_destinos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_hotel)
-                    .addComponent(cmbox_hoteles, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(84, 84, 84)
-                .addComponent(btn_añadir1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_hotel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(114, Short.MAX_VALUE))
-        );
+        lbl_hotel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl_hotel1.setText("Modificar");
+        jPanel2.add(lbl_hotel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 460));
+        txtModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtModificarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 180, 30));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 500));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Hoteles ya registrados"));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cmbox_destinos1.setBackground(new java.awt.Color(153, 204, 255));
+        comboDestinoSearch.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel4.add(comboDestinoSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 330, 30));
 
         lbl_destino1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl_destino1.setText("Destino");
+        jPanel4.add(lbl_destino1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(lbl_destino1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(cmbox_destinos1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbox_destinos1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_destino1))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 449, 105));
 
-        btn_borrar.setBackground(new java.awt.Color(5, 101, 249));
-        btn_borrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btn_borrar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_borrar.setText("Borrar");
-        btn_borrar.setBorder(null);
-        btn_borrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnBorrar.setBackground(new java.awt.Color(5, 101, 249));
+        btnBorrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnBorrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBorrar.setText("Borrar");
+        btnBorrar.setBorder(null);
+        btnBorrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel3.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, 110, 30));
 
-        btn_modificar.setBackground(new java.awt.Color(5, 101, 249));
-        btn_modificar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btn_modificar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_modificar.setText("Modificar");
-        btn_modificar.setBorder(null);
-        btn_modificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnModificar.setBackground(new java.awt.Color(5, 101, 249));
+        btnModificar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnModificar.setForeground(new java.awt.Color(255, 255, 255));
+        btnModificar.setText("Modificar");
+        btnModificar.setBorder(null);
+        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel3.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 110, 30));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(btn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_borrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_borrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43))
-        );
+        jScrollPane1.setViewportView(tableHoteles);
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 400, 460));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 122, 450, 266));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 490, 500));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -269,7 +188,7 @@ private void openWindowNewHotel(){
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
         );
 
         pack();
@@ -279,9 +198,13 @@ private void openWindowNewHotel(){
         // TODO add your handling code here:
     }//GEN-LAST:event_lbl_backMouseClicked
 
-    private void btn_hotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hotelActionPerformed
-        openWindowNewHotel();
-    }//GEN-LAST:event_btn_hotelActionPerformed
+    private void btnNuevoHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoHotelActionPerformed
+  
+    }//GEN-LAST:event_btnNuevoHotelActionPerformed
+
+    private void txtModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -319,23 +242,25 @@ private void openWindowNewHotel(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_añadir1;
-    private javax.swing.JButton btn_borrar;
-    private javax.swing.JButton btn_hotel;
-    private javax.swing.JButton btn_modificar;
-    private javax.swing.JComboBox<String> cmbox_destinos;
-    private javax.swing.JComboBox<String> cmbox_destinos1;
-    private javax.swing.JComboBox<String> cmbox_hoteles;
+    public javax.swing.JButton btnAnadir;
+    public javax.swing.JButton btnBorrar;
+    public javax.swing.JButton btnModificar;
+    public javax.swing.JButton btnNuevoHotel;
+    public javax.swing.JComboBox<String> comboDestino;
+    public javax.swing.JComboBox<String> comboDestinoSearch;
+    public javax.swing.JComboBox<String> comboHotel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lbl_back;
+    public javax.swing.JLabel lbl_back;
     private javax.swing.JLabel lbl_destino;
     private javax.swing.JLabel lbl_destino1;
     private javax.swing.JLabel lbl_hotel;
+    private javax.swing.JLabel lbl_hotel1;
     private javax.swing.JLabel lbl_rergesar;
+    public rojerusan.RSTableMetro tableHoteles;
+    public javax.swing.JTextField txtModificar;
     // End of variables declaration//GEN-END:variables
 }
