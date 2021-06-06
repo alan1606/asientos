@@ -19,6 +19,7 @@ import rojerusan.RSAnimation;
  * @author alanm
  */
 public class ControladorBienvenidoCoordinador implements ActionListener {
+
     private BienvenidoCoordinador vista;
     private UsuarioVO usuario;
 
@@ -41,7 +42,8 @@ public class ControladorBienvenidoCoordinador implements ActionListener {
         if (ae.getSource() == vista.btnAceptar) {
             //Abrir menú
             try {
-                RSAnimation.setSubir(150, -230, 2, 2, vista);
+                int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+                RSAnimation.setSubir((alto / 2) - (vista.getHeight() / 2), -1*vista.getHeight(), 2, 2, vista);
                 Thread.sleep(500);
                 vista.dispose();
                 MenuCoordinador menu = new MenuCoordinador();

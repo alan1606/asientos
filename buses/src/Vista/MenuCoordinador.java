@@ -26,11 +26,13 @@ public class MenuCoordinador extends javax.swing.JFrame {
      */
     public MenuCoordinador() {
         initComponents();
-        RSAnimation.setBajar(-230, 150, 2, 2, this);
+        int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+        RSAnimation.setBajar(-230, (alto / 2) - (this.getHeight() / 2), 2, 2, this);
         this.setLocationRelativeTo(null);
-       // icono();
+        // icono();
     }
-    private void icono(){
+
+    private void icono() {
         setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
     }
 

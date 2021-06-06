@@ -5,7 +5,6 @@
  */
 package ClassVO;
 
-import java.sql.Date;
 
 /**
  *
@@ -14,19 +13,27 @@ import java.sql.Date;
 public class ViajeVO {
     private int id;
     private int idDestino;
-    private java.sql.Date fecha;
+    private String fecha;
     private int noAsientos; 
 
     public ViajeVO() {
     }
 
-    public ViajeVO(int id, int idDestino, Date fecha, int noAsientos) {
+    public ViajeVO(int id, int idDestino, String fecha, int noAsientos) {
         this.id = id;
         this.idDestino = idDestino;
         this.fecha = fecha;
         this.noAsientos = noAsientos;
     }
 
+    public ViajeVO(int idDestino, String fecha, int noAsientos) {
+        this.idDestino = idDestino;
+        this.fecha = fecha;
+        this.noAsientos = noAsientos;
+    }
+
+    
+    
     public int getId() {
         return id;
     }
@@ -43,11 +50,11 @@ public class ViajeVO {
         this.idDestino = idDestino;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

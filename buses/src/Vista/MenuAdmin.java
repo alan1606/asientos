@@ -15,7 +15,8 @@ public class MenuAdmin extends javax.swing.JFrame {
      */
     public MenuAdmin() {
         initComponents();
-        RSAnimation.setBajar(-230, 150, 2, 2, this);
+        int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+        RSAnimation.setBajar(-230, (alto/2)-(this.getHeight()/2), 2, 2, this);
         this.setLocationRelativeTo(this);
         //icono();
     }

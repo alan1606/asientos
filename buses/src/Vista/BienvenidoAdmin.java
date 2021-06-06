@@ -11,7 +11,8 @@ public class BienvenidoAdmin extends javax.swing.JDialog {
     public BienvenidoAdmin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        RSAnimation.setBajar(-230, 150, 2, 2, this);
+        int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+        RSAnimation.setBajar(-1*this.getHeight(), (alto/2)-(this.getHeight()/2), 2, 2, this);
         this.setLocationRelativeTo(this);
         //icono();
     }

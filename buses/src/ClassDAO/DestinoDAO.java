@@ -6,7 +6,6 @@
 package ClassDAO;
 
 import ClassVO.DestinoVO;
-import ClassVO.EstadoVO;
 import Conexion.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -57,7 +57,7 @@ public class DestinoVO {
 
     @Override
     public String toString() {
-        return  id + " : " + ciudad ;
+        return ciudad ;
     }
     
     

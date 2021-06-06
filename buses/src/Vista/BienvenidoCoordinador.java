@@ -8,7 +8,6 @@ package Vista;
 import javax.swing.ImageIcon;
 import rojerusan.RSAnimation;
 
-
 /**
  *
  * @author Alex Duarte
@@ -21,11 +20,13 @@ public class BienvenidoCoordinador extends javax.swing.JDialog {
     public BienvenidoCoordinador(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        RSAnimation.setBajar(-230, 150, 2, 2, this);
+        int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+        RSAnimation.setBajar(-1*this.getHeight(), (alto / 2) - (this.getHeight() / 2), 2, 2, this);
         this.setLocationRelativeTo(this);
-       // icono();
+        // icono();
     }
-    private void icono(){
+
+    private void icono() {
         setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
     }
 
@@ -103,7 +104,7 @@ public class BienvenidoCoordinador extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-      
+
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
