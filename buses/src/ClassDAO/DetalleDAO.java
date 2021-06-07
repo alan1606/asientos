@@ -28,10 +28,10 @@ public class DetalleDAO {
     /*private static final String SQL_SELECT_BY_NAME = "SELECT * "
             + " FROM categoria WHERE nombre = ?";*/
     private static final String SQL_UPDATE = "UPDATE detalle  "
-            + " SET personas = ?, sube=?, habitación = ?, costo = ? WHERE id_viaje=? amd id_cliente=? and id_usuario=?";
+            + " SET sube=?, hora = ?, liquidado = ? WHERE id_viaje=? and id_cliente=? and id_usuario=?";
 
     private static final String SQL_INSERT = "INSERT INTO detalle values "
-            + " VALUES(?, ?, ?, ?, ?, ?, ?)";
+            + " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     private static final String SQL_DELETE = "DELETE FROM detalle WHERE id_viaje=? and id_cliente = ? and id_usuario = ?";
 
@@ -51,10 +51,12 @@ public class DetalleDAO {
                 int idUsuario = rs.getInt("id_usuario");
                 int personas = rs.getInt("personas");
                 String sube = rs.getString("sube");
-                String habitacion = rs.getString("habitacion");
+                String hora = rs.getString("hora");
+                int habitaciones = rs.getInt("habitaciones");
                 double costo = rs.getDouble("costo");
+                boolean liquidado = rs.getBoolean("liquidado");
 
-                detalle = new DetalleVO(idViaje, idCliente, idUsuario, personas, sube, habitacion, costo);
+                detalle = new DetalleVO(idViaje, idCliente, idUsuario, personas, sube, hora, habitaciones, costo, liquidado);
                 detalles.add(detalle);
             }
         } catch (SQLException ex) {
@@ -85,10 +87,12 @@ public class DetalleDAO {
                 int idUsuario = rs.getInt("id_usuario");
                 int personas = rs.getInt("personas");
                 String sube = rs.getString("sube");
-                String habitacion = rs.getString("habitacion");
+                String hora = rs.getString("hora");
+                int habitaciones = rs.getInt("habitaciones");
                 double costo = rs.getDouble("costo");
+                boolean liquidado = rs.getBoolean("liquidado");
 
-                detalle = new DetalleVO(idViaje, idCliente, idUsuario, personas, sube, habitacion, costo);
+                detalle = new DetalleVO(idViaje, idCliente, idUsuario, personas, sube, hora, habitaciones, costo, liquidado);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -112,8 +116,10 @@ public class DetalleDAO {
             stmt.setInt(3, detalle.getIdUsuario());
             stmt.setInt(4, detalle.getPersonas());
             stmt.setString(5, detalle.getSube());
-            stmt.setString(6, detalle.getHabitacion());
-            stmt.setDouble(7, detalle.getCosto());
+            stmt.setString(6, detalle.getHora());
+            stmt.setInt(7, detalle.getHabitaciones());
+            stmt.setDouble(8, detalle.getCosto());
+            stmt.setBoolean(8, detalle.isLiquidado());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -132,13 +138,12 @@ public class DetalleDAO {
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_UPDATE);
-            stmt.setInt(1, detalle.getPersonas());
-            stmt.setString(2, detalle.getSube());
-            stmt.setString(3, detalle.getHabitacion());
-            stmt.setDouble(4, detalle.getCosto());
-            stmt.setInt(5, detalle.getIdViaje());
-            stmt.setInt(6, detalle.getIdCliente());
-            stmt.setInt(7, detalle.getIdUsuario());
+            stmt.setString(1, detalle.getSube());
+            stmt.setString(2, detalle.getHora());
+            stmt.setBoolean(3, detalle.isLiquidado());
+            stmt.setInt(4, detalle.getIdViaje());
+            stmt.setInt(5, detalle.getIdCliente());
+            stmt.setInt(6, detalle.getIdUsuario());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {

@@ -15,23 +15,29 @@ public class DetalleVO {
     private int idUsuario;
     private int personas;
     private String sube;
-    private String habitacion;
+    private String hora;
+    private int habitaciones;
     private double costo;
+    private boolean liquidado;
 
     public DetalleVO() {
     }
 
-    
-    
-    public DetalleVO(int idViaje, int idCliente, int idUsuario, int personas, String sube, String habitacion, double costo) {
+    public DetalleVO(int idViaje, int idCliente, int idUsuario, int personas, String sube, String hora, int habitaciones, double costo, boolean liquidado) {
         this.idViaje = idViaje;
         this.idCliente = idCliente;
+        this.idUsuario = idUsuario;
         this.personas = personas;
         this.sube = sube;
-        this.habitacion = habitacion;
+        this.hora = hora;
+        this.habitaciones = habitaciones;
         this.costo = costo;
-        this.idUsuario = idUsuario;
+        this.liquidado = liquidado;
     }
+
+    
+  
+ 
 
     public int getIdUsuario() {
         return idUsuario;
@@ -75,13 +81,31 @@ public class DetalleVO {
         this.sube = sube;
     }
 
-    public String getHabitacion() {
-        return habitacion;
+    public String getHora() {
+        return hora;
     }
 
-    public void setHabitacion(String habitacion) {
-        this.habitacion = habitacion;
+    public void setHora(String hora) {
+        this.hora = hora;
     }
+
+    public int getHabitaciones() {
+        return habitaciones;
+    }
+
+    public void setHabitaciones(int habitaciones) {
+        this.habitaciones = habitaciones;
+    }
+
+    public boolean isLiquidado() {
+        return liquidado;
+    }
+
+    public void setLiquidado(boolean liquidado) {
+        this.liquidado = liquidado;
+    }
+
+
 
     public double getCosto() {
         return costo;
@@ -93,7 +117,7 @@ public class DetalleVO {
 
     @Override
     public String toString() {
-        return "idViaje=" + idViaje + ", idCliente=" + idCliente + ", personas=" + personas + ", sube=" + sube + ", habitacion=" + habitacion + ", costo=" + costo ;
+        return "idViaje=" + idViaje + ", idCliente=" + idCliente + ", personas=" + personas + ", sube=" + sube + ", habitacion=" + habitaciones + ", costo=" + costo ;
     }
     
     
