@@ -29,8 +29,13 @@ public class ViajeDAO {
     private static final String SQL_SELECT_DESTINATION_ID = "SELECT * "
             + " FROM viaje WHERE id_destino = ?";
     
+    private static final String SQL_SELECT_DESTINATION_ID_DATE = "SELECT * "
+            + " FROM viaje WHERE id_destino = ? and fecha = ? order by id desc";
+    
     private static final String SQL_SELECT_BY_DATE = "SELECT * "
             + " FROM viaje WHERE fecha = ?";
+    
+    
 
     private static final String SQL_UPDATE = "UPDATE viaje "
             + " SET fecha= ?, no_asientos=? WHERE id =?";
@@ -111,6 +116,37 @@ public class ViajeDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                  int id = rs.getInt("id");
+                int idDestino = rs.getInt("id_destino");
+                String fecha = rs.getString("fecha");
+                int noAsientos = rs.getInt("no_asientos");
+
+                viaje = new ViajeVO(id, idDestino, fecha, noAsientos);
+                viajes.add(viaje);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return viajes;
+    }
+    
+    public ArrayList encontrarByDestinoDate(int _id, String date) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ViajeVO viaje = null;
+        ArrayList<ViajeVO> viajes = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_DESTINATION_ID_DATE);
+            stmt.setInt(1, _id);
+            stmt.setString(2, date);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
                 int idDestino = rs.getInt("id_destino");
                 String fecha = rs.getString("fecha");
                 int noAsientos = rs.getInt("no_asientos");

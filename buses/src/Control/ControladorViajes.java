@@ -5,8 +5,10 @@
  */
 package Control;
 
+import ClassDAO.AsientoDAO;
 import ClassDAO.DestinoDAO;
 import ClassDAO.ViajeDAO;
+import ClassVO.AsientoVO;
 import ClassVO.DestinoVO;
 import ClassVO.UsuarioVO;
 import ClassVO.ViajeVO;
@@ -24,6 +26,8 @@ import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
@@ -37,6 +41,7 @@ public class ControladorViajes implements ActionListener, MouseListener, KeyList
     private ViajeDAO modelo;
     private UsuarioVO usuario;
     private DestinoDAO modeloDestino;
+    private AsientoDAO modeloAsientos;
 
     public ControladorViajes(Viajes vista, UsuarioVO usuario) {
         this.vista = vista;
@@ -100,7 +105,23 @@ public class ControladorViajes implements ActionListener, MouseListener, KeyList
         } else if (ae.getSource() == vista.btnModificar) {
             if (datosValidosModificacion() && deseaModificar() == 0) {
                 try {
-                    modificar();
+                    ViajeVO viaje = obtenerElementoDePosicion(vista.tableViajes.getSelectedRow());
+                    int asientosAnteriores = viaje.getNoAsientos();
+                    int asientosNuevos = Integer.parseInt(vista.comboAsientos.getSelectedItem().toString());
+
+                    if (asientosAnteriores == asientosNuevos) {
+                        modificar();
+                    } else if (asientosNuevos > asientosAnteriores) {
+                        crearAsientos(viaje, asientosAnteriores + 1, asientosNuevos);
+                        modificar();
+                    } else {
+                        if (!seHanCompradoUltimosAsientos(viaje)) {
+                            eliminar(viaje, asientosNuevos + 1, asientosAnteriores);
+                            modificar();
+                        } else {
+                            JOptionPane.showMessageDialog(vista, "No se ha podido cambiar el número de asientos porque hay boletos comprados en los últimos lugares");
+                        }
+                    }
                 } catch (ParseException ex) {
                     ex.printStackTrace(System.out);
                 }
@@ -116,13 +137,44 @@ public class ControladorViajes implements ActionListener, MouseListener, KeyList
         }
         if (ae.getSource() == vista.btnEliminar) {
             if (vista.tableViajes.getSelectedRow() != -1 && deseaEliminar() == 0) {
-                eliminar();
-                habilitarBotones(false);
+                try {
+                    if (!seHanCompradoAsientos()) {
+                        eliminar();
+                        habilitarBotones(false);
+                    } else {
+                        JOptionPane.showMessageDialog(vista, "No puede eliminar un viaje que tiene vendidos boletos");
+                        clean();
+                    }
+                } catch (ParseException ex) {
+                    Logger.getLogger(ControladorViajes.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }
 
+    private boolean seHanCompradoUltimosAsientos(ViajeVO viaje) {
+        modeloAsientos = new AsientoDAO();
+        for (AsientoVO asiento : modeloAsientos.encontrarUltimos(viaje)) {
+            if (!asiento.isDisponible()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean seHanCompradoAsientos() throws ParseException {
+        ViajeVO viaje = obtenerElementoDePosicion(vista.tableViajes.getSelectedRow());
+        modeloAsientos = new AsientoDAO();
+        for (AsientoVO asiento : modeloAsientos.encontrar(viaje.getId())) {
+            if (!asiento.isDisponible()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void eliminar() {
+        eliminarAsientos();
         ViajeVO viaje = new ViajeVO();
         int id = Integer.parseInt(vista.tableViajes.getValueAt(vista.tableViajes.getSelectedRow(), 0).toString());
         viaje.setId(id);
@@ -133,6 +185,26 @@ public class ControladorViajes implements ActionListener, MouseListener, KeyList
             JOptionPane.showMessageDialog(vista, "Ha ocurrido un error al eliminar el viaje");
         }
         clean();
+    }
+
+    private void eliminar(ViajeVO viaje, int inicio, int fin) {
+        modeloAsientos = new AsientoDAO();
+        int cantidadElminados = modeloAsientos.eliminar(viaje.getId(), inicio, fin);
+        if (cantidadElminados > 0) {
+            System.out.println( cantidadElminados + " asientos eliminados");
+        } else {
+            System.out.println("Error");
+        }
+    }
+
+    private void eliminarAsientos() {
+        modeloAsientos = new AsientoDAO();
+        int id = Integer.parseInt(vista.tableViajes.getValueAt(vista.tableViajes.getSelectedRow(), 0).toString());
+        if (modeloAsientos.eliminar(id) > 0) {
+            System.out.println("Asientos eliminados");
+        } else {
+            System.out.println("Error");
+        }
     }
 
     private int deseaEliminar() {
@@ -196,10 +268,26 @@ public class ControladorViajes implements ActionListener, MouseListener, KeyList
         if (modelo.insertar(viaje) > 0) {
             JOptionPane.showMessageDialog(vista, "Se ha registrado el viaje");
             cargarTabla();
+            crearAsientos(viaje, 1, viaje.getNoAsientos());
         } else {
             JOptionPane.showMessageDialog(vista, "Ha ocurrido un error al registrar el viaje");
         }
         clean();
+    }
+
+    private void crearAsientos(ViajeVO _viaje, int inicio, int fin) {
+        ViajeVO viaje = (ViajeVO) modelo.encontrarByDestinoDate(_viaje.getIdDestino(), _viaje.getFecha()).get(0);
+        modeloAsientos = new AsientoDAO();
+        try {
+            int insertados = modeloAsientos.insertar(viaje, inicio, fin);
+            if (insertados > 0) {
+                System.out.println("Se insertaron " + insertados + " asientos");
+            } else {
+                System.out.println("Error");
+            }
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
     }
 
     private boolean datosValidos() {
@@ -220,6 +308,9 @@ public class ControladorViajes implements ActionListener, MouseListener, KeyList
             return false;
         }
         if (vista.dateFecha.getFechaSeleccionada().equals("")) {
+            return false;
+        }
+        if (vista.tableViajes.getSelectedRow() == -1) {
             return false;
         }
         return true;

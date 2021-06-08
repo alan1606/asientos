@@ -10,6 +10,7 @@ package ClassVO;
  * @author alanm
  */
 public class AsientoVO {
+    private long id;
     private int numero;
     private int idViaje;
     private int idCliente;
@@ -25,6 +26,24 @@ public class AsientoVO {
         this.disponible = disponible;
     }
 
+    public AsientoVO(long id, int numero, int idViaje, int idCliente, boolean disponible) {
+        this.id = id;
+        this.numero = numero;
+        this.idViaje = idViaje;
+        this.idCliente = idCliente;
+        this.disponible = disponible;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    
+    
     public boolean isDisponible() {
         return disponible;
     }
