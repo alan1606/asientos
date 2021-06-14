@@ -7,12 +7,12 @@ package ClassDAO;
 
 import ClassVO.ViajeVO;
 import Conexion.Conexion;
-import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -31,6 +31,9 @@ public class ViajeDAO {
     
     private static final String SQL_SELECT_DESTINATION_ID_DATE = "SELECT * "
             + " FROM viaje WHERE id_destino = ? and fecha = ? order by id desc";
+    
+     private static final String SQL_SELECT_DESTINATION_ID_DATE_ASIENTOS = "SELECT * "
+            + " FROM viaje WHERE id_destino = ? and fecha = ? and no_asientos = ? order by id desc";
     
     private static final String SQL_SELECT_BY_DATE = "SELECT * "
             + " FROM viaje WHERE fecha = ?";
@@ -103,7 +106,7 @@ public class ViajeDAO {
         return viaje;
     }
 
-    public ArrayList encontrarByDestino(int _id) {
+    public ArrayList<ViajeVO> encontrarByDestino(int _id) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -164,6 +167,38 @@ public class ViajeDAO {
         return viajes;
     }
     
+     public ArrayList encontrarByDestinoDateAsientos(int _id, String date, int _noAsientos) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ViajeVO viaje = null;
+        ArrayList<ViajeVO> viajes = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_DESTINATION_ID_DATE_ASIENTOS);
+            stmt.setInt(1, _id);
+            stmt.setString(2, date);
+            stmt.setInt(3, _noAsientos);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int idDestino = rs.getInt("id_destino");
+                String fecha = rs.getString("fecha");
+                int noAsientos = rs.getInt("no_asientos");
+
+                viaje = new ViajeVO(id, idDestino, fecha, noAsientos);
+                viajes.add(viaje);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return viajes;
+    }
+    
     public ArrayList encontrarByFecha(String _fecha) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -194,6 +229,8 @@ public class ViajeDAO {
         return viajes;
     }
 
+    
+    
     public int insertar(ViajeVO viaje) {
         Connection conn = null;
         PreparedStatement stmt = null;

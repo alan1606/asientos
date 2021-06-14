@@ -6,6 +6,7 @@
 package Control;
 
 import ClassVO.UsuarioVO;
+import Vista.Asientos;
 import Vista.Clientes;
 import Vista.Destinos;
 import Vista.Hoteles;
@@ -69,7 +70,9 @@ public class ControladorMenuAdmin implements ActionListener {
     }
 
     private void abrirAsientos() {
-
+        vista.dispose();
+        ControladorAsientos asientos = new ControladorAsientos(new Asientos(), usuario);
+        asientos.iniciar();
     }
 
     private void abrirHoteles() {

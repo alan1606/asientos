@@ -13,20 +13,21 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
+ * aala
  *
  * @author alanm
  */
 public class Panel64 extends javax.swing.JPanel {
 
-    private JLabel[] arreglo;
+    public JLabel[] arreglo;
 
     /**
      * Creates new form Panel64
      */
     public Panel64() {
         initComponents();
-        lblArreglo();
-        setDesignLabels();
+      
+      
     }
 
     /**
@@ -761,82 +762,9 @@ public class Panel64 extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void camion() {
-        ImageIcon fondo;
-        fondo = new ImageIcon(getClass().getResource("/Assets/autobus64.png"));
-        Icon fondoIcono = new ImageIcon(fondo.getImage().getScaledInstance(lbl_fondo.getWidth(),
-                lbl_fondo.getHeight(), Image.SCALE_SMOOTH));
-        lbl_fondo.setIcon(fondoIcono);
-    }
+    
 
-    private void lblArreglo() {
-        arreglo = new JLabel[64];
-        arreglo[0] = lbl1;
-        arreglo[1] = lbl2;
-        arreglo[2] = lbl3;
-        arreglo[3] = lbl4;
-        arreglo[4] = lbl5;
-        arreglo[5] = lbl6;
-        arreglo[6] = lbl7;
-        arreglo[7] = lbl8;
-        arreglo[8] = lbl9;
-        arreglo[9] = lbl10;
-        arreglo[10] = lbl11;
-        arreglo[11] = lbl12;
-        arreglo[12] = lbl13;
-        arreglo[13] = lbl14;
-        arreglo[14] = lbl15;
-        arreglo[15] = lbl16;
-        arreglo[16] = lbl17;
-        arreglo[17] = lbl18;
-        arreglo[18] = lbl19;
-        arreglo[19] = lbl20;
-        arreglo[20] = lbl21;
-        arreglo[21] = lbl22;
-        arreglo[22] = lbl23;
-        arreglo[23] = lbl24;
-        arreglo[24] = lbl25;
-        arreglo[25] = lbl26;
-        arreglo[26] = lbl27;
-        arreglo[27] = lbl28;
-        arreglo[28] = lbl29;
-        arreglo[29] = lbl30;
-        arreglo[30] = lbl31;
-        arreglo[31] = lbl32;
-        arreglo[32] = lbl33;
-        arreglo[33] = lbl34;
-        arreglo[34] = lbl35;
-        arreglo[35] = lbl36;
-        arreglo[36] = lbl37;
-        arreglo[37] = lbl38;
-        arreglo[38] = lbl39;
-        arreglo[39] = lbl40;
-        arreglo[40] = lbl41;
-        arreglo[41] = lbl42;
-        arreglo[42] = lbl43;
-        arreglo[43] = lbl44;
-        arreglo[44] = lbl45;
-        arreglo[45] = lbl46;
-        arreglo[46] = lbl47;
-        arreglo[47] = lbl48;
-        arreglo[48] = lbl49;
-        arreglo[49] = lbl50;
-        arreglo[50] = lbl51;
-        arreglo[51] = lbl52;
-        arreglo[52] = lbl53;
-        arreglo[53] = lbl54;
-        arreglo[54] = lbl55;
-        arreglo[55] = lbl56;
-        arreglo[56] = lbl57;
-        arreglo[57] = lbl58;
-        arreglo[58] = lbl59;
-        arreglo[59] = lbl60;
-        arreglo[60] = lbl61;
-        arreglo[61] = lbl62;
-        arreglo[62] = lbl63;
-        arreglo[63] = lbl64;
-    }
-
+    /*
     private void setDesignLabels() {
         for (int i = 0; i < 64; i++) {
             this.arreglo[i].setBackground(new Color(51, 255, 51, 160));
@@ -856,7 +784,7 @@ public class Panel64 extends javax.swing.JPanel {
             this.arreglo[i].setBackground(new Color(247, 255, 0, 160));
             this.arreglo[i].setOpaque(true);
         }
-    }
+    }*/
 
     public boolean eliminar() {
         Object[] opcion = {"Eliminar", "Cancelar"};
@@ -886,36 +814,12 @@ public class Panel64 extends javax.swing.JPanel {
         return false;
     }
 
-    public boolean dialogo() {
-        Object[] opcion = {"Apartar", "Vender", "Eliminar"};
-        int op = JOptionPane.showOptionDialog(null, "¿Que desea hacer?", "Formulario",
-                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-                opcion, opcion[0]);
-        if (op == 1) {
-            setDesignOcupado();
-        } else if (op == 0) {
-            setDesignApartado();
-        } else if (op == 2) {
-            if (eliminar() == true) {
-                setDesignLabels();
-            }
-        }
-        return true;
-    }
+   
 
-    String[] arreglolbl = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
-
-    private void pane() {
-        for (String i : arreglolbl) {
-            JOptionPane.showMessageDialog(null, "Jalando label" + i);
-        }
-//        JOptionPane.showMessageDialog(null, "Jalando label");
-    }
+   
 
     private void lbl4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl4MouseClicked
-        if (lbl1.isEnabled()) {
 
-        }
     }//GEN-LAST:event_lbl4MouseClicked
 
 
@@ -933,12 +837,12 @@ public class Panel64 extends javax.swing.JPanel {
 
     private void lbl8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl8MouseClicked
         // TODO add your handling code here:
-        pane();
+ 
     }//GEN-LAST:event_lbl8MouseClicked
 
     private void lbl9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl9MouseClicked
         // TODO add your handling code here:
-        pane();
+    
     }//GEN-LAST:event_lbl9MouseClicked
 
     private void lbl10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl10MouseClicked
@@ -951,12 +855,12 @@ public class Panel64 extends javax.swing.JPanel {
 
     private void lbl12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl12MouseClicked
         // TODO add your handling code here:
-        pane();
+
     }//GEN-LAST:event_lbl12MouseClicked
 
     private void lbl13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl13MouseClicked
         // TODO add your handling code here:
-        pane();
+ 
     }//GEN-LAST:event_lbl13MouseClicked
 
     private void lbl14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl14MouseClicked
@@ -969,12 +873,12 @@ public class Panel64 extends javax.swing.JPanel {
 
     private void lbl16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl16MouseClicked
         // TODO add your handling code here:
-        pane();
+     
     }//GEN-LAST:event_lbl16MouseClicked
 
     private void lbl17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl17MouseClicked
         // TODO add your handling code here:
-        pane();
+    
     }//GEN-LAST:event_lbl17MouseClicked
 
     private void lbl18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl18MouseClicked
@@ -986,13 +890,12 @@ public class Panel64 extends javax.swing.JPanel {
     }//GEN-LAST:event_lbl19MouseClicked
 
     private void lbl20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl20MouseClicked
-        // TODO add your handling code here:
-        pane();
+
     }//GEN-LAST:event_lbl20MouseClicked
 
     private void lbl21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl21MouseClicked
         // TODO add your handling code here:
-        pane();
+      
     }//GEN-LAST:event_lbl21MouseClicked
 
     private void lbl22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl22MouseClicked
@@ -1005,12 +908,12 @@ public class Panel64 extends javax.swing.JPanel {
 
     private void lbl24MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl24MouseClicked
         // TODO add your handling code here:
-        pane();
+
     }//GEN-LAST:event_lbl24MouseClicked
 
     private void lbl25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl25MouseClicked
         // TODO add your handling code here:
-        pane();
+    
     }//GEN-LAST:event_lbl25MouseClicked
 
     private void lbl26MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl26MouseClicked
@@ -1023,12 +926,12 @@ public class Panel64 extends javax.swing.JPanel {
 
     private void lbl28MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl28MouseClicked
         // TODO add your handling code here:
-        pane();
+       
     }//GEN-LAST:event_lbl28MouseClicked
 
     private void lbl29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl29MouseClicked
         // TODO add your handling code here:
-        pane();
+   
     }//GEN-LAST:event_lbl29MouseClicked
 
     private void lbl30MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl30MouseClicked
@@ -1041,12 +944,12 @@ public class Panel64 extends javax.swing.JPanel {
 
     private void lbl32MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl32MouseClicked
         // TODO add your handling code here:
-        pane();
+  
     }//GEN-LAST:event_lbl32MouseClicked
 
     private void lbl33MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl33MouseClicked
         // TODO add your handling code here:
-        pane();
+
     }//GEN-LAST:event_lbl33MouseClicked
 
     private void lbl34MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl34MouseClicked
@@ -1058,13 +961,11 @@ public class Panel64 extends javax.swing.JPanel {
     }//GEN-LAST:event_lbl35MouseClicked
 
     private void lbl36MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl36MouseClicked
-        // TODO add your handling code here:
-        pane();
+
     }//GEN-LAST:event_lbl36MouseClicked
 
     private void lbl37MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl37MouseClicked
-        // TODO add your handling code here:
-        pane();
+
     }//GEN-LAST:event_lbl37MouseClicked
 
     private void lbl38MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl38MouseClicked
@@ -1077,12 +978,12 @@ public class Panel64 extends javax.swing.JPanel {
 
     private void lbl40MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl40MouseClicked
         // TODO add your handling code here:
-        pane();
+    
     }//GEN-LAST:event_lbl40MouseClicked
 
     private void lbl41MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl41MouseClicked
         // TODO add your handling code here:
-        pane();
+       
     }//GEN-LAST:event_lbl41MouseClicked
 
     private void lbl42MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl42MouseClicked
@@ -1095,12 +996,12 @@ public class Panel64 extends javax.swing.JPanel {
 
     private void lbl44MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl44MouseClicked
         // TODO add your handling code here:
-        pane();
+    
     }//GEN-LAST:event_lbl44MouseClicked
 
     private void lbl45MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl45MouseClicked
         // TODO add your handling code here:
-        pane();
+      
     }//GEN-LAST:event_lbl45MouseClicked
 
     private void lbl46MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl46MouseClicked
@@ -1113,17 +1014,17 @@ public class Panel64 extends javax.swing.JPanel {
 
     private void lbl48MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl48MouseClicked
         // TODO add your handling code here:
-        pane();
+        
     }//GEN-LAST:event_lbl48MouseClicked
 
     private void lbl49MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl49MouseClicked
         // TODO add your handling code here:
-        pane();
+      
     }//GEN-LAST:event_lbl49MouseClicked
 
     private void lbl50MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl50MouseClicked
         // TODO add your handling code here:
-        pane();
+      
     }//GEN-LAST:event_lbl50MouseClicked
 
     private void lbl51MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl51MouseClicked
@@ -1196,77 +1097,71 @@ public class Panel64 extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JLabel lbl1;
-    private javax.swing.JLabel lbl10;
-    private javax.swing.JLabel lbl11;
-    private javax.swing.JLabel lbl12;
-    private javax.swing.JLabel lbl13;
-    private javax.swing.JLabel lbl14;
-    private javax.swing.JLabel lbl15;
-    private javax.swing.JLabel lbl16;
-    private javax.swing.JLabel lbl17;
-    private javax.swing.JLabel lbl18;
-    private javax.swing.JLabel lbl19;
-    private javax.swing.JLabel lbl2;
-    private javax.swing.JLabel lbl20;
-    private javax.swing.JLabel lbl21;
-    private javax.swing.JLabel lbl22;
-    private javax.swing.JLabel lbl23;
-    private javax.swing.JLabel lbl24;
-    private javax.swing.JLabel lbl25;
-    private javax.swing.JLabel lbl26;
-    private javax.swing.JLabel lbl27;
-    private javax.swing.JLabel lbl28;
-    private javax.swing.JLabel lbl29;
-    private javax.swing.JLabel lbl3;
-    private javax.swing.JLabel lbl30;
-    private javax.swing.JLabel lbl31;
-    private javax.swing.JLabel lbl32;
-    private javax.swing.JLabel lbl33;
-    private javax.swing.JLabel lbl34;
-    private javax.swing.JLabel lbl35;
-    private javax.swing.JLabel lbl36;
-    private javax.swing.JLabel lbl37;
-    private javax.swing.JLabel lbl38;
-    private javax.swing.JLabel lbl39;
-    private javax.swing.JLabel lbl4;
-    private javax.swing.JLabel lbl40;
-    private javax.swing.JLabel lbl41;
-    private javax.swing.JLabel lbl42;
-    private javax.swing.JLabel lbl43;
-    private javax.swing.JLabel lbl44;
-    private javax.swing.JLabel lbl45;
-    private javax.swing.JLabel lbl46;
-    private javax.swing.JLabel lbl47;
-    private javax.swing.JLabel lbl48;
-    private javax.swing.JLabel lbl49;
-    private javax.swing.JLabel lbl5;
-    private javax.swing.JLabel lbl50;
-    private javax.swing.JLabel lbl51;
-    private javax.swing.JLabel lbl52;
-    private javax.swing.JLabel lbl53;
-    private javax.swing.JLabel lbl54;
-    private javax.swing.JLabel lbl55;
-    private javax.swing.JLabel lbl56;
-    private javax.swing.JLabel lbl57;
-    private javax.swing.JLabel lbl58;
-    private javax.swing.JLabel lbl59;
-    private javax.swing.JLabel lbl6;
-    private javax.swing.JLabel lbl60;
-    private javax.swing.JLabel lbl61;
-    private javax.swing.JLabel lbl62;
-    private javax.swing.JLabel lbl63;
-    private javax.swing.JLabel lbl64;
-    private javax.swing.JLabel lbl65;
-    private javax.swing.JLabel lbl66;
-    private javax.swing.JLabel lbl67;
-    private javax.swing.JLabel lbl7;
-    private javax.swing.JLabel lbl8;
-    private javax.swing.JLabel lbl9;
-    private javax.swing.JLabel lbl_fondo;
+    public javax.swing.JLabel lbl10;
+    public javax.swing.JLabel lbl11;
+    public javax.swing.JLabel lbl12;
+    public javax.swing.JLabel lbl13;
+    public javax.swing.JLabel lbl14;
+    public javax.swing.JLabel lbl15;
+    public javax.swing.JLabel lbl16;
+    public javax.swing.JLabel lbl17;
+    public javax.swing.JLabel lbl18;
+    public javax.swing.JLabel lbl19;
+    public javax.swing.JLabel lbl20;
+    public javax.swing.JLabel lbl21;
+    public javax.swing.JLabel lbl22;
+    public javax.swing.JLabel lbl23;
+    public javax.swing.JLabel lbl24;
+    public javax.swing.JLabel lbl25;
+    public javax.swing.JLabel lbl26;
+    public javax.swing.JLabel lbl27;
+    public javax.swing.JLabel lbl28;
+    public javax.swing.JLabel lbl29;
+    public javax.swing.JLabel lbl30;
+    public javax.swing.JLabel lbl31;
+    public javax.swing.JLabel lbl32;
+    public javax.swing.JLabel lbl33;
+    public javax.swing.JLabel lbl34;
+    public javax.swing.JLabel lbl35;
+    public javax.swing.JLabel lbl36;
+    public javax.swing.JLabel lbl37;
+    public javax.swing.JLabel lbl38;
+    public javax.swing.JLabel lbl39;
+    public javax.swing.JLabel lbl4;
+    public javax.swing.JLabel lbl40;
+    public javax.swing.JLabel lbl41;
+    public javax.swing.JLabel lbl42;
+    public javax.swing.JLabel lbl43;
+    public javax.swing.JLabel lbl44;
+    public javax.swing.JLabel lbl45;
+    public javax.swing.JLabel lbl46;
+    public javax.swing.JLabel lbl47;
+    public javax.swing.JLabel lbl48;
+    public javax.swing.JLabel lbl49;
+    public javax.swing.JLabel lbl5;
+    public javax.swing.JLabel lbl50;
+    public javax.swing.JLabel lbl51;
+    public javax.swing.JLabel lbl52;
+    public javax.swing.JLabel lbl53;
+    public javax.swing.JLabel lbl54;
+    public javax.swing.JLabel lbl55;
+    public javax.swing.JLabel lbl56;
+    public javax.swing.JLabel lbl57;
+    public javax.swing.JLabel lbl58;
+    public javax.swing.JLabel lbl59;
+    public javax.swing.JLabel lbl6;
+    public javax.swing.JLabel lbl60;
+    public javax.swing.JLabel lbl61;
+    public javax.swing.JLabel lbl62;
+    public javax.swing.JLabel lbl63;
+    public javax.swing.JLabel lbl64;
+    public javax.swing.JLabel lbl65;
+    public javax.swing.JLabel lbl66;
+    public javax.swing.JLabel lbl67;
+    public javax.swing.JLabel lbl7;
+    public javax.swing.JLabel lbl8;
+    public javax.swing.JLabel lbl9;
+    public javax.swing.JLabel lbl_fondo;
     // End of variables declaration//GEN-END:variables
 }

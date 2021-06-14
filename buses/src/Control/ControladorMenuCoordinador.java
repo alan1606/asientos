@@ -6,6 +6,7 @@
 package Control;
 
 import ClassVO.UsuarioVO;
+import Vista.Asientos;
 
 import Vista.Clientes;
 import Vista.Destinos;
@@ -60,21 +61,23 @@ public class ControladorMenuCoordinador implements ActionListener {
         if (ae.getSource() == vista.btnDetalles) {
             abrirDetalles();
         }
-        if(ae.getSource() == vista.btnHoteles){
+        if (ae.getSource() == vista.btnHoteles) {
             abrirHoteles();
         }
     }
 
     private void abrirAsientos() {
-
+        vista.dispose();
+        ControladorAsientos asientos = new ControladorAsientos(new Asientos(), usuario);
+        asientos.iniciar();
     }
 
-    private void abrirHoteles(){
+    private void abrirHoteles() {
         vista.dispose();
         ControladorHoteles hoteles = new ControladorHoteles(new Hoteles(), usuario);
         hoteles.iniciar();
     }
-    
+
     private void abrirDestinos() {
         vista.dispose();
         ControladorDestinos destinos = new ControladorDestinos(new Destinos(), usuario);
