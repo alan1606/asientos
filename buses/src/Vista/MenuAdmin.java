@@ -131,10 +131,10 @@ public class MenuAdmin extends javax.swing.JFrame {
         jLabel8.setText("Compra");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 227, -1, -1));
 
-        jLabel9.setText("Añadir");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, -1, -1));
+        jLabel9.setText("Gestionar");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 60, 20));
 
-        jLabel10.setText("Coordinador");
+        jLabel10.setText("Usuarios");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, -1));
 
         btnHoteles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/007-viajes.png"))); // NOI18N
