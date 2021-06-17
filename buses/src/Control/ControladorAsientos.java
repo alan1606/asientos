@@ -8,9 +8,12 @@ package Control;
 import ClassDAO.AsientoDAO;
 import ClassDAO.ClienteDAO;
 import ClassDAO.DestinoDAO;
+import ClassDAO.DetalleDAO;
 import ClassDAO.ViajeDAO;
 import ClassVO.AsientoVO;
+import ClassVO.ClienteVO;
 import ClassVO.DestinoVO;
+import ClassVO.DetalleVO;
 import ClassVO.UsuarioVO;
 import ClassVO.ViajeVO;
 import Paneles.Panel47;
@@ -47,11 +50,13 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
     private UsuarioVO usuario;
     private DestinoDAO modeloDestino;
     private ClienteDAO modeloCliente;
+    private DetalleDAO modeloDetalle;
     private ArrayList<ViajeVO> viajesEnDestino;
-    private int asientosSeleccionados = 0;
     private int asientosAComprar = 0;
+    private int asientosDisponibles = 0;
     private Panel47 panel47;
     private Panel64 panel64;
+    ArrayList<AsientoVO> asientos;
     private boolean camion64 = false;
 
     public ControladorAsientos(Asientos vista, UsuarioVO usuario) {
@@ -79,12 +84,6 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         vista.setVisible(true);
         iniciarCombosVacios();
 
-        cargarDestinos();
-
-        cargarTiposDeCliente();
-        //cargarBusquedaDestinos();
-        habilitarBotones(false);
-        // cargarTabla();
     }
 
     @Override
@@ -93,7 +92,6 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
             if (datosValidos() && deseaComprar() == 0) {
                 try {
                     registrar();
-                    habilitarBotones(false);
                 } catch (ParseException ex) {
                     ex.printStackTrace(System.out);
                 }
@@ -137,15 +135,49 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         } else if (ae.getSource() == vista.comboId) {
             if (vista.comboId.getSelectedIndex() != 0) {
                 cargarPlantilla();
+                cargarAsientosDisponibles();
             }
         } else if (ae.getSource() == vista.comboTipoCliente) {
             if (vista.comboTipoCliente.getSelectedIndex() != 0) {
-                // cargarClientes();
+                cargarClientes();
             }
         } else if (ae.getSource() == vista.comboAsientosAComprar) {
-            /* if (vista.comboDestinoSearch.getSelectedIndex() != 0) {
-                cargarNoAsientosDisponibles();
-            }*/
+            if (vista.comboAsientosAComprar.getSelectedIndex() != 0) {
+                cargarPlantilla();
+                asientosAComprar = Integer.parseInt(vista.comboAsientosAComprar.getSelectedItem().toString());
+            }
+        }
+    }
+
+    private void cargarAsientosDisponibles() {
+        try {
+            JComboBox combo = new JComboBox();
+            combo.removeAllItems();
+            combo.addItem("SELECCIONA UNA OPCIÓN");
+            for (int i = 1; i <= asientosDisponibles; i++) {
+                combo.addItem(i);
+            }
+            vista.comboAsientosAComprar.setModel(combo.getModel());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+
+    private void cargarClientes() {
+        modeloCliente = new ClienteDAO();
+        try {
+            JComboBox combo = new JComboBox();
+            combo.removeAllItems();
+            combo.addItem("SELECCIONE UNA OPCIÓN");
+            for (ClienteVO cliente : modeloCliente.encontrarPorTipo(vista.comboTipoCliente.getSelectedItem().toString().toUpperCase())) {
+                if (cliente.getId() != 1) {
+                    combo.addItem(cliente);
+                }
+            }
+            vista.comboCliente.setModel(combo.getModel());
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 
@@ -154,11 +186,9 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         if (asientos == 47) {
             camion64 = false;
             cargarPanel47();
-
-        } else {
+        } else if (asientos == 64) {
             camion64 = true;
             cargarPanel64();
-
         }
     }
 
@@ -192,26 +222,30 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
     }
 
     private void cargarAsientos64() {
-        ArrayList<AsientoVO> asientos = modelo.encontrar(Integer.parseInt(vista.comboId.getSelectedItem().toString()));
+        asientosDisponibles = 64;
+        asientos = modelo.encontrar(Integer.parseInt(vista.comboId.getSelectedItem().toString()));
         for (int i = 0; i < 64; i++) {
             if (asientos.get(i).isDisponible()) {
                 setDisponible(panel64.arreglo[i]);
                 panel64.arreglo[i].addMouseListener(this);
             } else {
                 setOcupado(panel64.arreglo[i]);
+                asientosDisponibles--;
             }
         }
 
     }
 
     private void cargarAsientos47() {
-        ArrayList<AsientoVO> asientos = modelo.encontrar(Integer.parseInt(vista.comboId.getSelectedItem().toString()));
+        asientosDisponibles = 47;
+        asientos = modelo.encontrar(Integer.parseInt(vista.comboId.getSelectedItem().toString()));
         for (int i = 0; i < 47; i++) {
             if (asientos.get(i).isDisponible()) {
                 setDisponible(panel47.arreglo[i]);
                 panel47.arreglo[i].addMouseListener(this);
             } else {
                 setOcupado(panel47.arreglo[i]);
+                asientosDisponibles--;
             }
         }
 
@@ -227,6 +261,12 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         label.setOpaque(true);
     }
 
+    private void setApartado(JLabel label) {
+        label.setBackground(new Color(247, 255, 0, 160));
+        label.setOpaque(true);
+
+    }
+
     private void camion47() {
         ImageIcon fondo;
         fondo = new ImageIcon(getClass().getResource("/Assets/autobus47.png"));
@@ -235,7 +275,6 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
     }
 
     private void camion64() {
-
         try {
             ImageIcon fondo;
             fondo = new ImageIcon(getClass().getResource("/Assets/autobus64.png"));
@@ -374,6 +413,11 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         vista.comboFecha.setModel(combo.getModel());
         vista.comboNoAsientos.setModel(combo.getModel());
         vista.comboId.setModel(combo.getModel());
+        vista.comboTipoCliente.setModel(combo.getModel());
+        vista.comboCliente.setModel(combo.getModel());
+        vista.comboAsientosAComprar.setModel(combo.getModel());
+        cargarDestinos();
+        cargarTiposDeCliente();
     }
 
     /* private void cargarTabla() {
@@ -398,8 +442,6 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
             for (int i = 1; i < viajesEnDestino.size(); i++) {
                 actual = viajesEnDestino.get(i).getNoAsientos();
                 anterior = viajesEnDestino.get(i - 1).getNoAsientos();
-                System.out.println("actual: " + actual);
-                System.out.println("anterior: " + anterior);
                 if (actual != anterior) {
                     combo.addItem(actual);
                 }
@@ -500,19 +542,42 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         vista.txtHabitaciones.setText("");
         vista.txtHora.setText("");
         vista.txtSube.setText("");
+        iniciarCombosVacios();
     }
 
     private void registrar() throws ParseException {
-        /* DestinoVO destino = (DestinoVO) vista.comboDestino.getSelectedItem();
-        ViajeVO viaje = new ViajeVO(destino.getId(), vista.dateFecha.getFechaSeleccionada(), Integer.parseInt(vista.comboAsientos.getSelectedItem().toString()));
-        if (modelo.insertar(viaje) > 0) {
-            JOptionPane.showMessageDialog(vista, "Se ha registrado el viaje");
-            //cargarTabla();
-            crearAsientos(viaje, 1, viaje.getNoAsientos());
-        } else {
-            JOptionPane.showMessageDialog(vista, "Ha ocurrido un error al registrar el viaje");
+        modelo = new AsientoDAO();
+        modeloDetalle = new DetalleDAO();
+        ArrayList<AsientoVO> anteriores = modelo.encontrar(Integer.parseInt(vista.comboId.getSelectedItem().toString()));
+        AsientoVO asiento;
+        ClienteVO cliente = (ClienteVO) vista.comboCliente.getSelectedItem();
+        int idViaje = Integer.parseInt(vista.comboId.getSelectedItem().toString());
+        int satisfactorios = 0;
+        for (int i = 0; i < anteriores.size(); i++) {
+            asiento = asientos.get(i);
+            if (anteriores.get(i).isDisponible() != asiento.isDisponible()) {
+                asiento.setIdCliente(cliente.getId());
+                if (modelo.actualizar(asiento) == 0) {
+                    JOptionPane.showMessageDialog(vista, "Ocurrió un error al comprar los asientos");
+                    break;
+                }
+                else{
+                    satisfactorios++;
+                }
+            }
         }
-        clean();*/
+        String sube = vista.txtSube.getText();
+        String hora = vista.txtHora.getText().substring(0, 5);
+        String habitacion = vista.txtHabitaciones.getText();
+        Double costo = Double.parseDouble(vista.txtCosto.getText());
+        int habitaciones = Integer.parseInt(vista.txtHabitaciones.getText());
+        DetalleVO detalle = new DetalleVO(idViaje, cliente.getId(), usuario.getId(), satisfactorios, sube, hora, habitaciones, costo, true); 
+        if(modeloDetalle.insertar(detalle)==0){
+            JOptionPane.showMessageDialog(vista, "Ha ocurrido un error al registrar el detalle");
+        }        
+        
+        cargarPlantilla();
+        clean();
     }
 
     private void crearAsientos(ViajeVO _viaje, int inicio, int fin) {
@@ -531,16 +596,86 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
     }
 
     private boolean datosValidos() {
-        /* if (vista.comboDestino.getSelectedIndex() == 0) {
+        if (vista.comboDestino.getSelectedIndex() == 0) {
             return false;
         }
-        if (vista.comboAsientos.getSelectedIndex() == 0) {
+        if (vista.comboFecha.getSelectedIndex() == 0) {
             return false;
         }
-        if (vista.dateFecha.getFechaSeleccionada().equals("")) {
+        if (vista.comboNoAsientos.getSelectedIndex() == 0) {
             return false;
-        }*/
+        }
+        if (vista.comboId.getSelectedIndex() == 0) {
+            return false;
+        }
+        if (vista.comboTipoCliente.getSelectedIndex() == 0) {
+            return false;
+        }
+        if (vista.comboCliente.getSelectedIndex() == 0) {
+            return false;
+        }
+        if (vista.comboAsientosAComprar.getSelectedIndex() == 0) {
+            return false;
+        }
+        if (vista.txtSube.getText().length() == 0) {
+            return false;
+        }
+        if (vista.txtHora.getText().length() == 0) {
+            return false;
+        }
+        if (vista.txtHabitaciones.getText().length() == 0) {
+            return false;
+        }
+        if (vista.txtCosto.getText().length() == 0) {
+            return false;
+        }
+        if (asientosAComprar == Integer.parseInt(vista.comboAsientosAComprar.getSelectedItem().toString())) {
+            return false;
+        }
+        if (!costoValido()) {
+            return false;
+        }
+        if (!horaValida()) {
+            return false;
+        }
+        if(!habitacionesValidas()){
+            return false;
+        }
         return true;
+    }
+
+    private boolean costoValido() {
+        try {
+            Double costo = Double.parseDouble(vista.txtCosto.getText());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    private boolean habitacionesValidas() {
+        try {
+            int habitaciones = Integer.parseInt(vista.txtHabitaciones.getText());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private boolean horaValida() {
+        try {
+            String hora = vista.txtHora.getText();
+            int primero = Integer.parseInt(hora.charAt(0) + "");
+            int segundo = Integer.parseInt(hora.charAt(1) + "");
+            int tercero = Integer.parseInt(hora.charAt(3) + "");
+            int cuarto = Integer.parseInt(hora.charAt(4) + "");
+            if (hora.charAt(2) == ':') {
+                return true;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
     }
 
     @Override
@@ -558,22 +693,39 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         } else if (camion64) {
             for (int i = 0; i < 64; i++) {
                 if (me.getSource() == panel64.arreglo[i]) {
-                    JOptionPane.showMessageDialog(vista, i + 1);
+                    camion64();
+                    if (asientos.get(i).isDisponible()) {
+                        if (asientosAComprar > 0) {
+                            asientos.get(i).setDisponible(false);
+                            asientosAComprar--;
+                            setApartado(panel64.arreglo[i]);
+                        }
+                    } else {
+                        asientos.get(i).setDisponible(true);
+                        asientosAComprar++;
+                        setDisponible(panel64.arreglo[i]);
+                    }
                 }
             }
         } else if (!camion64) {
             for (int i = 0; i < 47; i++) {
                 if (me.getSource() == panel47.arreglo[i]) {
-                    JOptionPane.showMessageDialog(vista, i + 1);
-
+                    camion47();
+                    if (asientos.get(i).isDisponible()) {
+                        if (asientosAComprar > 0) {
+                            asientos.get(i).setDisponible(false);
+                            asientosAComprar--;
+                            setApartado(panel47.arreglo[i]);
+                        }
+                    } else {
+                        asientos.get(i).setDisponible(true);
+                        asientosAComprar++;
+                        setDisponible(panel47.arreglo[i]);
+                    }
                 }
             }
         }
 
-    }
-
-    private void habilitarBotones(boolean estado) {
-        vista.btnComprar.setEnabled(estado);
     }
 
     private void abrirMenu() {

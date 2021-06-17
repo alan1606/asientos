@@ -114,8 +114,8 @@ public class Asientos extends javax.swing.JFrame {
         jLabel7.setText("Cliente");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 50, 20));
 
-        jLabel8.setText("Habitaciones");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 730, 80, 20));
+        jLabel8.setText("Número de habitaciones");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 730, 180, 20));
         jPanel1.add(txtHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 760, 200, 30));
 
         jLabel9.setText("Sube(n) en");

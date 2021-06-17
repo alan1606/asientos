@@ -31,7 +31,7 @@ public class DetalleDAO {
             + " SET sube=?, hora = ?, liquidado = ? WHERE id_viaje=? and id_cliente=? and id_usuario=?";
 
     private static final String SQL_INSERT = "INSERT INTO detalle values "
-            + " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            + " (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     private static final String SQL_DELETE = "DELETE FROM detalle WHERE id_viaje=? and id_cliente = ? and id_usuario = ?";
 
@@ -119,7 +119,7 @@ public class DetalleDAO {
             stmt.setString(6, detalle.getHora());
             stmt.setInt(7, detalle.getHabitaciones());
             stmt.setDouble(8, detalle.getCosto());
-            stmt.setBoolean(8, detalle.isLiquidado());
+            stmt.setBoolean(9, detalle.isLiquidado());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {

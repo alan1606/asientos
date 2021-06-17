@@ -24,6 +24,9 @@ public class ClienteDAO {
 
     private static final String SQL_SELECT_BY_ID = "SELECT * "
             + " FROM cliente WHERE id=?";
+    
+      private static final String SQL_SELECT_BY_TYPE = "SELECT * "
+            + " FROM cliente WHERE tipo=? order by nombre";
 
     /*private static final String SQL_SELECT_BY_NAME = "SELECT * "
             + " FROM categoria WHERE nombre = ?";*/
@@ -156,6 +159,38 @@ public class ClienteDAO {
         return clientes;
     }
     
+     public ArrayList<ClienteVO> encontrarPorTipo(String _tipo) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ClienteVO cliente = null;
+        ArrayList<ClienteVO> clientes = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_BY_TYPE);
+            stmt.setString(1, _tipo);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                
+                int id = rs.getInt("id");
+                String nombre = rs.getString("nombre");
+                String telefono = rs.getString("telefono");
+                String correo = rs.getString("correo");
+                String tipo = rs.getString("tipo");
+
+                cliente = new ClienteVO(id, nombre, telefono, correo, tipo);
+                clientes.add(cliente);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return clientes;
+    }
+     
      public ArrayList<ClienteVO> encontrarCorreo(String _correo) {
         Connection conn = null;
         PreparedStatement stmt = null;

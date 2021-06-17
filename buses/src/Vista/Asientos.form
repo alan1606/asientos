@@ -163,11 +163,11 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Habitaciones"/>
+            <Property name="text" type="java.lang.String" value="N&#xfa;mero de habitaciones"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="30" y="730" width="80" height="20"/>
+              <AbsoluteConstraints x="30" y="730" width="180" height="20"/>
             </Constraint>
           </Constraints>
         </Component>
