@@ -11,6 +11,7 @@ import Vista.Clientes;
 import Vista.Destinos;
 import Vista.Hoteles;
 import Vista.MenuAdmin;
+import Vista.Usuarios;
 import Vista.Viajes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -104,7 +105,9 @@ public class ControladorMenuAdmin implements ActionListener {
     }
 
     private void abrirAnadir() {
-
+        vista.dispose();
+        ControladorUsuarios usuarios = new ControladorUsuarios(new Usuarios(), usuario);
+        usuarios.iniciar();
     }
 
 }

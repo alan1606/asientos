@@ -5,6 +5,11 @@
  */
 package Vista;
 
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author alanm
@@ -16,6 +21,27 @@ public class Usuarios extends javax.swing.JFrame {
      */
     public Usuarios() {
         initComponents();
+        backArrow();
+        icono();
+    }
+
+    private void icono() {
+        setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
+    }
+
+    private void backArrow() {
+        try {
+            ImageIcon arrow;
+            arrow = new ImageIcon(getClass().getResource("/Assets/back_arrow.png"));
+            Icon arrowIcon = new ImageIcon(arrow.getImage().getScaledInstance(lbl_back.getWidth(),
+                    lbl_back.getHeight(), Image.SCALE_SMOOTH));
+            lbl_back.setIcon(arrowIcon);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error inesperado al cargar los recursos");
+            System.out.println("error");
+        }
+
     }
 
     /**
@@ -28,7 +54,6 @@ public class Usuarios extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -46,13 +71,12 @@ public class Usuarios extends javax.swing.JFrame {
         radioCoordinador = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tUsuarios = new javax.swing.JTable();
+        lbl_back = new javax.swing.JLabel();
+        lbl_rergesar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setText("Regresar");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 23, -1, -1));
 
         jLabel2.setText("Nombre");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
@@ -101,7 +125,7 @@ public class Usuarios extends javax.swing.JFrame {
                         .addComponent(radioAdministrador)
                         .addGap(28, 28, 28)
                         .addComponent(radioCoordinador)
-                        .addGap(0, 94, Short.MAX_VALUE))
+                        .addGap(0, 224, Short.MAX_VALUE))
                     .addComponent(txtSearch))
                 .addContainerGap())
         );
@@ -117,17 +141,28 @@ public class Usuarios extends javax.swing.JFrame {
                 .addGap(0, 16, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 330, 100));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 460, 100));
 
         jScrollPane1.setViewportView(tUsuarios);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 330, 280));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 460, 280));
+
+        lbl_back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_backMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lbl_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 30, 40));
+
+        lbl_rergesar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl_rergesar.setText("Regresar");
+        jPanel1.add(lbl_rergesar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 741, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 891, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,6 +175,11 @@ public class Usuarios extends javax.swing.JFrame {
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void lbl_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_backMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_lbl_backMouseClicked
 
     /**
      * @param args the command line arguments
@@ -180,11 +220,10 @@ public class Usuarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnRegistrar;
-    private javax.swing.JComboBox<String> comboTipo;
-    private javax.swing.JLabel jLabel1;
+    public javax.swing.JButton btnEliminar;
+    public javax.swing.JButton btnModificar;
+    public javax.swing.JButton btnRegistrar;
+    public javax.swing.JComboBox<String> comboTipo;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -192,12 +231,14 @@ public class Usuarios extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JRadioButton radioAdministrador;
-    private javax.swing.JRadioButton radioCoordinador;
-    private javax.swing.JTable tUsuarios;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JPasswordField txtPasswd;
-    private javax.swing.JTextField txtSearch;
-    private javax.swing.JTextField txtUsuario;
+    public javax.swing.JLabel lbl_back;
+    private javax.swing.JLabel lbl_rergesar;
+    public javax.swing.JRadioButton radioAdministrador;
+    public javax.swing.JRadioButton radioCoordinador;
+    public javax.swing.JTable tUsuarios;
+    public javax.swing.JTextField txtNombre;
+    public javax.swing.JPasswordField txtPasswd;
+    public javax.swing.JTextField txtSearch;
+    public javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

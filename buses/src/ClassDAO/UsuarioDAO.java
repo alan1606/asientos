@@ -20,11 +20,14 @@ import java.util.ArrayList;
 public class UsuarioDAO {
 
     private static final String SQL_SELECT = "SELECT * "
-            + " FROM usuario";
+            + " FROM usuario order by nombre";
 
     private static final String SQL_SELECT_BY_ID = "SELECT * "
             + " FROM usuario WHERE id = ?";
     
+    private static final String SQL_SELECT_BY_TYPE = "SELECT * "
+            + " FROM usuario WHERE tipo = ? order by nombre";
+
     private static final String SQL_SELECT_BY_USER = "SELECT * "
             + " FROM usuario WHERE usuario = ?";
 
@@ -126,6 +129,98 @@ public class UsuarioDAO {
         }
         return usuario;
     }
+
+    public ArrayList<UsuarioVO> encontrarLikeNombre(String _nombre) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        UsuarioVO usuario = null;
+        ArrayList<UsuarioVO> usuarios = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement("select * from usuario where nombre like '" + _nombre + "%'");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nickUsuario = rs.getString("usuario");
+                String pass = rs.getString("pass");
+                String nombre = rs.getString("nombre");
+                String tipo = rs.getString("tipo");
+
+                usuario = new UsuarioVO(id, nickUsuario, pass, nombre, tipo);
+                usuarios.add(usuario);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return usuarios;
+    }
+
+    public ArrayList<UsuarioVO> encontrarLikeNombreTipo(String _nombre, String _tipo) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        UsuarioVO usuario = null;
+        ArrayList<UsuarioVO> usuarios = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement("select * from usuario where nombre like '" + _nombre + "%' and tipo =?");
+            stmt.setString(1, _tipo);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nickUsuario = rs.getString("usuario");
+                String pass = rs.getString("pass");
+                String nombre = rs.getString("nombre");
+                String tipo = rs.getString("tipo");
+
+                usuario = new UsuarioVO(id, nickUsuario, pass, nombre, tipo);
+                usuarios.add(usuario);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return usuarios;
+    }
+    
+    public ArrayList<UsuarioVO> encontrarTipo( String _tipo) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        UsuarioVO usuario = null;
+        ArrayList<UsuarioVO> usuarios = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_BY_TYPE);
+            stmt.setString(1, _tipo);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nickUsuario = rs.getString("usuario");
+                String pass = rs.getString("pass");
+                String nombre = rs.getString("nombre");
+                String tipo = rs.getString("tipo");
+
+                usuario = new UsuarioVO(id, nickUsuario, pass, nombre, tipo);
+                usuarios.add(usuario);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return usuarios;
+    }
     
     public int insertar(UsuarioVO usuario) {
         Connection conn = null;
@@ -134,11 +229,10 @@ public class UsuarioDAO {
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setInt(1, usuario.getId());
-            stmt.setString(2, usuario.getUsuario());
-            stmt.setString(3, usuario.getPass());
-            stmt.setString(4, usuario.getNombre());
-            stmt.setString(5, usuario.getTipo());
+            stmt.setString(1, usuario.getUsuario());
+            stmt.setString(2, usuario.getPass());
+            stmt.setString(3, usuario.getNombre());
+            stmt.setString(4, usuario.getTipo());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -161,7 +255,7 @@ public class UsuarioDAO {
             stmt.setString(2, usuario.getNombre());
             stmt.setString(3, usuario.getTipo());
             stmt.setInt(4, usuario.getId());
-            
+
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);

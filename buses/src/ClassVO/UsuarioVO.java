@@ -47,6 +47,15 @@ public class UsuarioVO {
         this.nombre = nombre;
     }
 
+    public UsuarioVO(String usuario, String pass, String nombre, String tipo) {
+        this.usuario = usuario;
+        this.pass = pass;
+        this.nombre = nombre;
+        this.tipo = tipo;
+    }
+
+    
+    
     public String getNombre() {
         return nombre;
     }
