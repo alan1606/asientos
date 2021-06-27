@@ -2303,6 +2303,7 @@ create table usuario (
 );
 
 create table detalle(
+	id bigint unsigned not null auto_increment,
 	id_viaje int unsigned not null,
     id_cliente int unsigned not null,
     id_usuario int unsigned not null,
@@ -2311,6 +2312,7 @@ create table detalle(
     hora time not null,
     habitacion varchar(100) not null,
     costo double not null,
+    constraint pk_id primary key(id),
     constraint fk_id_viaje_detalle foreign key (id_viaje) references viaje (id),
 	constraint fk_id_cliente_detalle  foreign key (id_cliente) references cliente (id),
     constraint fk_usuario_vendedor foreign key(id_usuario) references usuario(id)
@@ -2325,16 +2327,19 @@ create table hotel(
 create table hotel_destino(
 	id_hotel int unsigned not null,
     id_destino int unsigned not null,
-    constraint uq_hotel_destino unique(id_hotel, id_destino),
+    constraint pk_hotel_destino primary key(id_hotel, id_destino),
     constraint fk_id_hotel_hotel_destino foreign key(id_hotel) references hotel(id),
     constraint fk_id_destino_hotel_destino foreign key(id_destino) references destino(id)
 );
 
 create table hotel_destino_viaje(
+	id bigint unsigned not null auto_increment,
 	id_hotel int unsigned not null,
     id_destino int unsigned not null,
     id_viaje int unsigned not null,
     no_habitaciones mediumint unsigned not null default 0,
+    habitaciones_disponibles mediumint unsigned not null default 0,
+    constraint pk_id primary key(id),
     constraint uq_hotel_destino unique(id_hotel, id_destino, id_viaje),
     constraint fk_id_hotel_hotel_destino_viaje foreign key(id_hotel) references hotel(id),
     constraint fk_id_destino_hotel_destino_viaje foreign key(id_destino) references destino(id),
@@ -2343,6 +2348,14 @@ create table hotel_destino_viaje(
 
 insert into usuario values(null, "alan1606", "fbce7e488e05eb8c22dbbc98b0690c29", "Alan", "Administrador");
 
-#Falta el diseño de usuarios y clientes
-#Falta programar paises y estados
+create table detalle_hotel_destino_viaje(
+	id bigint unsigned not null auto_increment,
+    id_detalle bigint unsigned not null,
+    id_hotel_destino_viaje bigint unsigned not null,
+    habitaciones mediumint unsigned not null,
+    constraint pk_id primary key(id),
+    constraint fk_id_detalle_detalle_hotel_destino_vaije foreign key(id_detalle) references detalle (id),
+    constraint fk_id_hotel_destino_viaje_detalle foreign key(id_hotel_destino_viaje) references hotel_destino_viaje (id)
+)
+
 
