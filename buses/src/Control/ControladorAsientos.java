@@ -560,8 +560,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
                 if (modelo.actualizar(asiento) == 0) {
                     JOptionPane.showMessageDialog(vista, "Ocurrió un error al comprar los asientos");
                     break;
-                }
-                else{
+                } else {
                     satisfactorios++;
                 }
             }
@@ -571,11 +570,11 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         String habitacion = vista.txtHabitaciones.getText();
         Double costo = Double.parseDouble(vista.txtCosto.getText());
         int habitaciones = Integer.parseInt(vista.txtHabitaciones.getText());
-        DetalleVO detalle = new DetalleVO(idViaje, cliente.getId(), usuario.getId(), satisfactorios, sube, hora, habitaciones, costo, true); 
-        if(modeloDetalle.insertar(detalle)==0){
+        DetalleVO detalle = new DetalleVO(idViaje, cliente.getId(), usuario.getId(), satisfactorios, sube, hora, habitaciones, costo, true);
+        if (modeloDetalle.insertar(detalle) == 0) {
             JOptionPane.showMessageDialog(vista, "Ha ocurrido un error al registrar el detalle");
-        }        
-        
+        }
+
         cargarPlantilla();
         clean();
     }
@@ -638,7 +637,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         if (!horaValida()) {
             return false;
         }
-        if(!habitacionesValidas()){
+        if (!habitacionesValidas()) {
             return false;
         }
         return true;
@@ -652,7 +651,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
             return false;
         }
     }
-    
+
     private boolean habitacionesValidas() {
         try {
             int habitaciones = Integer.parseInt(vista.txtHabitaciones.getText());
@@ -693,7 +692,6 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         } else if (camion64) {
             for (int i = 0; i < 64; i++) {
                 if (me.getSource() == panel64.arreglo[i]) {
-                    camion64();
                     if (asientos.get(i).isDisponible()) {
                         if (asientosAComprar > 0) {
                             asientos.get(i).setDisponible(false);
@@ -705,12 +703,12 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
                         asientosAComprar++;
                         setDisponible(panel64.arreglo[i]);
                     }
+                    camion64();
                 }
             }
         } else if (!camion64) {
             for (int i = 0; i < 47; i++) {
                 if (me.getSource() == panel47.arreglo[i]) {
-                    camion47();
                     if (asientos.get(i).isDisponible()) {
                         if (asientosAComprar > 0) {
                             asientos.get(i).setDisponible(false);
@@ -722,6 +720,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
                         asientosAComprar++;
                         setDisponible(panel47.arreglo[i]);
                     }
+                    camion47();
                 }
             }
         }

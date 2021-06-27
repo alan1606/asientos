@@ -68,8 +68,10 @@ public class ViajeVO {
 
     @Override
     public String toString() {
-        return "idDestino=" + idDestino + " : " + fecha + ", " + noAsientos + " asientos";
+        return  id + " : "  + noAsientos + " asientos";
     }
+
+    
     
     
 }

@@ -2278,7 +2278,7 @@ create table cliente (
     constraint pk_id primary key (id)
 );
 
-insert into cliente values(1, "", "", "" ,"CLIENTE");
+insert into cliente values(1, "", "", "" ,"NO ASIGNADO");
 
 create table asiento(
 	id bigint not null auto_increment,
