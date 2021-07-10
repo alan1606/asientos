@@ -70,23 +70,36 @@ public class DetallesAsientos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        comboEstado.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jPanel1.add(comboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 240, -1));
+
+        comboCiudad.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jPanel1.add(comboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 240, -1));
 
-        jLabel2.setText("Ciudad");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("Ciudad:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
+
+        comboFecha.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jPanel1.add(comboFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 240, -1));
 
-        jLabel3.setText("Fecha");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 40, -1));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("Fecha:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 60, -1));
+
+        comboViaje.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jPanel1.add(comboViaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 240, -1));
 
-        jLabel4.setText("Viaje");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setText("Viaje:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
 
-        jLabel1.setText("Estado");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setText("Estado:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
 
         lbl_back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -105,7 +118,7 @@ public class DetallesAsientos extends javax.swing.JFrame {
                 btnConsultarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, -1, -1));
+        jPanel1.add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, 240, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

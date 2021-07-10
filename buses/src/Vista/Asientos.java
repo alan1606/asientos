@@ -73,6 +73,7 @@ public class Asientos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbl_back.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -90,13 +91,13 @@ public class Asientos extends javax.swing.JFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
 
         jLabel2.setText("Id del viaje");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 90, 20));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 90, 20));
 
         jLabel3.setText("Fecha");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, 10));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, 10));
 
         jLabel4.setText("Número de asientos del viaje");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 150, 20));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 190, 20));
 
         javax.swing.GroupLayout contenedorLayout = new javax.swing.GroupLayout(contenedor);
         contenedor.setLayout(contenedorLayout);
@@ -112,28 +113,28 @@ public class Asientos extends javax.swing.JFrame {
         jPanel1.add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 480, 670));
 
         jLabel5.setText("Número de asientos a comprar");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 570, 180, 20));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 180, 20));
 
         jLabel6.setText("Tipo de cliente");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, 10));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, 10));
 
         jLabel7.setText("Cliente");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 50, 20));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 50, 20));
 
         jLabel8.setText("Habitaciones");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 180, 20));
 
         jLabel9.setText("Sube(n) en");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 640, 80, 20));
-        jPanel1.add(txtSube, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 660, 330, 30));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 530, 80, 20));
+        jPanel1.add(txtSube, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 550, 330, 30));
 
         jLabel10.setText("En formato de 24 horas");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 500, 120, 20));
-        jPanel1.add(txtHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 470, 120, 30));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 470, 120, 20));
+        jPanel1.add(txtHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 430, 120, 30));
 
         lblCosto.setText("Costo");
-        jPanel1.add(lblCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 560, 80, 20));
-        jPanel1.add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 580, 100, 30));
+        jPanel1.add(lblCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 510, 80, 20));
+        jPanel1.add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 540, 120, 30));
 
         btnComprar.setText("Comprar");
         btnComprar.addActionListener(new java.awt.event.ActionListener() {
@@ -141,39 +142,47 @@ public class Asientos extends javax.swing.JFrame {
                 btnComprarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 620, 120, 70));
+        jPanel1.add(btnComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 600, 340, 90));
 
         jLabel11.setText("Hora (hh:mm)");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 450, 80, 20));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 410, 80, 20));
 
         jPanel1.add(comboDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 330, -1));
 
-        jPanel1.add(comboAsientosAComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 590, 330, -1));
+        jPanel1.add(comboAsientosAComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 330, -1));
 
-        jPanel1.add(comboFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 330, -1));
+        jPanel1.add(comboFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 330, -1));
 
-        jPanel1.add(comboNoAsientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 330, -1));
+        jPanel1.add(comboNoAsientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 330, -1));
 
-        jPanel1.add(comboId, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 330, -1));
+        jPanel1.add(comboId, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 330, -1));
 
-        jPanel1.add(comboTipoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 330, -1));
+        jPanel1.add(comboTipoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 330, -1));
 
-        jPanel1.add(comboCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 330, -1));
+        jPanel1.add(comboCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 330, -1));
         jPanel1.add(comboHoteles, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, 240, -1));
 
         jScrollPane1.setViewportView(tableHoteles);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 200, 310, 140));
 
+        jButton1.setBackground(new java.awt.Color(5, 101, 249));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Agregar");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, -1, -1));
-        jPanel1.add(comboNumeroHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 110, -1, -1));
+        jButton1.setBorder(null);
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 150, 70, 30));
+        jPanel1.add(comboNumeroHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 110, 60, -1));
 
+        btnQuitarHotel.setBackground(new java.awt.Color(5, 101, 249));
+        btnQuitarHotel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnQuitarHotel.setForeground(new java.awt.Color(255, 255, 255));
         btnQuitarHotel.setText("Quitar");
-        jPanel1.add(btnQuitarHotel, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 370, -1, -1));
+        btnQuitarHotel.setBorder(null);
+        jPanel1.add(btnQuitarHotel, new org.netbeans.lib.awtextra.AbsoluteConstraints(643, 355, 80, 30));
 
         txtHabitaciones.setText("1");
-        jPanel1.add(txtHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, -1, -1));
+        jPanel1.add(txtHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 370, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

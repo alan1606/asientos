@@ -23,7 +23,7 @@ public class Clientes extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         backArrow();
-        bgImage();
+        //bgImage();
         //icono();
     }
     private void icono(){

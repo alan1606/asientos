@@ -76,6 +76,7 @@ public class Usuarios extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("Nombre");
@@ -94,20 +95,33 @@ public class Usuarios extends javax.swing.JFrame {
         jPanel1.add(comboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 220, -1));
         jPanel1.add(txtPasswd, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 220, -1));
 
+        btnEliminar.setBackground(new java.awt.Color(5, 101, 249));
+        btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("Eliminar");
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
+        btnEliminar.setBorder(null);
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 70, 30));
 
+        btnModificar.setBackground(new java.awt.Color(5, 101, 249));
+        btnModificar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnModificar.setForeground(new java.awt.Color(255, 255, 255));
         btnModificar.setText("Modificar");
+        btnModificar.setBorder(null);
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, -1, -1));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 70, 30));
 
+        btnRegistrar.setBackground(new java.awt.Color(5, 101, 249));
+        btnRegistrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrar.setText("Registrar");
-        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, -1, -1));
+        btnRegistrar.setBorder(null);
+        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 70, 30));
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Buscar"));
 
         radioAdministrador.setText("Administrador");

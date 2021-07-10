@@ -201,22 +201,23 @@ public class MenuCoordinador extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú");
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Seleccione la opción a elegir");
 
         jLabel2.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Menú");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(231, 231, 231)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,8 +227,10 @@ public class MenuCoordinador extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnAsientos.setBackground(new java.awt.Color(255, 255, 255));
         btnAsientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/005-asientos.png"))); // NOI18N
         btnAsientos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAsientos.addActionListener(new java.awt.event.ActionListener() {
@@ -237,6 +240,7 @@ public class MenuCoordinador extends javax.swing.JFrame {
         });
         jPanel3.add(btnAsientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
+        btnDestinos.setBackground(new java.awt.Color(255, 255, 255));
         btnDestinos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/002-destino.png"))); // NOI18N
         btnDestinos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnDestinos.addActionListener(new java.awt.event.ActionListener() {
@@ -244,16 +248,19 @@ public class MenuCoordinador extends javax.swing.JFrame {
                 btnDestinosActionPerformed(evt);
             }
         });
-        jPanel3.add(btnDestinos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
+        jPanel3.add(btnDestinos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, -1, -1));
 
+        btnClientes.setBackground(new java.awt.Color(255, 255, 255));
         btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/003-cliente.png"))); // NOI18N
         btnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel3.add(btnClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
+        btnDetalles.setBackground(new java.awt.Color(255, 255, 255));
         btnDetalles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/006-informacion.png"))); // NOI18N
         btnDetalles.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel3.add(btnDetalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, -1, -1));
+        jPanel3.add(btnDetalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, -1));
 
+        btnViajes.setBackground(new java.awt.Color(255, 255, 255));
         btnViajes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/007-viajes.png"))); // NOI18N
         btnViajes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnViajes.addActionListener(new java.awt.event.ActionListener() {
@@ -261,44 +268,46 @@ public class MenuCoordinador extends javax.swing.JFrame {
                 btnViajesActionPerformed(evt);
             }
         });
-        jPanel3.add(btnViajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, -1));
+        jPanel3.add(btnViajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
 
         jLabel11.setText("Asientos");
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 100, 50, -1));
 
         jLabel12.setText("Destinos");
-        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, -1, -1));
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 50, -1));
 
         jLabel13.setText("Viajes");
-        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, -1, -1));
+        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 40, -1));
 
         jLabel14.setText("Clientes");
-        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 220, 50, -1));
 
         jLabel15.setText("Detalles de");
-        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, 70, -1));
+        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 90, -1));
 
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("compra");
-        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, -1, -1));
+        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 50, -1));
 
-        btnHoteles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/007-viajes.png"))); // NOI18N
+        btnHoteles.setBackground(new java.awt.Color(255, 255, 255));
+        btnHoteles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/hotel.png"))); // NOI18N
         btnHoteles.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnHoteles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHotelesActionPerformed(evt);
             }
         });
-        jPanel3.add(btnHoteles, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, -1, -1));
+        jPanel3.add(btnHoteles, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, -1, -1));
 
         jLabel17.setText("Hoteles");
-        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, -1, -1));
+        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
