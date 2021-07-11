@@ -10,18 +10,56 @@ package ClassVO;
  * @author alanm
  */
 public class HotelEnDestinoEnViajeVO {
+    private int id;
     private int idHotel;
     private int idDestino;
     private int idViaje;
     private int noHabitaciones;
-
-    public HotelEnDestinoEnViajeVO(int idHotel, int idDestino, int idViaje, int noHabitaciones) {
+    private int habitacionesDisponibles;
+    
+    public HotelEnDestinoEnViajeVO(int idHotel, int idDestino, int idViaje, int noHabitaciones, int habitacionesDisponibles) {
         this.idHotel = idHotel;
         this.idDestino = idDestino;
         this.idViaje = idViaje;
         this.noHabitaciones = noHabitaciones;
+        this.habitacionesDisponibles = habitacionesDisponibles;
     }
 
+    public HotelEnDestinoEnViajeVO(int id, int idHotel, int idDestino, int idViaje, int noHabitaciones, int habitacionesDisponibles) {
+        this.id = id;
+        this.idHotel = idHotel;
+        this.idDestino = idDestino;
+        this.idViaje = idViaje;
+        this.noHabitaciones = noHabitaciones;
+        this.habitacionesDisponibles = habitacionesDisponibles;
+    }
+
+    public HotelEnDestinoEnViajeVO(int id, int noHabitaciones, int habitacionesDisponibles) {
+        this.id = id;
+        this.noHabitaciones = noHabitaciones;
+        this.habitacionesDisponibles = habitacionesDisponibles;
+    }
+
+    
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getHabitacionesDisponibles() {
+        return habitacionesDisponibles;
+    }
+
+    public void setHabitacionesDisponibles(int habitacionesDisponibles) {
+        this.habitacionesDisponibles = habitacionesDisponibles;
+    }
+
+    
+    
     public int getIdHotel() {
         return idHotel;
     }
@@ -56,8 +94,10 @@ public class HotelEnDestinoEnViajeVO {
 
     @Override
     public String toString() {
-        return "HotelEnDestinoEnViajeVO{" + "idHotel=" + idHotel + ", idDestino=" + idDestino + ", idViaje=" + idViaje + ", noHabitaciones=" + noHabitaciones + '}';
+        return "HotelEnDestinoEnViajeVO{" + "idHotel=" + idHotel + ", idDestino=" + idDestino + ", idViaje=" + idViaje + ", noHabitaciones=" + noHabitaciones + ", habitacionesDisponibles=" + habitacionesDisponibles + '}';
     }
+
+    
     
     
 }

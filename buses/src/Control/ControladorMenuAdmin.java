@@ -13,6 +13,7 @@ import Vista.Hoteles;
 import Vista.MenuAdmin;
 import Vista.Usuarios;
 import Vista.Viajes;
+import Vista.ViajesHoteles;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -36,6 +37,7 @@ public class ControladorMenuAdmin implements ActionListener {
         this.vista.btnDetalles.addActionListener(this);
         this.vista.btnAnadir.addActionListener(this);
         this.vista.btnHoteles.addActionListener(this);
+        this.vista.btnHotelesEnViaje.addActionListener(this);
 
         //Se agrega un action listener por cada objeto
     }
@@ -68,8 +70,17 @@ public class ControladorMenuAdmin implements ActionListener {
         if (ae.getSource() == vista.btnHoteles) {
             abrirHoteles();
         }
+        if(ae.getSource() == vista.btnHotelesEnViaje){
+            abrirHotelesEnViaje();
+        }
     }
 
+    private void abrirHotelesEnViaje(){
+        vista.dispose();
+        ControladorViajesHoteles viajesHoteles = new ControladorViajesHoteles(new ViajesHoteles(), usuario);
+        viajesHoteles.iniciar();
+    }
+    
     private void abrirAsientos() {
         vista.dispose();
         ControladorAsientos asientos = new ControladorAsientos(new Asientos(), usuario);

@@ -12,7 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -27,6 +26,9 @@ public class ViajeDAO {
             + " FROM viaje WHERE id = ?";
 
     private static final String SQL_SELECT_DESTINATION_ID = "SELECT * "
+            + " FROM viaje WHERE id_destino = ?";
+    
+    private static final String SQL_SELECT_DESTINATION_ID_DISTINCT_DATE = "SELECT distinct(fecha) as fecha "
             + " FROM viaje WHERE id_destino = ?";
     
     private static final String SQL_SELECT_DESTINATION_ID_DATE = "SELECT * "
@@ -136,7 +138,35 @@ public class ViajeDAO {
         return viajes;
     }
     
-    public ArrayList encontrarByDestinoDate(int _id, String date) {
+     public ArrayList<Object> encontrarByDestinoDistinctDate(int _id) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ViajeVO viaje = null;
+        ArrayList<Object> viajes = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_DESTINATION_ID_DISTINCT_DATE);
+            stmt.setInt(1, _id);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+
+                String fecha = rs.getString("fecha");
+
+
+                viajes.add(fecha);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return viajes;
+    }
+    
+    public ArrayList<ViajeVO> encontrarByDestinoDate(int _id, String date) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
