@@ -64,15 +64,13 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         btnAsientos.setBackground(new java.awt.Color(255, 255, 255));
         btnAsientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/005-asientos.png"))); // NOI18N
-        btnAsientos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnAsientos.setBorderPainted(false);
         btnAsientos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAsientos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAsientosActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAsientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 90, -1));
+        jPanel1.add(btnAsientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         btnDestinos.setBackground(new java.awt.Color(255, 255, 255));
         btnDestinos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/002-destino.png"))); // NOI18N
@@ -162,7 +160,8 @@ public class MenuAdmin extends javax.swing.JFrame {
         jLabel11.setText("Hoteles");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 50, -1));
 
-        btnHotelesEnViaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/007-viajes.png"))); // NOI18N
+        btnHotelesEnViaje.setBackground(new java.awt.Color(255, 255, 255));
+        btnHotelesEnViaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/hotel-viajes.png"))); // NOI18N
         btnHotelesEnViaje.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnHotelesEnViaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

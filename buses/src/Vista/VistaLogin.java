@@ -25,18 +25,48 @@ public class VistaLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
-        txtUsuario = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         txtPass = new javax.swing.JPasswordField();
-        jLabel4 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        txtUsuario = new javax.swing.JTextField();
         btnIngresar = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ingrese su contraseña", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Open Sans", 1, 12))); // NOI18N
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtPass, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtPass)
+                .addContainerGap())
+        );
+
+        jPanel6.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 335, 260, 70));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Ingrese su Usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Open Sans", 1, 12))); // NOI18N
         jPanel3.setFont(new java.awt.Font("Open Sans", 1, 12)); // NOI18N
 
@@ -46,39 +76,21 @@ public class VistaLogin extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtUsuario)
+                .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ingrese su contraseña", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Open Sans", 1, 12))); // NOI18N
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtPass, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/004-usuario-2.png"))); // NOI18N
+        jPanel6.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 240, 260, 70));
 
         btnIngresar.setBackground(new java.awt.Color(0, 102, 255));
+        btnIngresar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
         btnIngresar.setText("Ingresar");
         btnIngresar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 102, 255), null, null));
@@ -88,61 +100,45 @@ public class VistaLogin extends javax.swing.JFrame {
                 btnIngresarActionPerformed(evt);
             }
         });
+        jPanel6.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 260, 33));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Bienvenido");
+        jPanel6.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 183, 67));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/004-usuario-2.png"))); // NOI18N
+        jPanel6.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, 136));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/cuesta.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
-
-        jLabel1.setFont(new java.awt.Font("Open Sans", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Bienvenido");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addContainerGap(73, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnIngresar)
-                .addGap(17, 17, 17))
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -165,6 +161,7 @@ public class VistaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;

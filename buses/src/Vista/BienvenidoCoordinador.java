@@ -39,65 +39,51 @@ public class BienvenidoCoordinador extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         lblNombre = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         btnAceptar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblNombre.setText("Nombre del Coordinador");
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 155, -1));
 
         jLabel1.setFont(new java.awt.Font("Open Sans", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Bienvenido Coordinador");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 360, 65));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/001-usuario-4.png"))); // NOI18N
-
-        lblNombre.setText("Nombre del Coordinador");
-
+        btnAceptar.setBackground(new java.awt.Color(0, 102, 255));
+        btnAceptar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAceptar.setForeground(new java.awt.Color(255, 255, 255));
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 190, 40));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/001-usuario-4.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, 140));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel2)
-                        .addGap(44, 44, 44)
-                        .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
-                        .addContainerGap())))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(lblNombre)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(btnAceptar)
-                .addGap(34, 34, 34))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -153,6 +139,7 @@ public class BienvenidoCoordinador extends javax.swing.JDialog {
     public javax.swing.JButton btnAceptar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     public javax.swing.JLabel lblNombre;
     // End of variables declaration//GEN-END:variables
 }
