@@ -2310,8 +2310,9 @@ create table detalle(
     personas tinyint unsigned not null,
     sube varchar(150) not null,
     hora time not null,
-    habitacion varchar(100) not null,
+    habitacion tinyint not null default 0,
     costo double not null,
+    liquidado boolean not null default false,
     constraint pk_id primary key(id),
     constraint fk_id_viaje_detalle foreign key (id_viaje) references viaje (id),
 	constraint fk_id_cliente_detalle  foreign key (id_cliente) references cliente (id),
@@ -2321,7 +2322,8 @@ create table detalle(
 create table hotel(
 	id int unsigned not null auto_increment,
     nombre varchar(100) not null,
-    constraint pk_id primary key (id)
+    constraint pk_id primary key (id), 
+    constraint uq_nombre unique(nombre)
 );
 
 create table hotel_destino(

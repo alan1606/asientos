@@ -40,6 +40,9 @@ public class HotelDAO {
     private static final String SQL_SELECT_ON_DESTINATION = "select hotel.id as id, hotel.nombre as nombre from hotel_destino "
             +  " join hotel on hotel.id = hotel_destino.id_hotel where id_destino =  ?;";
   
+    
+    private static final String SQL_SELECT_ON_DESTINATION_TRAVEL = "select hotel.id as id, hotel.nombre as nombre from hotel_destino_viaje "
+            +  " join hotel on hotel.id = hotel_destino_viaje.id_hotel where id_destino =  ? and id_viaje = ?;";
 
     public ArrayList<HotelVO> listar() {
         Connection conn = null;
@@ -94,7 +97,7 @@ public class HotelDAO {
         return hotel;
     }
 
- public ArrayList encontrarByDestino(int _id) {
+ public ArrayList<HotelVO> encontrarByDestino(int _id) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -104,6 +107,35 @@ public class HotelDAO {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT_ON_DESTINATION);
             stmt.setInt(1, _id);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                int idHotel = rs.getInt("id");
+                String nombre = rs.getString("nombre");
+
+                hotel = new HotelVO(idHotel, nombre);
+                hoteles.add(hotel);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return hoteles;
+    }
+ 
+ public ArrayList<HotelVO> encontrarByDestinoViaje(int _id, int _idViaje) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        HotelVO hotel = null;
+        ArrayList<HotelVO> hoteles = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_ON_DESTINATION_TRAVEL);
+            stmt.setInt(1, _id);
+            stmt.setInt(2, _idViaje);
             rs = stmt.executeQuery();
             while (rs.next()) {
                 int idHotel = rs.getInt("id");

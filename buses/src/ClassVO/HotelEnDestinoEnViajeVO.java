@@ -94,9 +94,10 @@ public class HotelEnDestinoEnViajeVO {
 
     @Override
     public String toString() {
-        return "HotelEnDestinoEnViajeVO{" + "idHotel=" + idHotel + ", idDestino=" + idDestino + ", idViaje=" + idViaje + ", noHabitaciones=" + noHabitaciones + ", habitacionesDisponibles=" + habitacionesDisponibles + '}';
+        return "HotelEnDestinoEnViajeVO{" + "id=" + id + ", idHotel=" + idHotel + ", idDestino=" + idDestino + ", idViaje=" + idViaje + ", noHabitaciones=" + noHabitaciones + ", habitacionesDisponibles=" + habitacionesDisponibles + '}';
     }
 
+   
     
     
     
