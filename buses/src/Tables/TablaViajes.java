@@ -26,17 +26,18 @@ public class TablaViajes {
         dt.addColumn("Destino");
         dt.addColumn("Fecha");
         dt.addColumn("Asientos");
-
+        dt.addColumn("Observaciones");
 
         ViajeVO viaje = new ViajeVO();
 
         for (int i = 0; i < list.size(); i++) {
-            Object fila[] = new Object[4];
+            Object fila[] = new Object[5];
             viaje = list.get(i);
             fila[0] = viaje.getId();
             fila[1] = viaje.getIdDestino();
             fila[2] = viaje.getFecha();
             fila[3] = viaje.getNoAsientos();
+            fila[4] = viaje.getObservaciones();
             dt.addRow(fila);
         }
         tabla.setModel(dt);

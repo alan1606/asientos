@@ -215,7 +215,7 @@ public class ControladorViajes implements ActionListener, MouseListener, KeyList
     private void modificar() throws ParseException {
         int id = Integer.parseInt(vista.tableViajes.getValueAt(vista.tableViajes.getSelectedRow(), 0).toString());
         int idDestino = Integer.parseInt(vista.tableViajes.getValueAt(vista.tableViajes.getSelectedRow(), 1).toString());
-        ViajeVO viaje = new ViajeVO(id, idDestino, vista.dateFecha.getFechaSeleccionada(), Integer.parseInt(vista.comboAsientos.getSelectedItem().toString()));
+        ViajeVO viaje = new ViajeVO(id, idDestino, vista.dateFecha.getFechaSeleccionada(), Integer.parseInt(vista.comboAsientos.getSelectedItem().toString()), vista.txtObservaciones.getText());
         if (modelo.actualizar(viaje) > 0) {
             JOptionPane.showMessageDialog(vista, "Se ha modificado el viaje");
             cargarTabla();
@@ -264,7 +264,7 @@ public class ControladorViajes implements ActionListener, MouseListener, KeyList
 
     private void registrar() throws ParseException {
         DestinoVO destino = (DestinoVO) vista.comboDestino.getSelectedItem();
-        ViajeVO viaje = new ViajeVO(destino.getId(), vista.dateFecha.getFechaSeleccionada(), Integer.parseInt(vista.comboAsientos.getSelectedItem().toString()));
+        ViajeVO viaje = new ViajeVO(destino.getId(), vista.dateFecha.getFechaSeleccionada(), Integer.parseInt(vista.comboAsientos.getSelectedItem().toString()), vista.txtObservaciones.getText());
         if (modelo.insertar(viaje) > 0) {
             JOptionPane.showMessageDialog(vista, "Se ha registrado el viaje");
             cargarTabla();

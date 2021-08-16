@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,18 +23,24 @@ public class DetalleDAO {
     private static final String SQL_SELECT = "SELECT * "
             + " FROM detalle";
 
+    private static final String SQL_SELECT_LAST = "SELECT * "
+            + " FROM detalle order by id desc limit 1";
+    
     private static final String SQL_SELECT_BY_ID = "SELECT * "
             + " FROM detalle WHERE id_viaje=? and id_cliente = ? and id_usuario = ?";
+
+    private static final String SQL_SELECT_BY_ID_UNIQUE = "SELECT * "
+            + " FROM detalle WHERE id = ?";
 
     /*private static final String SQL_SELECT_BY_NAME = "SELECT * "
             + " FROM categoria WHERE nombre = ?";*/
     private static final String SQL_UPDATE = "UPDATE detalle  "
-            + " SET sube=?, hora = ?, liquidado = ? WHERE id_viaje=? and id_cliente=? and id_usuario=?";
+            + " SET sube=?, hora = ?, liquidado = ?, estado = ?, hora_regreso=? WHERE id=?";
 
     private static final String SQL_INSERT = "INSERT INTO detalle values "
-            + " (null,?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            + " (null,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    private static final String SQL_DELETE = "DELETE FROM detalle WHERE id_viaje=? and id_cliente = ? and id_usuario = ?";
+    private static final String SQL_DELETE = "DELETE FROM detalle WHERE id = ?";
 
     public ArrayList<DetalleVO> listar() {
         Connection conn = null;
@@ -46,17 +53,22 @@ public class DetalleDAO {
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while (rs.next()) {
+                Long id = rs.getLong("id");
                 int idViaje = rs.getInt("id_viaje");
                 int idCliente = rs.getInt("id_cliente");
                 int idUsuario = rs.getInt("id_usuario");
                 int personas = rs.getInt("personas");
                 String sube = rs.getString("sube");
                 String hora = rs.getString("hora");
-                int habitaciones = rs.getInt("habitaciones");
+                int habitaciones = rs.getInt("habitacion");
                 double costo = rs.getDouble("costo");
                 boolean liquidado = rs.getBoolean("liquidado");
+                String estado = rs.getString("estado");
+                String pago = rs.getString("pago");
+                String viaje = rs.getString("viaje");
+                String horaRegreso = rs.getString("hora_regreso");
 
-                detalle = new DetalleVO(idViaje, idCliente, idUsuario, personas, sube, hora, habitaciones, costo, liquidado);
+                detalle = new DetalleVO(id,idViaje, idCliente, idUsuario, personas, sube, hora, habitaciones, 0, liquidado, estado, pago, viaje, horaRegreso);
                 detalles.add(detalle);
             }
         } catch (SQLException ex) {
@@ -82,17 +94,60 @@ public class DetalleDAO {
             stmt.setInt(3, _idUsuario);
             rs = stmt.executeQuery();
             if (rs.next()) {
+                Long id = rs.getLong("id");
                 int idViaje = rs.getInt("id_viaje");
                 int idCliente = rs.getInt("id_cliente");
                 int idUsuario = rs.getInt("id_usuario");
                 int personas = rs.getInt("personas");
                 String sube = rs.getString("sube");
                 String hora = rs.getString("hora");
-                int habitaciones = rs.getInt("habitaciones");
+                int habitaciones = rs.getInt("habitacion");
                 double costo = rs.getDouble("costo");
                 boolean liquidado = rs.getBoolean("liquidado");
+                String estado = rs.getString("estado");
+                String pago = rs.getString("pago");
+                String viaje = rs.getString("viaje");
+                String horaRegreso = rs.getString("hora_regreso");
 
-                detalle = new DetalleVO(idViaje, idCliente, idUsuario, personas, sube, hora, habitaciones, costo, liquidado);
+                detalle = new DetalleVO(id,idViaje, idCliente, idUsuario, personas, sube, hora, habitaciones, 0, liquidado, estado, pago, viaje, horaRegreso);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return detalle;
+    }
+
+    public DetalleVO encontrar(int _id) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        DetalleVO detalle = null;
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_BY_ID_UNIQUE);
+            stmt.setInt(1, _id);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                Long id = rs.getLong("id");
+                int idViaje = rs.getInt("id_viaje");
+                int idCliente = rs.getInt("id_cliente");
+                int idUsuario = rs.getInt("id_usuario");
+                int personas = rs.getInt("personas");
+                String sube = rs.getString("sube");
+                String hora = rs.getString("hora");
+                int habitaciones = rs.getInt("habitacion");
+                double costo = rs.getDouble("costo");
+                boolean liquidado = rs.getBoolean("liquidado");
+                String estado = rs.getString("estado");
+                String pago = rs.getString("pago");
+                String viaje = rs.getString("viaje");
+                String horaRegreso = rs.getString("hora_regreso");
+
+                detalle = new DetalleVO(id,idViaje, idCliente, idUsuario, personas, sube, hora, habitaciones, 0, liquidado, estado, pago, viaje, horaRegreso);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -120,6 +175,10 @@ public class DetalleDAO {
             stmt.setInt(7, detalle.getHabitaciones());
             stmt.setDouble(8, detalle.getCosto());
             stmt.setBoolean(9, detalle.isLiquidado());
+            stmt.setString(10, detalle.getEstado());
+            stmt.setString(11, detalle.getPago());
+            stmt.setString(12, detalle.getViaje());
+            stmt.setString(13, detalle.getHoraRegreso());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -138,12 +197,13 @@ public class DetalleDAO {
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_UPDATE);
+            
             stmt.setString(1, detalle.getSube());
             stmt.setString(2, detalle.getHora());
             stmt.setBoolean(3, detalle.isLiquidado());
-            stmt.setInt(4, detalle.getIdViaje());
-            stmt.setInt(5, detalle.getIdCliente());
-            stmt.setInt(6, detalle.getIdUsuario());
+            stmt.setString(4, detalle.getEstado());
+            stmt.setString(5, detalle.getHoraRegreso());
+            stmt.setInt(6, detalle.getIdViaje());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -162,9 +222,7 @@ public class DetalleDAO {
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setInt(1, detalle.getIdViaje());
-            stmt.setInt(2, detalle.getIdCliente());
-            stmt.setInt(3, detalle.getIdUsuario());
+            stmt.setLong(1, detalle.getId());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -174,5 +232,43 @@ public class DetalleDAO {
             Conexion.close(conn);
         }
         return rows;
+    }
+
+    public DetalleVO encontrarUltimo() {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        DetalleVO detalle = null;
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_LAST);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                
+                Long id = rs.getLong("id");
+                int idViaje = rs.getInt("id_viaje");
+                int idCliente = rs.getInt("id_cliente");
+                int idUsuario = rs.getInt("id_usuario");
+                int personas = rs.getInt("personas");
+                String sube = rs.getString("sube");
+                String hora = rs.getString("hora");
+                int habitaciones = rs.getInt("habitacion");
+                double costo = rs.getDouble("costo");
+                boolean liquidado = rs.getBoolean("liquidado");
+                String estado = rs.getString("estado");
+                String pago = rs.getString("pago");
+                String viaje = rs.getString("viaje");
+                String horaRegreso = rs.getString("hora_regreso");
+
+                detalle = new DetalleVO(id,idViaje, idCliente, idUsuario, personas, sube, hora, habitaciones, 0, liquidado, estado, pago, viaje, horaRegreso);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return detalle;
     }
 }

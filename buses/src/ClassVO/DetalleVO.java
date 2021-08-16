@@ -10,6 +10,7 @@ package ClassVO;
  * @author alanm
  */
 public class DetalleVO {
+    private Long id;
     private int idViaje;
     private int idCliente;
     private int idUsuario;
@@ -19,11 +20,13 @@ public class DetalleVO {
     private int habitaciones;
     private double costo;
     private boolean liquidado;
+    private String estado;
+    private String pago;
+    private String viaje;
+    private String horaRegreso;
 
-    public DetalleVO() {
-    }
-
-    public DetalleVO(int idViaje, int idCliente, int idUsuario, int personas, String sube, String hora, int habitaciones, double costo, boolean liquidado) {
+    public DetalleVO(Long id, int idViaje, int idCliente, int idUsuario, int personas, String sube, String hora, int habitaciones, double costo, boolean liquidado, String estado, String pago, String viaje, String horaRegreso) {
+        this.id = id;
         this.idViaje = idViaje;
         this.idCliente = idCliente;
         this.idUsuario = idUsuario;
@@ -33,6 +36,77 @@ public class DetalleVO {
         this.habitaciones = habitaciones;
         this.costo = costo;
         this.liquidado = liquidado;
+        this.estado = estado;
+        this.pago = pago;
+        this.viaje = viaje;
+        this.horaRegreso = horaRegreso;
+    }
+
+    public DetalleVO(int idViaje, int idCliente, int idUsuario, int personas, String sube, String hora, int habitaciones, double costo, boolean liquidado, String estado, String pago, String viaje, String horaRegreso) {
+        this.idViaje = idViaje;
+        this.idCliente = idCliente;
+        this.idUsuario = idUsuario;
+        this.personas = personas;
+        this.sube = sube;
+        this.hora = hora;
+        this.habitaciones = habitaciones;
+        this.costo = costo;
+        this.liquidado = liquidado;
+        this.estado = estado;
+        this.pago = pago;
+        this.viaje = viaje;
+        this.horaRegreso = horaRegreso;
+    }
+
+    
+
+    public DetalleVO(Long id) {
+        this.id = id;
+    }
+    
+    
+    
+    public DetalleVO() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getPago() {
+        return pago;
+    }
+
+    public void setPago(String pago) {
+        this.pago = pago;
+    }
+
+    public String getViaje() {
+        return viaje;
+    }
+
+    public void setViaje(String viaje) {
+        this.viaje = viaje;
+    }
+
+    public String getHoraRegreso() {
+        return horaRegreso;
+    }
+
+    public void setHoraRegreso(String horaRegreso) {
+        this.horaRegreso = horaRegreso;
     }
 
     

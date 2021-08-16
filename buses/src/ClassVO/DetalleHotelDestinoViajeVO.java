@@ -7,21 +7,21 @@ package ClassVO;
 public class DetalleHotelDestinoViajeVO {
 
     private int id;
-    private int idDetalle;
+    private Long idDetalle;
     private int idHotelDestinoViaje;
     private int habitaciones;
 
     public DetalleHotelDestinoViajeVO() {
     }
 
-    public DetalleHotelDestinoViajeVO(int id, int idDetalle, int idHotelDestinoViaje, int habitaciones) {
+    public DetalleHotelDestinoViajeVO(int id, Long idDetalle, int idHotelDestinoViaje, int habitaciones) {
         this.id = id;
         this.idDetalle = idDetalle;
         this.idHotelDestinoViaje = idHotelDestinoViaje;
         this.habitaciones = habitaciones;
     }
 
-    public DetalleHotelDestinoViajeVO(int idDetalle, int idHotelDestinoViaje, int habitaciones) {
+    public DetalleHotelDestinoViajeVO(Long idDetalle, int idHotelDestinoViaje, int habitaciones) {
         this.idDetalle = idDetalle;
         this.idHotelDestinoViaje = idHotelDestinoViaje;
         this.habitaciones = habitaciones;
@@ -37,11 +37,11 @@ public class DetalleHotelDestinoViajeVO {
         this.id = id;
     }
 
-    public int getIdDetalle() {
+    public Long getIdDetalle() {
         return idDetalle;
     }
 
-    public void setIdDetalle(int idDetalle) {
+    public void setIdDetalle(Long idDetalle) {
         this.idDetalle = idDetalle;
     }
 

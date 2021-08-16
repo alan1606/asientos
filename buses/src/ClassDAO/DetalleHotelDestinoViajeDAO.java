@@ -26,7 +26,7 @@ public class DetalleHotelDestinoViajeDAO {
 
     private static final String SQL_DELETE = "DELETE FROM detalle WHERE id=? ";
 
-    private static final String SQL_COUNT_HOTEL_DESTINO_VIAJE = " select count(*) as encontrados  from detalle_hotel_destino_viaje where id_hotel_destino_viaje = ?";
+    private static final String SQL_COUNT_HOTEL_DESTINO_VIAJE = " select sum(habitaciones) as encontrados  from detalle_hotel_destino_viaje where id_hotel_destino_viaje = ?";
 
     public ArrayList<DetalleHotelDestinoViajeVO> listar() {
         Connection conn = null;
@@ -40,7 +40,7 @@ public class DetalleHotelDestinoViajeDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                int idDetalle = rs.getInt("id_detalle");
+                Long idDetalle = rs.getLong("id_detalle");
                 int idHotelDestinoViaje = rs.getInt("id_hotel_destino_viaje");
                 int habitaciones = rs.getInt("habitaciones");
 
@@ -68,8 +68,8 @@ public class DetalleHotelDestinoViajeDAO {
             stmt.setInt(1, _id);
             rs = stmt.executeQuery();
             if (rs.next()) {
-                int id = rs.getInt("id");
-                int idDetalle = rs.getInt("id_detalle");
+                 int id = rs.getInt("id");
+                Long idDetalle = rs.getLong("id_detalle");
                 int idHotelDestinoViaje = rs.getInt("id_hotel_destino_viaje");
                 int habitaciones = rs.getInt("habitaciones");
 
@@ -116,7 +116,7 @@ public class DetalleHotelDestinoViajeDAO {
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setInt(1, detalle.getIdDetalle());
+            stmt.setLong(1, detalle.getIdDetalle());
             stmt.setInt(2, detalle.getIdHotelDestinoViaje());
             stmt.setInt(3, detalle.getHabitaciones());
 

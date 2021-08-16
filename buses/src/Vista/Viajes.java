@@ -71,6 +71,8 @@ private void backArrow(){
         comboAsientos = new rojerusan.RSComboMetro();
         dateFecha = new rojerusan.RSDateChooser();
         btnEliminar = new javax.swing.JButton();
+        lbl_asientos1 = new javax.swing.JLabel();
+        txtObservaciones = new rojerusan.RSMetroTextFullPlaceHolder();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ventana de Viajes");
@@ -86,15 +88,15 @@ private void backArrow(){
 
         lbl_destino.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl_destino.setText("Destino");
-        jPanel2.add(lbl_destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+        jPanel2.add(lbl_destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
 
         lbl_fecha1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl_fecha1.setText("Fecha");
-        jPanel2.add(lbl_fecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
+        jPanel2.add(lbl_fecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, -1));
 
         lbl_asientos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lbl_asientos.setText("Asientos");
-        jPanel2.add(lbl_asientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, 30));
+        lbl_asientos.setText("Observaciones");
+        jPanel2.add(lbl_asientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, 30));
 
         lbl_back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -109,13 +111,13 @@ private void backArrow(){
         btnCrear.setText("Crear viaje");
         btnCrear.setBorder(null);
         btnCrear.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel2.add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 100, 30));
+        jPanel2.add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 100, 30));
 
         btnModificar.setBackground(new java.awt.Color(0, 102, 255));
         btnModificar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnModificar.setForeground(new java.awt.Color(255, 255, 255));
         btnModificar.setText("Modificar");
-        jPanel2.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, 100, 30));
+        jPanel2.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 100, 30));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Busqueda"));
@@ -137,14 +139,14 @@ private void backArrow(){
         });
         jPanel3.add(dateSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 400, -1));
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 490, 130));
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 490, 130));
 
         jScrollPane2.setViewportView(tableViajes);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 490, 360));
-        jPanel2.add(comboDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, -1, -1));
-        jPanel2.add(comboAsientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, -1));
-        jPanel2.add(dateFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 200, -1));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 490, 360));
+        jPanel2.add(comboDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, -1, -1));
+        jPanel2.add(comboAsientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, -1, -1));
+        jPanel2.add(dateFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 200, -1));
 
         btnEliminar.setBackground(new java.awt.Color(0, 102, 255));
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -155,13 +157,18 @@ private void backArrow(){
                 btnEliminarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 470, 100, 30));
+        jPanel2.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 470, 100, 30));
+
+        lbl_asientos1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl_asientos1.setText("Asientos");
+        jPanel2.add(lbl_asientos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, 30));
+        jPanel2.add(txtObservaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 200, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 856, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,6 +254,7 @@ private void backArrow(){
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbl_asientos;
+    private javax.swing.JLabel lbl_asientos1;
     public javax.swing.JLabel lbl_back;
     private javax.swing.JLabel lbl_destino;
     private javax.swing.JLabel lbl_destino2;
@@ -254,5 +262,6 @@ private void backArrow(){
     private javax.swing.JLabel lbl_fecha2;
     private javax.swing.JLabel lbl_rergesar;
     public rojerusan.RSTableMetro tableViajes;
+    public rojerusan.RSMetroTextFullPlaceHolder txtObservaciones;
     // End of variables declaration//GEN-END:variables
 }

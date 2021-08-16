@@ -45,5 +45,24 @@ public class TablaHoteles {
 
     }
 
+     public void cargarTablaVacia(JTable tabla) {
+         tabla.setDefaultRenderer(Object.class, new Render());
+        DefaultTableModel dt = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        dt.addColumn("Id");
+        dt.addColumn("Nombre");
+
+        
+       tabla.setModel(dt);
+        tabla.setRowHeight(60);
+        TableColumnModel columnModel = tabla.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(10);
+        columnModel.getColumn(1).setPreferredWidth(190);
+    }
+    
    
 }

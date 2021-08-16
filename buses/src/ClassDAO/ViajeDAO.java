@@ -18,13 +18,13 @@ import java.util.ArrayList;
  * @author alanm
  */
 public class ViajeDAO {
-
-    private static final String SQL_SELECT = "SELECT * "
+    
+    private static final String SQL_SELECT = "SELECT id, id_destino, fecha, no_asientos, observaciones "
             + " FROM viaje";
-
+    
     private static final String SQL_SELECT_BY_ID = "SELECT * "
             + " FROM viaje WHERE id = ?";
-
+    
     private static final String SQL_SELECT_DESTINATION_ID = "SELECT * "
             + " FROM viaje WHERE id_destino = ?";
     
@@ -34,22 +34,20 @@ public class ViajeDAO {
     private static final String SQL_SELECT_DESTINATION_ID_DATE = "SELECT * "
             + " FROM viaje WHERE id_destino = ? and fecha = ? order by id desc";
     
-     private static final String SQL_SELECT_DESTINATION_ID_DATE_ASIENTOS = "SELECT * "
+    private static final String SQL_SELECT_DESTINATION_ID_DATE_ASIENTOS = "SELECT * "
             + " FROM viaje WHERE id_destino = ? and fecha = ? and no_asientos = ? order by id desc";
     
     private static final String SQL_SELECT_BY_DATE = "SELECT * "
             + " FROM viaje WHERE fecha = ?";
     
-    
-
     private static final String SQL_UPDATE = "UPDATE viaje "
-            + " SET fecha= ?, no_asientos=? WHERE id =?";
-
+            + " SET fecha= ?, no_asientos=?, observaciones = ? WHERE id =?";
+    
     private static final String SQL_INSERT = "INSERT INTO viaje "
-            + " VALUES(null,?,?,?)";
-
+            + " VALUES(null,?,?,?,?)";
+    
     private static final String SQL_DELETE = "DELETE FROM viaje WHERE id=?";
-
+    
     public ArrayList<ViajeVO> listar() {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -65,8 +63,9 @@ public class ViajeDAO {
                 int idDestino = rs.getInt("id_destino");
                 String fecha = rs.getString("fecha");
                 int noAsientos = rs.getInt("no_asientos");
-
-                viaje = new ViajeVO(id, idDestino, fecha, noAsientos);
+                String observaciones = rs.getString("observaciones");
+                
+                viaje = new ViajeVO(id, idDestino, fecha, noAsientos, observaciones);
                 viajes.add(viaje);
             }
         } catch (SQLException ex) {
@@ -78,7 +77,7 @@ public class ViajeDAO {
         }
         return viajes;
     }
-
+    
     public ViajeVO encontrar(int _id) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -94,9 +93,10 @@ public class ViajeDAO {
                 int idDestino = rs.getInt("id_destino");
                 String fecha = rs.getString("fecha");
                 int noAsientos = rs.getInt("no_asientos");
-
-                viaje = new ViajeVO(id, idDestino, fecha, noAsientos);
-
+                String observaciones = rs.getString("observaciones");
+                
+                viaje = new ViajeVO(id, idDestino, fecha, noAsientos, observaciones);
+                
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -107,7 +107,7 @@ public class ViajeDAO {
         }
         return viaje;
     }
-
+    
     public ArrayList<ViajeVO> encontrarByDestino(int _id) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -120,12 +120,13 @@ public class ViajeDAO {
             stmt.setInt(1, _id);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                 int id = rs.getInt("id");
+                int id = rs.getInt("id");
                 int idDestino = rs.getInt("id_destino");
                 String fecha = rs.getString("fecha");
                 int noAsientos = rs.getInt("no_asientos");
-
-                viaje = new ViajeVO(id, idDestino, fecha, noAsientos);
+                String observaciones = rs.getString("observaciones");
+                
+                viaje = new ViajeVO(id, idDestino, fecha, noAsientos, observaciones);
                 viajes.add(viaje);
             }
         } catch (SQLException ex) {
@@ -138,7 +139,7 @@ public class ViajeDAO {
         return viajes;
     }
     
-     public ArrayList<Object> encontrarByDestinoDistinctDate(int _id) {
+    public ArrayList<Object> encontrarByDestinoDistinctDate(int _id) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -150,10 +151,9 @@ public class ViajeDAO {
             stmt.setInt(1, _id);
             rs = stmt.executeQuery();
             while (rs.next()) {
-
+                
                 String fecha = rs.getString("fecha");
-
-
+                
                 viajes.add(fecha);
             }
         } catch (SQLException ex) {
@@ -183,8 +183,9 @@ public class ViajeDAO {
                 int idDestino = rs.getInt("id_destino");
                 String fecha = rs.getString("fecha");
                 int noAsientos = rs.getInt("no_asientos");
-
-                viaje = new ViajeVO(id, idDestino, fecha, noAsientos);
+                String observaciones = rs.getString("observaciones");
+                
+                viaje = new ViajeVO(id, idDestino, fecha, noAsientos, observaciones);
                 viajes.add(viaje);
             }
         } catch (SQLException ex) {
@@ -197,7 +198,7 @@ public class ViajeDAO {
         return viajes;
     }
     
-     public ArrayList encontrarByDestinoDateAsientos(int _id, String date, int _noAsientos) {
+    public ArrayList encontrarByDestinoDateAsientos(int _id, String date, int _noAsientos) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -215,8 +216,9 @@ public class ViajeDAO {
                 int idDestino = rs.getInt("id_destino");
                 String fecha = rs.getString("fecha");
                 int noAsientos = rs.getInt("no_asientos");
-
-                viaje = new ViajeVO(id, idDestino, fecha, noAsientos);
+                String observaciones = rs.getString("observaciones");
+                
+                viaje = new ViajeVO(id, idDestino, fecha, noAsientos, observaciones);
                 viajes.add(viaje);
             }
         } catch (SQLException ex) {
@@ -241,12 +243,13 @@ public class ViajeDAO {
             stmt.setString(1, _fecha);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                 int id = rs.getInt("id");
+                int id = rs.getInt("id");
                 int idDestino = rs.getInt("id_destino");
                 String fecha = rs.getString("fecha");
                 int noAsientos = rs.getInt("no_asientos");
-
-                viaje = new ViajeVO(id, idDestino, fecha, noAsientos);
+                String observaciones = rs.getString("observaciones");
+                
+                viaje = new ViajeVO(id, idDestino, fecha, noAsientos, observaciones);
                 viajes.add(viaje);
             }
         } catch (SQLException ex) {
@@ -258,8 +261,6 @@ public class ViajeDAO {
         }
         return viajes;
     }
-
-    
     
     public int insertar(ViajeVO viaje) {
         Connection conn = null;
@@ -271,7 +272,8 @@ public class ViajeDAO {
             stmt.setInt(1, viaje.getIdDestino());
             stmt.setString(2, viaje.getFecha());
             stmt.setInt(3, viaje.getNoAsientos());
-
+            stmt.setString(4, viaje.getObservaciones());
+            
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -281,7 +283,7 @@ public class ViajeDAO {
         }
         return rows;
     }
-
+    
     public int actualizar(ViajeVO viaje) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -289,13 +291,14 @@ public class ViajeDAO {
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_UPDATE);
-
+            
             stmt.setString(1, viaje.getFecha());
             stmt.setInt(2, viaje.getNoAsientos());
-            stmt.setInt(3, viaje.getId());
-
+            stmt.setString(3, viaje.getObservaciones());
+            stmt.setInt(4, viaje.getId());
+            
             rows = stmt.executeUpdate();
-
+            
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
@@ -304,7 +307,7 @@ public class ViajeDAO {
         }
         return rows;
     }
-
+    
     public int eliminar(ViajeVO viaje) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -313,7 +316,7 @@ public class ViajeDAO {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_DELETE);
             stmt.setInt(1, viaje.getId());
-
+            
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);

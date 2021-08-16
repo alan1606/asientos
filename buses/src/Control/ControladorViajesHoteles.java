@@ -323,6 +323,7 @@ public class ControladorViajesHoteles implements ActionListener, MouseListener, 
                 JOptionPane.showMessageDialog(vista, "Ya mejor elimínalo");
             } else if (id > 0) { //Si el registro viene desde la base de datos
                 int comprados = modeloDetalles.obtenerComprados(id);
+                JOptionPane.showMessageDialog(null, comprados);
                 if (ingresado >= comprados) {
                     int nuevosDisponibles = ingresado - comprados;
                     vista.tableHoteles.setValueAt(ingresado, vista.tableHoteles.getSelectedRow(), 2);

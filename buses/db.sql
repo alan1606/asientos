@@ -2264,6 +2264,7 @@ create table viaje(
     id_destino int unsigned not null,
     fecha date not null,
 	no_asientos tinyint unsigned not null,
+	observaciones varchar(200) not null default "",
     #Faltan los hoteles, aunque en un viaje puede haber varios hoteles
     constraint pk_id primary key (id),
     constraint fk_destino_viaje foreign key (id_destino) references destino(id)
@@ -2313,6 +2314,11 @@ create table detalle(
     habitacion tinyint not null default 0,
     costo double not null,
     liquidado boolean not null default false,
+    estado enum("CANCELADO", "VENDIDO") not null,
+    pago enum("EFECTIVO", "TARJETA", "DEPOSITO") not null, 
+	viaje enum("REDONDO", "SENCILLO") not null,
+    hora_regreso time,
+    #Posiblemente las observaciones sean aquí
     constraint pk_id primary key(id),
     constraint fk_id_viaje_detalle foreign key (id_viaje) references viaje (id),
 	constraint fk_id_cliente_detalle  foreign key (id_cliente) references cliente (id),

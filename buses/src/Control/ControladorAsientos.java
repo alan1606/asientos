@@ -9,18 +9,22 @@ import ClassDAO.AsientoDAO;
 import ClassDAO.ClienteDAO;
 import ClassDAO.DestinoDAO;
 import ClassDAO.DetalleDAO;
+import ClassDAO.DetalleHotelDestinoViajeDAO;
 import ClassDAO.HotelDAO;
 import ClassDAO.HotelEnDestinoEnViajeDAO;
 import ClassDAO.ViajeDAO;
 import ClassVO.AsientoVO;
 import ClassVO.ClienteVO;
 import ClassVO.DestinoVO;
+import ClassVO.DetalleHotelDestinoViajeVO;
+import ClassVO.DetalleVO;
 import ClassVO.HotelEnDestinoEnViajeVO;
 import ClassVO.HotelVO;
 import ClassVO.UsuarioVO;
 import ClassVO.ViajeVO;
 import Paneles.Panel47;
 import Paneles.Panel64;
+import Tables.TablaHoteles;
 import Vista.Asientos;
 import Vista.MenuAdmin;
 import Vista.MenuCoordinador;
@@ -65,6 +69,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
     private Panel64 panel64;
     ArrayList<AsientoVO> asientos;
     private boolean camion64 = false;
+    private DetalleHotelDestinoViajeDAO modeloDetalleHotelDestinoViaje;
 
     public ControladorAsientos(Asientos vista, UsuarioVO usuario) {
         this.vista = vista;
@@ -73,6 +78,9 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         modelo = new AsientoDAO();
 
         this.vista.btnComprar.addActionListener(this);
+        this.vista.comboTipoViaje.addActionListener(this);
+        this.vista.comboFormaPago.addActionListener(this);
+        this.vista.comboHoraRegreso.addActionListener(this);
         this.vista.comboDestino.addActionListener(this);
         this.vista.comboFecha.addActionListener(this);
         this.vista.comboNoAsientos.addActionListener(this);
@@ -85,7 +93,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         this.vista.btnAgregarHotel.addActionListener(this);
         this.vista.btnQuitarHotel.addActionListener(this);
         this.vista.lbl_back.addMouseListener(this);
-        this.vista.comboHoras.addActionListener(this);
+        this.vista.comboHoraSalida.addActionListener(this);
         //Se agrega un action listener por cada objeto
     }
 
@@ -96,6 +104,74 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         iniciarCombosVacios();
         iniciarTablaHabitaciones();
         cargarHoras();
+        cargarTiposDeViaje();
+        cargarFormasDePago();
+        cargarHorasDeRegreso();
+        deshabilitarElementosDebidoAViajeSencillo(false);
+    }
+
+    private void deshabilitarElementosDebidoAViajeSencillo(boolean nuevoEstado) {
+        this.vista.comboHoraRegreso.setEnabled(nuevoEstado);
+        this.vista.comboHoteles.setEnabled(nuevoEstado);
+        this.vista.comboNumeroHabitaciones.setEnabled(nuevoEstado);
+        this.vista.btnAgregarHotel.setEnabled(nuevoEstado);
+        this.vista.btnQuitarHotel.setEnabled(nuevoEstado);
+        this.vista.tableHoteles.setEnabled(nuevoEstado);
+    }
+
+    private void cargarTiposDeViaje() {
+        try {
+            JComboBox combo = new JComboBox();
+            combo.removeAllItems();
+            combo.addItem("SELECCIONE UNA OPCIÓN");
+            combo.addItem("REDONDO");
+            combo.addItem("SENCILLO");
+            vista.comboTipoViaje.setModel(combo.getModel());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    private void cargarFormasDePago() {
+        try {
+            JComboBox combo = new JComboBox();
+            combo.removeAllItems();
+            combo.addItem("SELECCIONE UNA OPCIÓN");
+            combo.addItem("EFECTIVO");
+            combo.addItem("TARJETA");
+            combo.addItem("DEPOSITO");
+            vista.comboFormaPago.setModel(combo.getModel());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    private void cargarHorasDeRegreso() {
+        try {
+            JComboBox combo = new JComboBox();
+            combo.removeAllItems();
+            combo.addItem("SELECCIONE UNA OPCIÓN");
+            String hora = "";
+            for (int i = 0; i < 24; i++) {
+                for (int j = 0; j < 60; j += 15) {
+                    if (i < 10) {
+                        hora = ("0" + i);
+                    } else {
+                        hora = (i + "");
+                    }
+                    if (j == 0) {
+                        hora += ":00";
+                    } else {
+                        hora += ":" + j;
+                    }
+                    combo.addItem(hora);
+                    hora = "";
+                }
+            }
+            vista.comboHoraRegreso.setModel(combo.getModel());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     private void iniciarTablaHabitaciones() {
@@ -113,10 +189,10 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == vista.btnComprar) {
             if (datosValidos() && deseaComprar() == 0) {
-                try {
-                    registrar();
-                } catch (ParseException ex) {
-                    ex.printStackTrace(System.out);
+                if (vista.comboTipoViaje.getSelectedIndex() == 1) {
+                    registrarViajeRedondo();
+                } else {
+                    registrarViajeSencillo();
                 }
             }
         } else if (ae.getSource() == vista.comboDestino) {
@@ -187,10 +263,21 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
                         (DestinoVO) vista.comboDestino.getSelectedItem(),
                         Integer.parseInt(vista.comboId.getSelectedItem().toString())
                 );
+                try {
+                    vista.comboHoteles.setSelectedIndex(0);
+                    vista.comboNumeroHabitaciones.setSelectedIndex(0);
+                } catch (Exception e) {
+                }
             }
         } else if (ae.getSource() == vista.btnQuitarHotel) {
             if (vista.tableHoteles.getSelectedRow() != -1) {
                 eliminarFilaLocal(vista.tableHoteles.getSelectedRow());
+            }
+        } else if (ae.getSource() == vista.comboTipoViaje) {
+            if (vista.comboTipoViaje.getSelectedIndex() == 1) {
+                deshabilitarElementosDebidoAViajeSencillo(true);
+            } else {
+                deshabilitarElementosDebidoAViajeSencillo(false);
             }
         }
     }
@@ -205,22 +292,34 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         modeloHotelDestinoViaje = new HotelEnDestinoEnViajeDAO();
         HotelEnDestinoEnViajeVO hotelDestinoViaje = modeloHotelDestinoViaje.encontrar(hotelVO.getId(), destino.getId(), idViaje);
 
-        DefaultTableModel dt = (DefaultTableModel) vista.tableHoteles.getModel();
+        boolean existeEnTabla = false;
 
-        Object[] hotel = new Object[3];
-        hotel[0] = hotelVO.getNombre();
-        hotel[1] = habitaciones;
-        hotel[2] = hotelDestinoViaje.getId();
+        for (int i = 0; i < vista.tableHoteles.getRowCount(); i++) {
+            if (Integer.parseInt(vista.tableHoteles.getValueAt(i, 2).toString()) == hotelDestinoViaje.getId()) {
+                existeEnTabla = true;
+                break;
+            }
+        }
 
-        dt.addRow(hotel);
+        if (!existeEnTabla) {
+            DefaultTableModel dt = (DefaultTableModel) vista.tableHoteles.getModel();
 
-        vista.tableHoteles.setModel(dt);
+            Object[] hotel = new Object[3];
+            hotel[0] = hotelVO.getNombre();
+            hotel[1] = habitaciones;
+            hotel[2] = hotelDestinoViaje.getId();
+
+            dt.addRow(hotel);
+
+            vista.tableHoteles.setModel(dt);
+        }
+
     }
 
     private void cargarHotelDestinoViaje(HotelVO hotel, DestinoVO destino, int idViaje) {
         modeloHotelDestinoViaje = new HotelEnDestinoEnViajeDAO();
         HotelEnDestinoEnViajeVO hotelDestinoViaje = modeloHotelDestinoViaje.encontrar(hotel.getId(), destino.getId(), idViaje);
-        if (hotelDestinoViaje.getHabitacionesDisponibles() > 0) {
+        if (hotelDestinoViaje.getHabitacionesDisponibles() >= 0) {
             cargarHabitaciones(hotelDestinoViaje.getHabitacionesDisponibles());
         }
     }
@@ -233,7 +332,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
                 combo.removeAllItems();
                 combo.addItem("SELECCIONE UNA OPCIÓN");
 
-                for (int i = 0; i < disponibles && i < asientosAComprar - habitacionesAsignadas; i++) {
+                for (int i = 0; (i < disponibles && i < (asientosAComprar - habitacionesAsignadas)); i++) {
                     //Agregar a combo habitaciones i+1
                     combo.addItem(i + 1);
                 }
@@ -248,7 +347,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
                 combo.removeAllItems();
                 combo.addItem("SELECCIONE UNA OPCIÓN");
 
-                for (int i = 0; i < disponibles && i < asientosAComprar; i++) {
+                for (int i = 0; (i < disponibles && i < asientosAComprar); i++) {
                     //Agregar a combo habitaciones i+1
                     combo.addItem(i + 1);
                 }
@@ -291,7 +390,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
                     hora = "";
                 }
             }
-            vista.comboHoras.setModel(combo.getModel());
+            vista.comboHoraSalida.setModel(combo.getModel());
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -580,6 +679,8 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         vista.comboTipoCliente.setModel(combo.getModel());
         vista.comboCliente.setModel(combo.getModel());
         vista.comboAsientosAComprar.setModel(combo.getModel());
+        vista.comboHoteles.setModel(combo.getModel());
+        vista.comboNumeroHabitaciones.setModel(combo.getModel());
         cargarDestinos();
         cargarTiposDeCliente();
     }
@@ -702,15 +803,77 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         vista.comboId.setSelectedIndex(0);
         vista.comboNoAsientos.setSelectedIndex(0);
         vista.comboTipoCliente.setSelectedIndex(0);
+        vista.comboTipoViaje.setSelectedIndex(0);
+        vista.comboFormaPago.setSelectedIndex(0);
+        vista.comboHoraSalida.setSelectedIndex(0);
+        vista.comboHoraRegreso.setSelectedIndex(0);
+        vista.comboHoteles.setSelectedIndex(0);
+        vista.comboNumeroHabitaciones.setSelectedIndex(0);
+        limpiarTabla();
         vista.txtCosto.setText("");
 //        vista.txtHabitaciones.setText("");
         //vista.txtHora.setText("");
         vista.txtSube.setText("");
         iniciarCombosVacios();
+
     }
 
-    private void registrar() throws ParseException {
-        /*modelo = new AsientoDAO();
+    private void registrarViajeRedondo() {
+        modelo = new AsientoDAO();
+        modeloDetalle = new DetalleDAO();
+        modeloDetalleHotelDestinoViaje = new DetalleHotelDestinoViajeDAO();
+        ArrayList<AsientoVO> anteriores = modelo.encontrar(Integer.parseInt(vista.comboId.getSelectedItem().toString()));
+        AsientoVO asiento;
+        ClienteVO cliente = (ClienteVO) vista.comboCliente.getSelectedItem();
+        int idViaje = Integer.parseInt(vista.comboId.getSelectedItem().toString());
+        int satisfactorios = 0;
+        //Registra los asientos al cliente x
+        for (int i = 0; i < anteriores.size(); i++) {
+            asiento = asientos.get(i);
+            if (anteriores.get(i).isDisponible() != asiento.isDisponible()) {
+                asiento.setIdCliente(cliente.getId());
+                if (modelo.actualizar(asiento) == 0) {
+                    JOptionPane.showMessageDialog(vista, "Ocurrió un error al comprar los asientos");
+                    return;
+                } else {
+                    satisfactorios++;
+                }
+            }
+        }
+        //Registro del detalle
+        String sube = vista.txtSube.getText();
+        String hora = vista.comboHoraSalida.getSelectedItem().toString();
+        Double costo = Double.parseDouble(vista.txtCosto.getText());
+        int habitaciones = calcularHabitacionesVendidas();
+
+        String formaPago = this.vista.comboFormaPago.getSelectedItem().toString();
+        String viaje = "REDONDO";
+        String horaRegreso = vista.comboHoraRegreso.getSelectedItem().toString();
+        DetalleVO detalle = new DetalleVO(idViaje, cliente.getId(), usuario.getId(), satisfactorios, sube, hora, habitaciones, costo, true, "VENDIDO", formaPago, viaje, horaRegreso);
+        if (modeloDetalle.insertar(detalle) == 0) {
+            JOptionPane.showMessageDialog(vista, "Ha ocurrido un error al registrar el detalle");
+            return;
+        } else {
+            //Buscar detalle registrado
+            crearDetalleCompraDeHabitaciones(modeloDetalle.encontrarUltimo().getId());
+        }
+
+        //Actualizar disponibilidad en los hoteles
+        cargarPlantilla();
+        clean();
+    }
+
+    private int calcularHabitacionesVendidas() {
+        int habitaciones = 0;
+        for (int i = 0; i < vista.tableHoteles.getRowCount(); i++) {
+            habitaciones += Integer.parseInt(vista.tableHoteles.getValueAt(i, 1).toString());
+            //Habitaciones en la tabla es la posicion 1, la dos es el id del hotel
+        }
+        return habitaciones;
+    }
+
+    private void registrarViajeSencillo() {
+        modelo = new AsientoDAO();
         modeloDetalle = new DetalleDAO();
         ArrayList<AsientoVO> anteriores = modelo.encontrar(Integer.parseInt(vista.comboId.getSelectedItem().toString()));
         AsientoVO asiento;
@@ -730,32 +893,18 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
             }
         }
         String sube = vista.txtSube.getText();
-        String hora = vista.txtHora.getText().substring(0, 5);
-        String habitacion = vista.txtHabitaciones.getText();
+        String hora = vista.comboHoraSalida.getSelectedItem().toString();
         Double costo = Double.parseDouble(vista.txtCosto.getText());
-        int habitaciones = Integer.parseInt(vista.txtHabitaciones.getText());
-        DetalleVO detalle = new DetalleVO(idViaje, cliente.getId(), usuario.getId(), satisfactorios, sube, hora, habitaciones, costo, true);
+        int habitaciones = 0;
+        String formaPago = this.vista.comboFormaPago.getSelectedItem().toString();
+        String viaje = "SENCILLO";
+        String horaRegreso = "00:00";
+        DetalleVO detalle = new DetalleVO(idViaje, cliente.getId(), usuario.getId(), satisfactorios, sube, hora, habitaciones, costo, true, "VENDIDO", formaPago, viaje, horaRegreso);
         if (modeloDetalle.insertar(detalle) == 0) {
             JOptionPane.showMessageDialog(vista, "Ha ocurrido un error al registrar el detalle");
         }
-
         cargarPlantilla();
-        clean();*/
-    }
-
-    private void crearAsientos(ViajeVO _viaje, int inicio, int fin) {
-        /*ViajeVO viaje = (ViajeVO) modelo.encontrarByDestinoDate(_viaje.getIdDestino(), _viaje.getFecha()).get(0);
-        modeloAsientos = new AsientoDAO();
-        try {
-            int insertados = modeloAsientos.insertar(viaje, inicio, fin);
-            if (insertados > 0) {
-                System.out.println("Se insertaron " + insertados + " asientos");
-            } else {
-                System.out.println("Error");
-            }
-        } catch (Exception e) {
-            System.out.println("Error");
-        }*/
+        clean();
     }
 
     private boolean datosValidos() {
@@ -783,12 +932,6 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         if (vista.txtSube.getText().length() == 0) {
             return false;
         }
-        /*if (vista.txtHora.getText().length() == 0) {
-            return false;
-        }
-        if (vista.txtHabitaciones.getText().length() == 0) {
-            return false;
-        }*/
         if (vista.txtCosto.getText().length() == 0) {
             return false;
         }
@@ -801,8 +944,13 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         if (!horaValida()) {
             return false;
         }
-        if (!habitacionesValidas()) {
-            return false;
+        if (vista.comboTipoViaje.getSelectedIndex() == 1) { ///Si va a ser un viaje redondo se debe seleccionar popr lo menos una habitación y la hora de regreso debe ser válida
+            if (!habitacionesValidas()) {
+                return false;
+            }
+            if (!horaDeRegresoValida()) {
+                return false;
+            }
         }
         return true;
     }
@@ -817,29 +965,24 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
     }
 
     private boolean habitacionesValidas() {
-        /*try {
-            int habitaciones = Integer.parseInt(vista.txtHabitaciones.getText());
-            return true;
-        } catch (Exception e) {
+        if (vista.tableHoteles.getRowCount() == 0) {
             return false;
-        }*/
-        return false;
+        }
+        return true;
     }
 
     private boolean horaValida() {
-        /* try {
-            String hora = vista.txtHora.getText();
-            int primero = Integer.parseInt(hora.charAt(0) + "");
-            int segundo = Integer.parseInt(hora.charAt(1) + "");
-            int tercero = Integer.parseInt(hora.charAt(3) + "");
-            int cuarto = Integer.parseInt(hora.charAt(4) + "");
-            if (hora.charAt(2) == ':') {
-                return true;
-            }
-        } catch (Exception e) {
+        if (this.vista.comboHoraSalida.getSelectedIndex() == 0) {
             return false;
-        }*/
-        return false;
+        }
+        return true;
+    }
+
+    private boolean horaDeRegresoValida() {
+        if (vista.comboHoraRegreso.getSelectedIndex() == 0) {
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -930,6 +1073,39 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
     @Override
     public void keyReleased(KeyEvent ke) {
 
+    }
+
+    private void limpiarTabla() {
+        TablaHoteles tabla = new TablaHoteles();
+        tabla.cargarTablaVacia(vista.tableHoteles);
+    }
+
+    private void crearDetalleCompraDeHabitaciones(Long detalleUltimo) {
+        int idHotelDestinoViaje = 0;
+        int habitaciones = 0;
+        DetalleHotelDestinoViajeVO temporal = null;
+        modeloDetalleHotelDestinoViaje = new DetalleHotelDestinoViajeDAO();
+
+        for (int i = 0; i < vista.tableHoteles.getRowCount(); i++) {
+            idHotelDestinoViaje = Integer.parseInt(vista.tableHoteles.getValueAt(i, 2).toString());
+            habitaciones = Integer.parseInt(vista.tableHoteles.getValueAt(i, 1).toString());
+            temporal = new DetalleHotelDestinoViajeVO(detalleUltimo, idHotelDestinoViaje, habitaciones);
+            if (modeloDetalleHotelDestinoViaje.insertar(temporal) > 0) {
+                //Actualizar datos de HotelDestinoViaje
+                actualizarDatosHotelDestinoViaje(idHotelDestinoViaje, habitaciones);
+            }
+        }
+    }
+
+    private void actualizarDatosHotelDestinoViaje(int idHotelDestinoViaje, int habitaciones) {
+        modeloHotelDestinoViaje = new HotelEnDestinoEnViajeDAO();
+        HotelEnDestinoEnViajeVO temporal = modeloHotelDestinoViaje.encontrar(idHotelDestinoViaje);
+        temporal.setHabitacionesDisponibles(temporal.getHabitacionesDisponibles() - habitaciones);
+        if (modeloHotelDestinoViaje.actualizar(temporal) > 0) {
+            System.out.println("se actualizo el hotel " + temporal.getId() + " a " + temporal.getHabitacionesDisponibles() + " habitaciones");
+        } else {
+            System.out.println("No se rebajó el número de habitaciones al hotal");
+        }
     }
 
 }

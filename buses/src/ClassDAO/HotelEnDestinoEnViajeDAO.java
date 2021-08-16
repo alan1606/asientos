@@ -5,6 +5,7 @@
  */
 package ClassDAO;
 
+import ClassVO.DetalleVO;
 import ClassVO.HotelEnDestinoEnViajeVO;
 import Conexion.Conexion;
 import java.awt.List;
@@ -25,10 +26,13 @@ public class HotelEnDestinoEnViajeDAO {
 
     private static final String SQL_SELECT_BY_ID_HOTEL = "SELECT * "
             + " FROM hotel_destino_viaje WHERE id_hotel=?";
+    
+        private static final String SQL_SELECT_BY_ID = "SELECT * "
+            + " FROM hotel_destino_viaje WHERE id=?";
 
     private static final String SQL_SELECT_BY_ID_DESTINO = "SELECT * "
             + " FROM hotel_destino WHERE id_destino=?";
-    
+
     private static final String SQL_SELECT_BY_ID_DESTINO_VIAJE = "SELECT hotel_destino_viaje.id as id, hotel.nombre as nombre, no_habitaciones, habitaciones_disponibles,id_hotel "
             + " FROM hotel_destino_viaje JOIN hotel on hotel.id = hotel_destino_viaje.id_hotel WHERE id_destino=? and id_viaje = ?";
 
@@ -43,6 +47,7 @@ public class HotelEnDestinoEnViajeDAO {
 
     /*private static final String SQL_SELECT_BY_NAME = "SELECT * "
             + " FROM categoria WHERE nombre = ?";*/
+    
     private static final String SQL_UPDATE = "UPDATE hotel_destino_viaje "
             + " SET no_habitaciones = ?, habitaciones_disponibles = ? WHERE id=?";
 
@@ -65,7 +70,7 @@ public class HotelEnDestinoEnViajeDAO {
                 int idHotel = rs.getInt("id_hotel");
                 int idDestino = rs.getInt("id_destino");
                 int idViaje = rs.getInt("id_viaje");
-                int noHabitaciones = rs.getInt("no_habiaciones");
+                int noHabitaciones = rs.getInt("no_habitaciones");
                 int habitacionesDisponibles = rs.getInt("habitaciones_disponibles");
 
                 hotelEnDestinoEnViaje = new HotelEnDestinoEnViajeVO(idHotel, idDestino, idViaje, noHabitaciones, habitacionesDisponibles);
@@ -97,10 +102,10 @@ public class HotelEnDestinoEnViajeDAO {
                 int idHotel = rs.getInt("id_hotel");
                 int idDestino = rs.getInt("id_destino");
                 int idViaje = rs.getInt("id_viaje");
-                int noHabitaciones = rs.getInt("no_habiaciones");
+                int noHabitaciones = rs.getInt("no_habitaciones");
                 int habitacionesDisponibles = rs.getInt("habitaciones_disponibles");
 
-                hotelEnDestinoEnViaje = new HotelEnDestinoEnViajeVO(id,idHotel, idDestino, idViaje, noHabitaciones, habitacionesDisponibles);
+                hotelEnDestinoEnViaje = new HotelEnDestinoEnViajeVO(id, idHotel, idDestino, idViaje, noHabitaciones, habitacionesDisponibles);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -132,7 +137,7 @@ public class HotelEnDestinoEnViajeDAO {
                 int noHabitaciones = rs.getInt("no_habitaciones");
                 int habitacionesDisponibles = rs.getInt("habitaciones_disponibles");
 
-                hotelEnDestinoEnViaje = new HotelEnDestinoEnViajeVO(id,idHotel, idDestino, idViaje, noHabitaciones, habitacionesDisponibles);
+                hotelEnDestinoEnViaje = new HotelEnDestinoEnViajeVO(id, idHotel, idDestino, idViaje, noHabitaciones, habitacionesDisponibles);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -159,7 +164,7 @@ public class HotelEnDestinoEnViajeDAO {
                 int idHotel = rs.getInt("id_hotel");
                 int idDestino = rs.getInt("id_destino");
                 int idViaje = rs.getInt("id_viaje");
-                int noHabitaciones = rs.getInt("no_habiaciones");
+                int noHabitaciones = rs.getInt("no_habitaciones");
                 int habitacionesDisponibles = rs.getInt("habitaciones_disponibles");
 
                 hotelEnDestinoEnViaje = new HotelEnDestinoEnViajeVO(idHotel, idDestino, idViaje, noHabitaciones, habitacionesDisponibles);
@@ -189,7 +194,7 @@ public class HotelEnDestinoEnViajeDAO {
                 int idHotel = rs.getInt("id_hotel");
                 int idDestino = rs.getInt("id_destino");
                 int idViaje = rs.getInt("id_viaje");
-                int noHabitaciones = rs.getInt("no_habiaciones");
+                int noHabitaciones = rs.getInt("no_habitaciones");
                 int habitacionesDisponibles = rs.getInt("habitaciones_disponibles");
 
                 hotelEnDestinoEnViaje = new HotelEnDestinoEnViajeVO(idHotel, idDestino, idViaje, noHabitaciones, habitacionesDisponibles);
@@ -203,7 +208,7 @@ public class HotelEnDestinoEnViajeDAO {
         }
         return hotelEnDestinoEnViaje;
     }
-    
+
     public ArrayList<Object[]> encontrarPorDestinoViaje(int _idDestino, int _idViaje) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -216,7 +221,7 @@ public class HotelEnDestinoEnViajeDAO {
             stmt = conn.prepareStatement(SQL_SELECT_BY_ID_DESTINO_VIAJE);
             stmt.setInt(1, _idDestino);
             stmt.setInt(2, _idViaje);
-            
+
             rs = stmt.executeQuery();
             while (rs.next()) {
                 int idD = rs.getInt("id");
@@ -225,7 +230,7 @@ public class HotelEnDestinoEnViajeDAO {
                 int habitacionesDisponibles = rs.getInt("habitaciones_disponibles");
                 int idHotel = rs.getInt("id_hotel");
                 int registrado = 1;
-                
+
                 objeto = new Object[6];
                 objeto[0] = idD;
                 objeto[1] = nombre;
@@ -233,7 +238,7 @@ public class HotelEnDestinoEnViajeDAO {
                 objeto[3] = habitacionesDisponibles;
                 objeto[4] = idHotel;
                 objeto[5] = registrado;
-                
+
                 objetos.add(objeto);
             }
         } catch (SQLException ex) {
@@ -261,7 +266,7 @@ public class HotelEnDestinoEnViajeDAO {
                 int idHotel = rs.getInt("id_hotel");
                 int idDestino = rs.getInt("id_destino");
                 int idViaje = rs.getInt("id_viaje");
-                int noHabitaciones = rs.getInt("no_habiaciones");
+                int noHabitaciones = rs.getInt("no_habitaciones");
                 int habitacionesDisponibles = rs.getInt("habitaciones_disponibles");
 
                 hotelEnDestinoEnViaje = new HotelEnDestinoEnViajeVO(idHotel, idDestino, idViaje, noHabitaciones, habitacionesDisponibles);
@@ -318,7 +323,7 @@ public class HotelEnDestinoEnViajeDAO {
         }
         return rows;
     }
-        
+
     public int eliminar(int id) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -328,6 +333,59 @@ public class HotelEnDestinoEnViajeDAO {
             stmt = conn.prepareStatement(SQL_DELETE);
             stmt.setInt(1, id);
 
+            rows = stmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return rows;
+    }
+
+    public HotelEnDestinoEnViajeVO encontrar(int _idHotelDestinoViaje) {
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        HotelEnDestinoEnViajeVO hotelEnDestinoEnViaje = null;
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_BY_ID);
+            stmt.setInt(1, _idHotelDestinoViaje);
+
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                int idHotel = rs.getInt("id_hotel");
+                int idDestino = rs.getInt("id_destino");
+                int idViaje = rs.getInt("id_viaje");
+                int noHabitaciones = rs.getInt("no_habitaciones");
+                int habitacionesDisponibles = rs.getInt("habitaciones_disponibles");
+
+                hotelEnDestinoEnViaje = new HotelEnDestinoEnViajeVO(id, idHotel, idDestino, idViaje, noHabitaciones, habitacionesDisponibles);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return hotelEnDestinoEnViaje;
+
+    }
+    
+       
+
+    public int eliminar(DetalleVO detalle) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int rows = 0;
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_DELETE);
+            stmt.setLong(1, detalle.getId());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {

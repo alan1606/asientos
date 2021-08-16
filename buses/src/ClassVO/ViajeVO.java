@@ -15,21 +15,33 @@ public class ViajeVO {
     private int idDestino;
     private String fecha;
     private int noAsientos; 
-
+    private String observaciones;
+    
     public ViajeVO() {
     }
 
-    public ViajeVO(int id, int idDestino, String fecha, int noAsientos) {
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    public ViajeVO(int idDestino, String fecha, int noAsientos, String observaciones) {
+        this.idDestino = idDestino;
+        this.fecha = fecha;
+        this.noAsientos = noAsientos;
+        this.observaciones = observaciones;
+    }
+
+    public ViajeVO(int id, int idDestino, String fecha, int noAsientos, String observaciones) {
         this.id = id;
         this.idDestino = idDestino;
         this.fecha = fecha;
         this.noAsientos = noAsientos;
-    }
-
-    public ViajeVO(int idDestino, String fecha, int noAsientos) {
-        this.idDestino = idDestino;
-        this.fecha = fecha;
-        this.noAsientos = noAsientos;
+        this.observaciones = observaciones;
     }
 
     
