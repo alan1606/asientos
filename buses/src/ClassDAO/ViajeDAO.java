@@ -48,6 +48,9 @@ public class ViajeDAO {
     
     private static final String SQL_DELETE = "DELETE FROM viaje WHERE id=?";
     
+   private static final String SQL_SELECT_BY_CLIENT = "SELECT distinct(viaje.id), viaje.id_destino, viaje.fecha, viaje.no_asientos, viaje.observaciones "
+            + " from viaje join detalle on viaje.id = detalle.id_viaje where detalle.id_cliente = ?;";
+    
     public ArrayList<ViajeVO> listar() {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -118,6 +121,37 @@ public class ViajeDAO {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT_DESTINATION_ID);
             stmt.setInt(1, _id);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int idDestino = rs.getInt("id_destino");
+                String fecha = rs.getString("fecha");
+                int noAsientos = rs.getInt("no_asientos");
+                String observaciones = rs.getString("observaciones");
+                
+                viaje = new ViajeVO(id, idDestino, fecha, noAsientos, observaciones);
+                viajes.add(viaje);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return viajes;
+    }
+    
+    public ArrayList<ViajeVO> encontrarByCliente(int _idCliente) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ViajeVO viaje = null;
+        ArrayList<ViajeVO> viajes = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_BY_CLIENT);
+            stmt.setInt(1, _idCliente);
             rs = stmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");

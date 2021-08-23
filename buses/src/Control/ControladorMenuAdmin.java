@@ -7,6 +7,7 @@ package Control;
 
 import ClassVO.UsuarioVO;
 import Vista.Asientos;
+import Vista.Cancelaciones;
 import Vista.Clientes;
 import Vista.Destinos;
 import Vista.Hoteles;
@@ -38,6 +39,7 @@ public class ControladorMenuAdmin implements ActionListener {
         this.vista.btnAnadir.addActionListener(this);
         this.vista.btnHoteles.addActionListener(this);
         this.vista.btnHotelesEnViaje.addActionListener(this);
+        this.vista.btnCancelaciones.addActionListener(this);
 
         //Se agrega un action listener por cada objeto
     }
@@ -52,26 +54,29 @@ public class ControladorMenuAdmin implements ActionListener {
         if (ae.getSource() == vista.btnAsientos) {
             abrirAsientos();
         }
-        if (ae.getSource() == vista.btnDestinos) {
+        else if (ae.getSource() == vista.btnDestinos) {
             abrirDestinos();
         }
-        if (ae.getSource() == vista.btnViajes) {
+        else if (ae.getSource() == vista.btnViajes) {
             abrirViajes();
         }
-        if (ae.getSource() == vista.btnClientes) {
+        else if (ae.getSource() == vista.btnClientes) {
             abrirClientes();
         }
-        if (ae.getSource() == vista.btnDetalles) {
+        else if (ae.getSource() == vista.btnDetalles) {
             abrirDetalles();
         }
-        if (ae.getSource() == vista.btnAnadir) {
+        else if (ae.getSource() == vista.btnAnadir) {
             abrirAnadir();
         }
-        if (ae.getSource() == vista.btnHoteles) {
+        else if (ae.getSource() == vista.btnHoteles) {
             abrirHoteles();
         }
-        if(ae.getSource() == vista.btnHotelesEnViaje){
+        else if(ae.getSource() == vista.btnHotelesEnViaje){
             abrirHotelesEnViaje();
+        }
+        else if(ae.getSource() == vista.btnCancelaciones){
+            abrirCancelaciones();
         }
     }
 
@@ -119,6 +124,12 @@ public class ControladorMenuAdmin implements ActionListener {
         vista.dispose();
         ControladorUsuarios usuarios = new ControladorUsuarios(new Usuarios(), usuario);
         usuarios.iniciar();
+    }
+
+    private void abrirCancelaciones() {
+        vista.dispose();
+        ControladorCancelaciones cancelaciones = new ControladorCancelaciones(new Cancelaciones(), usuario);
+        cancelaciones.iniciar();
     }
 
 }

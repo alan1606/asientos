@@ -191,7 +191,15 @@ public class DetalleVO {
 
     @Override
     public String toString() {
-        return "idViaje=" + idViaje + ", idCliente=" + idCliente + ", personas=" + personas + ", sube=" + sube + ", habitacion=" + habitaciones + ", costo=" + costo ;
+        String cadena = " personas, ";
+        String cadenaHabitaciones = " habitaciones, viaje ";
+        if(personas == 1){
+            cadena = " persona, ";
+        }
+        if(habitaciones==1){
+            cadenaHabitaciones = " habitación, viaje ";
+        }
+        return  id + " : " + personas + cadena + habitaciones  + cadenaHabitaciones +  viaje.toLowerCase()  ;
     }
     
     

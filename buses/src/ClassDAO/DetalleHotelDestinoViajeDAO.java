@@ -15,6 +15,9 @@ public class DetalleHotelDestinoViajeDAO {
 
     private static final String SQL_SELECT_BY_ID = "SELECT * "
             + " FROM detalle_hotel_destino_viaje WHERE id=? ";
+    
+        private static final String SQL_SELECT_BY_ID_DETALLE = "SELECT * "
+            + " FROM detalle_hotel_destino_viaje WHERE id_detalle=? ";
 
     /*private static final String SQL_SELECT_BY_NAME = "SELECT * "
             + " FROM categoria WHERE nombre = ?";*/
@@ -27,6 +30,7 @@ public class DetalleHotelDestinoViajeDAO {
     private static final String SQL_DELETE = "DELETE FROM detalle WHERE id=? ";
 
     private static final String SQL_COUNT_HOTEL_DESTINO_VIAJE = " select sum(habitaciones) as encontrados  from detalle_hotel_destino_viaje where id_hotel_destino_viaje = ?";
+
 
     public ArrayList<DetalleHotelDestinoViajeVO> listar() {
         Connection conn = null;
@@ -57,6 +61,36 @@ public class DetalleHotelDestinoViajeDAO {
         return detalles;
     }
 
+    public ArrayList<DetalleHotelDestinoViajeVO> encontrarDetalle(Long _idDetalle) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        DetalleHotelDestinoViajeVO detalle = null;
+        ArrayList<DetalleHotelDestinoViajeVO> detalles = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_BY_ID_DETALLE);
+            stmt.setLong(1, _idDetalle);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                Long idDetalle = rs.getLong("id_detalle");
+                int idHotelDestinoViaje = rs.getInt("id_hotel_destino_viaje");
+                int habitaciones = rs.getInt("habitaciones");
+
+                detalle = new DetalleHotelDestinoViajeVO(id, idDetalle, idHotelDestinoViaje, habitaciones);
+                detalles.add(detalle);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return detalles;
+    }
+    
     public DetalleHotelDestinoViajeVO encontrar(int _id) {
         Connection conn = null;
         PreparedStatement stmt = null;

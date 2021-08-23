@@ -78,7 +78,7 @@ public class AsientoVO {
 
     @Override
     public String toString() {
-        return  "numero=" + numero + ", idViaje=" + idViaje + ", idCliente=" + idCliente;
+        return  "numero=" + numero + ", idViaje=" + idViaje + ", idCliente=" + idCliente + " disponible " + disponible;
     }
     
     
