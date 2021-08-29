@@ -107,13 +107,18 @@ public class Clientes extends javax.swing.JFrame {
         jLabel4.setText("Correo");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 193, -1, -1));
 
+        txtNombre.setNextFocusableComponent(txtTelefono);
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtNombreKeyReleased(evt);
             }
         });
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 64, 197, -1));
+
+        txtTelefono.setNextFocusableComponent(txtCorreo);
         jPanel1.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 125, 197, -1));
+
+        txtCorreo.setNextFocusableComponent(comboTipo);
         jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 187, 197, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -149,6 +154,8 @@ public class Clientes extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Tipo");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, -1));
+
+        comboTipo.setNextFocusableComponent(btnAnadir);
         jPanel1.add(comboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 190, -1));
 
         lbl_rergesar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -168,6 +175,7 @@ public class Clientes extends javax.swing.JFrame {
         btnAnadir.setText("Añadir");
         btnAnadir.setBorder(null);
         btnAnadir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAnadir.setNextFocusableComponent(txtNombre);
         jPanel1.add(btnAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, 87, 30));
 
         btnModificar.setBackground(new java.awt.Color(5, 101, 249));

@@ -73,6 +73,8 @@ public class Usuarios extends javax.swing.JFrame {
         tUsuarios = new javax.swing.JTable();
         lbl_back = new javax.swing.JLabel();
         lbl_rergesar = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtTelefono = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,21 +88,21 @@ public class Usuarios extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
 
         jLabel4.setText("Contraseña");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
 
         jLabel5.setText("Tipo");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, -1, -1));
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 220, -1));
         jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 220, -1));
-        jPanel1.add(comboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 220, -1));
-        jPanel1.add(txtPasswd, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 220, -1));
+        jPanel1.add(comboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 220, -1));
+        jPanel1.add(txtPasswd, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 220, -1));
 
         btnEliminar.setBackground(new java.awt.Color(5, 101, 249));
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("Eliminar");
         btnEliminar.setBorder(null);
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 70, 30));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 70, 30));
 
         btnModificar.setBackground(new java.awt.Color(5, 101, 249));
         btnModificar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -112,14 +114,14 @@ public class Usuarios extends javax.swing.JFrame {
                 btnModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 70, 30));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 70, 30));
 
         btnRegistrar.setBackground(new java.awt.Color(5, 101, 249));
         btnRegistrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrar.setText("Registrar");
         btnRegistrar.setBorder(null);
-        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 70, 30));
+        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 70, 30));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Buscar"));
@@ -171,6 +173,10 @@ public class Usuarios extends javax.swing.JFrame {
         lbl_rergesar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl_rergesar.setText("Regresar");
         jPanel1.add(lbl_rergesar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, 20));
+
+        jLabel6.setText("Teléfono");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
+        jPanel1.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 220, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -242,6 +248,7 @@ public class Usuarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -253,6 +260,7 @@ public class Usuarios extends javax.swing.JFrame {
     public javax.swing.JTextField txtNombre;
     public javax.swing.JPasswordField txtPasswd;
     public javax.swing.JTextField txtSearch;
+    public javax.swing.JTextField txtTelefono;
     public javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

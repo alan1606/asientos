@@ -44,6 +44,7 @@ public class NuevoHotel extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nuevo Hotel");
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Crear Hotel nuevo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
@@ -62,6 +63,8 @@ public class NuevoHotel extends javax.swing.JFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
+
+        txtHotel.setNextFocusableComponent(btnGuardar);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

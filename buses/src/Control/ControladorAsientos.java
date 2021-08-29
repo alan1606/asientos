@@ -37,8 +37,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -70,13 +73,17 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
     ArrayList<AsientoVO> asientos;
     private boolean camion64 = false;
     private DetalleHotelDestinoViajeDAO modeloDetalleHotelDestinoViaje;
-
+    private String fechaActual;
+    
+    
     public ControladorAsientos(Asientos vista, UsuarioVO usuario) {
         this.vista = vista;
         this.usuario = usuario;
 
         modelo = new AsientoDAO();
 
+        fechaActual = dateToString(new Date().getTime());
+        
         this.vista.btnComprar.addActionListener(this);
         this.vista.comboTipoViaje.addActionListener(this);
         this.vista.comboFormaPago.addActionListener(this);
@@ -94,6 +101,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         this.vista.btnQuitarHotel.addActionListener(this);
         this.vista.lbl_back.addMouseListener(this);
         this.vista.comboHoraSalida.addActionListener(this);
+        
         //Se agrega un action listener por cada objeto
     }
 
@@ -108,6 +116,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         cargarFormasDePago();
         cargarHorasDeRegreso();
         deshabilitarElementosDebidoAViajeSencillo(false);
+        vista.comboDestino.requestFocus();
     }
 
     private void deshabilitarElementosDebidoAViajeSencillo(boolean nuevoEstado) {
@@ -681,6 +690,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         vista.comboAsientosAComprar.setModel(combo.getModel());
         vista.comboHoteles.setModel(combo.getModel());
         vista.comboNumeroHabitaciones.setModel(combo.getModel());
+        vista.dateFechaRegreso.setLimpiarFecha(true);
         cargarDestinos();
         cargarTiposDeCliente();
     }
@@ -811,8 +821,8 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         vista.comboNumeroHabitaciones.setSelectedIndex(0);
         limpiarTabla();
         vista.txtCosto.setText("");
-//        vista.txtHabitaciones.setText("");
-        //vista.txtHora.setText("");
+        vista.txtAnticipo.setText("");
+        vista.dateFechaRegreso.setLimpiarFecha(true);
         vista.txtSube.setText("");
         iniciarCombosVacios();
 
@@ -844,12 +854,24 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         String sube = vista.txtSube.getText();
         String hora = vista.comboHoraSalida.getSelectedItem().toString();
         Double costo = Double.parseDouble(vista.txtCosto.getText());
+        Double anticipo = 0d;
+
+        if (!this.vista.txtAnticipo.equals("")) {
+            try {
+                anticipo = Double.parseDouble(this.vista.txtAnticipo.getText());
+            } catch (Exception e) {
+            }
+        }
+
         int habitaciones = calcularHabitacionesVendidas();
 
         String formaPago = this.vista.comboFormaPago.getSelectedItem().toString();
         String viaje = "REDONDO";
         String horaRegreso = vista.comboHoraRegreso.getSelectedItem().toString();
-        DetalleVO detalle = new DetalleVO(idViaje, cliente.getId(), usuario.getId(), satisfactorios, sube, hora, habitaciones, costo, true, "VENDIDO", formaPago, viaje, horaRegreso);
+        String fechaRegreso = vista.dateFechaRegreso.getFechaSeleccionada();
+        JOptionPane.showMessageDialog(null, fechaRegreso);
+        
+        DetalleVO detalle = new DetalleVO(idViaje, cliente.getId(), usuario.getId(), satisfactorios, sube, hora, habitaciones, costo, anticipo, true, "VENDIDO", formaPago, viaje, horaRegreso, fechaRegreso, fechaActual);
         if (modeloDetalle.insertar(detalle) == 0) {
             JOptionPane.showMessageDialog(vista, "Ha ocurrido un error al registrar el detalle");
             return;
@@ -899,7 +921,16 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         String formaPago = this.vista.comboFormaPago.getSelectedItem().toString();
         String viaje = "SENCILLO";
         String horaRegreso = "00:00";
-        DetalleVO detalle = new DetalleVO(idViaje, cliente.getId(), usuario.getId(), satisfactorios, sube, hora, habitaciones, costo, true, "VENDIDO", formaPago, viaje, horaRegreso);
+        Double anticipo = 0d;
+
+        if (!this.vista.txtAnticipo.equals("")) {
+            try {
+                anticipo = Double.parseDouble(this.vista.txtAnticipo.getText());
+            } catch (Exception e) {
+            }
+        }
+
+        DetalleVO detalle = new DetalleVO(idViaje, cliente.getId(), usuario.getId(), satisfactorios, sube, hora, habitaciones, costo, anticipo, true, "VENDIDO", formaPago, viaje, horaRegreso, fechaActual, fechaActual);
         if (modeloDetalle.insertar(detalle) == 0) {
             JOptionPane.showMessageDialog(vista, "Ha ocurrido un error al registrar el detalle");
         }
@@ -945,7 +976,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
             return false;
         }
         if (vista.comboTipoViaje.getSelectedIndex() == 1) { ///Si va a ser un viaje redondo se debe seleccionar popr lo menos una habitación y la hora de regreso debe ser válida
-            if (!habitacionesValidas()) {
+            if (!fechaRegresoValida()) {
                 return false;
             }
             if (!horaDeRegresoValida()) {
@@ -962,13 +993,6 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         } catch (Exception e) {
             return false;
         }
-    }
-
-    private boolean habitacionesValidas() {
-        if (vista.tableHoteles.getRowCount() == 0) {
-            return false;
-        }
-        return true;
     }
 
     private boolean horaValida() {
@@ -1106,6 +1130,16 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         } else {
             System.out.println("No se rebajó el número de habitaciones al hotal");
         }
+    }
+
+    private boolean fechaRegresoValida() {
+        return !this.vista.dateFechaRegreso.getFechaSeleccionada().equals("");
+    }
+
+    private String dateToString(Long date) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String strDate = dateFormat.format(date);
+        return strDate;
     }
 
 }

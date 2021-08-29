@@ -132,7 +132,7 @@ public class ControladorUsuarios implements ActionListener, MouseListener, KeyLi
     
     private void modificar() {
         int id = Integer.parseInt(vista.tUsuarios.getValueAt(vista.tUsuarios.getSelectedRow(), 0).toString());
-        UsuarioVO usuario = new UsuarioVO(id, vista.txtUsuario.getText(), vista.txtPasswd.getText(), vista.txtNombre.getText(), vista.comboTipo.getSelectedItem().toString());
+        UsuarioVO usuario = new UsuarioVO(id, vista.txtUsuario.getText(), vista.txtPasswd.getText(), vista.txtNombre.getText(), vista.comboTipo.getSelectedItem().toString(), vista.txtTelefono.getText());
         usuario.setPass(usuario.getMD5(usuario.getPass()));
         if (modelo.actualizar(usuario) > 0) {
             JOptionPane.showMessageDialog(vista, "Se ha modificado el usuario");
@@ -148,13 +148,14 @@ public class ControladorUsuarios implements ActionListener, MouseListener, KeyLi
         vista.txtPasswd.setText("");
         vista.txtNombre.setText("");
         vista.txtSearch.setText("");
+        vista.txtTelefono.setText("");
         vista.comboTipo.setSelectedIndex(0);
         vista.radioAdministrador.setSelected(false);
         vista.radioCoordinador.setSelected(false);
     }
     
     private void registrar() throws ParseException {
-        UsuarioVO usuario = new UsuarioVO(vista.txtUsuario.getText(), vista.txtPasswd.getText(), vista.txtNombre.getText(), vista.comboTipo.getSelectedItem().toString());
+        UsuarioVO usuario = new UsuarioVO(vista.txtUsuario.getText(), vista.txtPasswd.getText(), vista.txtNombre.getText(), vista.comboTipo.getSelectedItem().toString(), vista.txtTelefono.getText());
         usuario.setPass(usuario.getMD5(usuario.getPass()));
         if (modelo.insertar(usuario) > 0) {
             JOptionPane.showMessageDialog(vista, "Se ha registrado el usuario");
@@ -177,6 +178,9 @@ public class ControladorUsuarios implements ActionListener, MouseListener, KeyLi
             return false;
         }
         if (vista.comboTipo.getSelectedIndex() == 0) {
+            return false;
+        }
+        if(vista.txtTelefono.getText().equals("")){
             return false;
         }
         return true;
@@ -216,6 +220,7 @@ public class ControladorUsuarios implements ActionListener, MouseListener, KeyLi
         vista.txtUsuario.setText(usuario.getUsuario());
         vista.txtNombre.setText(usuario.getNombre());
         vista.comboTipo.setSelectedItem(usuario.getTipo());
+        vista.txtTelefono.setText(usuario.getTelefono());
     }
     
     private UsuarioVO obtenerElementoDePosicion(int fila) throws ParseException {

@@ -71,6 +71,7 @@ public class ControladorViajes implements ActionListener, MouseListener, KeyList
         cargarAsientos();
         habilitarBotones(false);
         cargarTabla();
+        vista.comboDestino.requestFocus();
     }
 
     private void cargarTabla() {
@@ -191,7 +192,7 @@ public class ControladorViajes implements ActionListener, MouseListener, KeyList
         modeloAsientos = new AsientoDAO();
         int cantidadElminados = modeloAsientos.eliminar(viaje.getId(), inicio, fin);
         if (cantidadElminados > 0) {
-            System.out.println( cantidadElminados + " asientos eliminados");
+            System.out.println(cantidadElminados + " asientos eliminados");
         } else {
             System.out.println("Error");
         }
@@ -260,6 +261,7 @@ public class ControladorViajes implements ActionListener, MouseListener, KeyList
         vista.dateFecha.setLimpiarFecha(true);
         vista.comboDestinoSearch.setSelectedIndex(0);
         vista.comboAsientos.setSelectedIndex(0);
+        vista.txtObservaciones.setText("");
     }
 
     private void registrar() throws ParseException {
@@ -350,15 +352,21 @@ public class ControladorViajes implements ActionListener, MouseListener, KeyList
         vista.comboDestino.setSelectedItem(viaje);
         vista.comboAsientos.setSelectedItem(viaje.getNoAsientos() + "");
         vista.dateFecha.setTextoFecha(viaje.getFecha().toString());
+        vista.txtObservaciones.setText(viaje.getObservaciones());
     }
 
     private ViajeVO obtenerElementoDePosicion(int fila) throws ParseException {
-        ViajeVO temp = new ViajeVO();
-        temp.setId(Integer.parseInt(vista.tableViajes.getValueAt(fila, 0).toString()));
-        temp.setIdDestino(Integer.parseInt(vista.tableViajes.getValueAt(fila, 1).toString()));
-        temp.setFecha(vista.tableViajes.getValueAt(fila, 2).toString());
-        temp.setNoAsientos(Integer.parseInt(vista.tableViajes.getValueAt(fila, 3).toString()));
-        return temp;
+        try {
+            ViajeVO temp = new ViajeVO();
+            temp.setId(Integer.parseInt(vista.tableViajes.getValueAt(fila, 0).toString()));
+            temp.setIdDestino(Integer.parseInt(vista.tableViajes.getValueAt(fila, 1).toString()));
+            temp.setFecha(vista.tableViajes.getValueAt(fila, 2).toString());
+            temp.setNoAsientos(Integer.parseInt(vista.tableViajes.getValueAt(fila, 3).toString()));
+            temp.setObservaciones(vista.tableViajes.getValueAt(fila, 4).toString());
+            return temp;
+        } catch (Exception e) {
+        }
+        return null;
     }
 
     private void abrirMenu() {

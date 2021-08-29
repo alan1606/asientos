@@ -70,6 +70,7 @@ public class ControladorHoteles implements ActionListener, KeyListener, MouseLis
         cargarBusquedaDestinos();
         habilitarBotones(false);
         cargarTabla();
+        vista.comboDestino.requestFocus();
     }
 
     private void cargarTabla() {

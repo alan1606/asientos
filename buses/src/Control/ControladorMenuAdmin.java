@@ -10,6 +10,9 @@ import Vista.Asientos;
 import Vista.Cancelaciones;
 import Vista.Clientes;
 import Vista.Destinos;
+import Vista.Detalles;
+import Vista.DetallesAsientos;
+import Vista.DetallesTickets;
 import Vista.Hoteles;
 import Vista.MenuAdmin;
 import Vista.Usuarios;
@@ -47,6 +50,7 @@ public class ControladorMenuAdmin implements ActionListener {
     public void iniciar() {
         vista.setTitle("Menú de administrador");
         vista.setVisible(true);
+        vista.btnAsientos.requestFocus();
     }
 
     @Override
@@ -117,7 +121,10 @@ public class ControladorMenuAdmin implements ActionListener {
     }
 
     private void abrirDetalles() {
-
+        vista.dispose();
+        ControladorDetalles detalles = new ControladorDetalles(new Detalles(), usuario, new DetallesAsientos(), new DetallesTickets());
+        detalles.iniciar();
+        
     }
 
     private void abrirAnadir() {

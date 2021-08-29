@@ -74,19 +74,29 @@ public class DetallesTickets extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        comboEstado.setNextFocusableComponent(comboCiudad);
         jPanel1.add(comboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 240, -1));
+
+        comboCiudad.setNextFocusableComponent(comboFecha);
         jPanel1.add(comboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 240, -1));
 
         jLabel2.setText("Ciudad:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
+
+        comboFecha.setNextFocusableComponent(comboViaje);
         jPanel1.add(comboFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 240, -1));
 
         jLabel3.setText("Fecha:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 40, -1));
+
+        comboViaje.setNextFocusableComponent(comboCliente);
         jPanel1.add(comboViaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 240, -1));
 
         jLabel4.setText("Viaje:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
+
+        comboCliente.setNextFocusableComponent(btnConsultar);
         jPanel1.add(comboCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 240, -1));
 
         jLabel5.setText("Cliente:");
@@ -107,6 +117,7 @@ public class DetallesTickets extends javax.swing.JFrame {
         jPanel1.add(lbl_rergesar, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 30, -1, 20));
 
         btnConsultar.setText("Consultar");
+        btnConsultar.setNextFocusableComponent(comboEstado);
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarActionPerformed(evt);

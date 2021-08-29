@@ -74,9 +74,11 @@ public class DetallesAsientos extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         comboEstado.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        comboEstado.setNextFocusableComponent(comboCiudad);
         jPanel1.add(comboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 240, -1));
 
         comboCiudad.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        comboCiudad.setNextFocusableComponent(comboFecha);
         jPanel1.add(comboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 240, -1));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -84,6 +86,7 @@ public class DetallesAsientos extends javax.swing.JFrame {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
 
         comboFecha.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        comboFecha.setNextFocusableComponent(comboViaje);
         jPanel1.add(comboFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 240, -1));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -91,6 +94,7 @@ public class DetallesAsientos extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 60, -1));
 
         comboViaje.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        comboViaje.setNextFocusableComponent(btnConsultar);
         jPanel1.add(comboViaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 240, -1));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -113,6 +117,7 @@ public class DetallesAsientos extends javax.swing.JFrame {
         jPanel1.add(lbl_rergesar, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 30, -1, 20));
 
         btnConsultar.setText("Consultar");
+        btnConsultar.setNextFocusableComponent(comboEstado);
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarActionPerformed(evt);

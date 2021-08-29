@@ -58,7 +58,8 @@ public class ControladorClientes implements ActionListener, MouseListener, KeyLi
         cargarCombobox();
         cargarTabla();
         habilitarBotones(false);
-
+        vista.txtNombre.requestFocus();
+        
     }
 
     private void cargarCombobox() {

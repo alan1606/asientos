@@ -41,7 +41,7 @@ public class DetalleDAO {
             + " SET sube=?, hora = ?, liquidado = ?, estado = ?, hora_regreso=? WHERE id=?";
 
     private static final String SQL_INSERT = "INSERT INTO detalle values "
-            + " (null,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            + " (null,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     private static final String SQL_DELETE = "DELETE FROM detalle WHERE id = ?";
 
@@ -65,13 +65,16 @@ public class DetalleDAO {
                 String hora = rs.getString("hora");
                 int habitaciones = rs.getInt("habitacion");
                 double costo = rs.getDouble("costo");
+                double anticipo = rs.getDouble("anticipo");
                 boolean liquidado = rs.getBoolean("liquidado");
                 String estado = rs.getString("estado");
                 String pago = rs.getString("pago");
                 String viaje = rs.getString("viaje");
                 String horaRegreso = rs.getString("hora_regreso");
+                String fechaRegreso = rs.getString("fecha_regreso");
+                String fechaVenta = rs.getString("fecha_venta");
 
-                detalle = new DetalleVO(id, idViaje, idCliente, idUsuario, personas, sube, hora, habitaciones, 0, liquidado, estado, pago, viaje, horaRegreso);
+                detalle = new DetalleVO(id, idViaje, idCliente, idUsuario, personas, sube, hora, habitaciones, costo, anticipo, liquidado, estado, pago, viaje, horaRegreso, fechaRegreso, fechaVenta);
                 detalles.add(detalle);
             }
         } catch (SQLException ex) {
@@ -98,7 +101,7 @@ public class DetalleDAO {
             stmt.setInt(2, _idCliente);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                Long id = rs.getLong("id");
+               Long id = rs.getLong("id");
                 int idViaje = rs.getInt("id_viaje");
                 int idCliente = rs.getInt("id_cliente");
                 int idUsuario = rs.getInt("id_usuario");
@@ -107,13 +110,16 @@ public class DetalleDAO {
                 String hora = rs.getString("hora");
                 int habitaciones = rs.getInt("habitacion");
                 double costo = rs.getDouble("costo");
+                double anticipo = rs.getDouble("anticipo");
                 boolean liquidado = rs.getBoolean("liquidado");
                 String estado = rs.getString("estado");
                 String pago = rs.getString("pago");
                 String viaje = rs.getString("viaje");
                 String horaRegreso = rs.getString("hora_regreso");
+                String fechaRegreso = rs.getString("fecha_regreso");
+                String fechaVenta = rs.getString("fecha_venta");
 
-                detalle = new DetalleVO(id, idViaje, idCliente, idUsuario, personas, sube, hora, habitaciones, 0, liquidado, estado, pago, viaje, horaRegreso);
+                detalle = new DetalleVO(id, idViaje, idCliente, idUsuario, personas, sube, hora, habitaciones, costo, anticipo, liquidado, estado, pago, viaje, horaRegreso, fechaRegreso, fechaVenta);
                 detalles.add(detalle);
             }
         } catch (SQLException ex) {
@@ -139,7 +145,7 @@ public class DetalleDAO {
             stmt.setInt(3, _idUsuario);
             rs = stmt.executeQuery();
             if (rs.next()) {
-                Long id = rs.getLong("id");
+               Long id = rs.getLong("id");
                 int idViaje = rs.getInt("id_viaje");
                 int idCliente = rs.getInt("id_cliente");
                 int idUsuario = rs.getInt("id_usuario");
@@ -148,13 +154,16 @@ public class DetalleDAO {
                 String hora = rs.getString("hora");
                 int habitaciones = rs.getInt("habitacion");
                 double costo = rs.getDouble("costo");
+                double anticipo = rs.getDouble("anticipo");
                 boolean liquidado = rs.getBoolean("liquidado");
                 String estado = rs.getString("estado");
                 String pago = rs.getString("pago");
                 String viaje = rs.getString("viaje");
                 String horaRegreso = rs.getString("hora_regreso");
+                String fechaRegreso = rs.getString("fecha_regreso");
+                String fechaVenta = rs.getString("fecha_venta");
 
-                detalle = new DetalleVO(id, idViaje, idCliente, idUsuario, personas, sube, hora, habitaciones, 0, liquidado, estado, pago, viaje, horaRegreso);
+                detalle = new DetalleVO(id, idViaje, idCliente, idUsuario, personas, sube, hora, habitaciones, costo, anticipo, liquidado, estado, pago, viaje, horaRegreso, fechaRegreso, fechaVenta);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -177,7 +186,7 @@ public class DetalleDAO {
             stmt.setInt(1, _id);
             rs = stmt.executeQuery();
             if (rs.next()) {
-                Long id = rs.getLong("id");
+               Long id = rs.getLong("id");
                 int idViaje = rs.getInt("id_viaje");
                 int idCliente = rs.getInt("id_cliente");
                 int idUsuario = rs.getInt("id_usuario");
@@ -186,13 +195,16 @@ public class DetalleDAO {
                 String hora = rs.getString("hora");
                 int habitaciones = rs.getInt("habitacion");
                 double costo = rs.getDouble("costo");
+                double anticipo = rs.getDouble("anticipo");
                 boolean liquidado = rs.getBoolean("liquidado");
                 String estado = rs.getString("estado");
                 String pago = rs.getString("pago");
                 String viaje = rs.getString("viaje");
                 String horaRegreso = rs.getString("hora_regreso");
+                String fechaRegreso = rs.getString("fecha_regreso");
+                String fechaVenta = rs.getString("fecha_venta");
 
-                detalle = new DetalleVO(id, idViaje, idCliente, idUsuario, personas, sube, hora, habitaciones, 0, liquidado, estado, pago, viaje, horaRegreso);
+                detalle = new DetalleVO(id, idViaje, idCliente, idUsuario, personas, sube, hora, habitaciones, costo, anticipo, liquidado, estado, pago, viaje, horaRegreso, fechaRegreso, fechaVenta);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -219,11 +231,14 @@ public class DetalleDAO {
             stmt.setString(6, detalle.getHora());
             stmt.setInt(7, detalle.getHabitaciones());
             stmt.setDouble(8, detalle.getCosto());
-            stmt.setBoolean(9, detalle.isLiquidado());
-            stmt.setString(10, detalle.getEstado());
-            stmt.setString(11, detalle.getPago());
-            stmt.setString(12, detalle.getViaje());
-            stmt.setString(13, detalle.getHoraRegreso());
+            stmt.setDouble(9, detalle.getAnticipo());
+            stmt.setBoolean(10, detalle.isLiquidado());
+            stmt.setString(11, detalle.getEstado());
+            stmt.setString(12, detalle.getPago());
+            stmt.setString(13, detalle.getViaje());
+            stmt.setString(14, detalle.getHoraRegreso());
+            stmt.setString(15, detalle.getFechaRegreso());
+            stmt.setString(16, detalle.getFechaVenta());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -299,13 +314,16 @@ public class DetalleDAO {
                 String hora = rs.getString("hora");
                 int habitaciones = rs.getInt("habitacion");
                 double costo = rs.getDouble("costo");
+                double anticipo = rs.getDouble("anticipo");
                 boolean liquidado = rs.getBoolean("liquidado");
                 String estado = rs.getString("estado");
                 String pago = rs.getString("pago");
                 String viaje = rs.getString("viaje");
                 String horaRegreso = rs.getString("hora_regreso");
+                String fechaRegreso = rs.getString("fecha_regreso");
+                String fechaVenta = rs.getString("fecha_venta");
 
-                detalle = new DetalleVO(id, idViaje, idCliente, idUsuario, personas, sube, hora, habitaciones, 0, liquidado, estado, pago, viaje, horaRegreso);
+                detalle = new DetalleVO(id, idViaje, idCliente, idUsuario, personas, sube, hora, habitaciones, costo, anticipo, liquidado, estado, pago, viaje, horaRegreso, fechaRegreso, fechaVenta);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);

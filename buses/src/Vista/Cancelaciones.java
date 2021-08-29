@@ -116,9 +116,17 @@ public class Cancelaciones extends javax.swing.JFrame {
         btnCancelar.setText("Cancelar venta");
         btnCancelar.setBorder(null);
         btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCancelar.setNextFocusableComponent(txtCliente);
         jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 110, 28));
+
+        comboViaje.setNextFocusableComponent(comboTicket);
         jPanel1.add(comboViaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 300, -1));
+
+        txtCliente.setNextFocusableComponent(comboViaje);
         jPanel1.add(txtCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 300, -1));
+
+        comboTicket.setName(""); // NOI18N
+        comboTicket.setNextFocusableComponent(btnCancelar);
         jPanel1.add(comboTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 300, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

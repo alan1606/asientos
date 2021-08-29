@@ -20,7 +20,8 @@ public class UsuarioVO {
     private String pass;
     private String nombre;
     private String tipo;
-
+    private String telefono;
+    
     public String getMD5(String input) {
          try {
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -39,19 +40,29 @@ public class UsuarioVO {
     public UsuarioVO() {
     }
 
-    public UsuarioVO(int id, String usuario, String pass, String nombre, String tipo) {
+    public UsuarioVO(int id, String usuario, String pass, String nombre, String tipo, String telefono) {
         this.id = id;
         this.usuario = usuario;
         this.pass = pass;
         this.tipo = tipo;
         this.nombre = nombre;
+        this.telefono = telefono;
     }
 
-    public UsuarioVO(String usuario, String pass, String nombre, String tipo) {
+    public UsuarioVO(String usuario, String pass, String nombre, String tipo, String telefono) {
         this.usuario = usuario;
         this.pass = pass;
         this.nombre = nombre;
         this.tipo = tipo;
+        this.telefono = telefono;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     

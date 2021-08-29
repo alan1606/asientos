@@ -26,17 +26,19 @@ public class TablaUsuarios {
         dt.addColumn("Usuario");
         dt.addColumn("Nombre");
         dt.addColumn("Tipo");
+        dt.addColumn("Teléfono");
 
 
         UsuarioVO usuario = new UsuarioVO();
 
         for (int i = 0; i < list.size(); i++) {
-            Object fila[] = new Object[4];
+            Object fila[] = new Object[5];
             usuario = list.get(i);
             fila[0] = usuario.getId();
             fila[1] = usuario.getUsuario();
             fila[2] = usuario.getNombre();
             fila[3] = usuario.getTipo();
+            fila[4] = usuario.getTelefono();
             dt.addRow(fila);
         }
         tabla.setModel(dt);

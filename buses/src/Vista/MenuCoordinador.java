@@ -233,6 +233,7 @@ public class MenuCoordinador extends javax.swing.JFrame {
         btnAsientos.setBackground(new java.awt.Color(255, 255, 255));
         btnAsientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/005-asientos.png"))); // NOI18N
         btnAsientos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAsientos.setNextFocusableComponent(btnDestinos);
         btnAsientos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAsientosActionPerformed(evt);
@@ -243,6 +244,7 @@ public class MenuCoordinador extends javax.swing.JFrame {
         btnDestinos.setBackground(new java.awt.Color(255, 255, 255));
         btnDestinos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/002-destino.png"))); // NOI18N
         btnDestinos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnDestinos.setNextFocusableComponent(btnViajes);
         btnDestinos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDestinosActionPerformed(evt);
@@ -253,16 +255,19 @@ public class MenuCoordinador extends javax.swing.JFrame {
         btnClientes.setBackground(new java.awt.Color(255, 255, 255));
         btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/003-cliente.png"))); // NOI18N
         btnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnClientes.setNextFocusableComponent(btnDetalles);
         jPanel3.add(btnClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
         btnDetalles.setBackground(new java.awt.Color(255, 255, 255));
         btnDetalles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/006-informacion.png"))); // NOI18N
         btnDetalles.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnDetalles.setNextFocusableComponent(btnHoteles);
         jPanel3.add(btnDetalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, -1));
 
         btnViajes.setBackground(new java.awt.Color(255, 255, 255));
         btnViajes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/007-viajes.png"))); // NOI18N
         btnViajes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnViajes.setNextFocusableComponent(btnClientes);
         btnViajes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViajesActionPerformed(evt);
@@ -292,6 +297,7 @@ public class MenuCoordinador extends javax.swing.JFrame {
         btnHoteles.setBackground(new java.awt.Color(255, 255, 255));
         btnHoteles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/hotel.png"))); // NOI18N
         btnHoteles.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnHoteles.setNextFocusableComponent(btnAsientos);
         btnHoteles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHotelesActionPerformed(evt);

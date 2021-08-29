@@ -101,7 +101,7 @@ public class DestinoDAO {
         ArrayList<DestinoVO> destinos = new ArrayList<>();
         try {
             conn = Conexion.getConnection();
-            stmt = conn.prepareStatement("SELECT * FROM destino where ciudad like '"+ _nombre +"%'");
+            stmt = conn.prepareStatement("SELECT * FROM destino where ciudad like '" + _nombre + "%'");
             rs = stmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -121,22 +121,25 @@ public class DestinoDAO {
         return destinos;
     }
 
-    public DestinoVO encontrarEstado(int _idEstado) {
+    public ArrayList<DestinoVO> encontrarEstado(int _idEstado) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         DestinoVO destino = null;
+        ArrayList<DestinoVO> destinos = new ArrayList<>();
+
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT_BY_ID_ESTADO);
             stmt.setInt(1, _idEstado);
             rs = stmt.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 int id = rs.getInt("id");
                 String ciudad = rs.getString("ciudad");
                 int idEstado = rs.getInt("id_estado");
 
                 destino = new DestinoVO(id, ciudad, idEstado);
+                destinos.add(destino);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -145,7 +148,7 @@ public class DestinoDAO {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
-        return destino;
+        return destinos;
     }
 
     public int insertar(DestinoVO destino) {

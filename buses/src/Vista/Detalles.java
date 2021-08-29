@@ -58,8 +58,8 @@ public class Detalles extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lbl_rergesar = new javax.swing.JLabel();
         lbl_back = new javax.swing.JLabel();
-        rSButtonHover1 = new rojerusan.RSButtonHover();
-        rSButtonHover2 = new rojerusan.RSButtonHover();
+        btnTickets = new rojerusan.RSButtonHover();
+        btnAsientos = new rojerusan.RSButtonHover();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,9 +74,11 @@ public class Detalles extends javax.swing.JFrame {
             }
         });
 
-        rSButtonHover1.setText("Ticket");
+        btnTickets.setText("Ticket");
+        btnTickets.setNextFocusableComponent(btnAsientos);
 
-        rSButtonHover2.setText("Asientos");
+        btnAsientos.setText("Asientos");
+        btnAsientos.setNextFocusableComponent(btnTickets);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -91,8 +93,8 @@ public class Detalles extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rSButtonHover1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rSButtonHover2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -106,9 +108,9 @@ public class Detalles extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(lbl_back, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(44, 44, 44)
-                .addComponent(rSButtonHover1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addComponent(rSButtonHover2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 74, Short.MAX_VALUE))
         );
 
@@ -166,11 +168,11 @@ public class Detalles extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public rojerusan.RSButtonHover btnAsientos;
+    public rojerusan.RSButtonHover btnTickets;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JLabel lbl_back;
     private javax.swing.JLabel lbl_rergesar;
-    public rojerusan.RSButtonHover rSButtonHover1;
-    public rojerusan.RSButtonHover rSButtonHover2;
     private rojerusan.RSComboMetroBeanInfo rSComboMetroBeanInfo1;
     // End of variables declaration//GEN-END:variables
 }

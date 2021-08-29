@@ -63,6 +63,7 @@ public class ControladorDestinos implements ActionListener, MouseListener, KeyLi
         cargarPaises();
         habilitarBotones(false);
         cargarTabla();
+        vista.txtCiudad.requestFocus();
     }
 
     private void cargarTabla() {

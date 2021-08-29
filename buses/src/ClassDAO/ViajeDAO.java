@@ -26,7 +26,7 @@ public class ViajeDAO {
             + " FROM viaje WHERE id = ?";
     
     private static final String SQL_SELECT_DESTINATION_ID = "SELECT * "
-            + " FROM viaje WHERE id_destino = ?";
+            + " FROM viaje WHERE id_destino = ? order by fecha";
     
     private static final String SQL_SELECT_DESTINATION_ID_DISTINCT_DATE = "SELECT distinct(fecha) as fecha "
             + " FROM viaje WHERE id_destino = ?";

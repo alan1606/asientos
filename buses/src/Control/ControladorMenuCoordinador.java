@@ -42,6 +42,7 @@ public class ControladorMenuCoordinador implements ActionListener {
     public void iniciar() {
         vista.setTitle("Menú de coordinador");
         vista.setVisible(true);
+        vista.btnAsientos.requestFocus();
     }
 
     @Override

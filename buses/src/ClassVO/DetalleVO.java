@@ -10,6 +10,7 @@ package ClassVO;
  * @author alanm
  */
 public class DetalleVO {
+
     private Long id;
     private int idViaje;
     private int idCliente;
@@ -19,13 +20,16 @@ public class DetalleVO {
     private String hora;
     private int habitaciones;
     private double costo;
+    private double anticipo;
     private boolean liquidado;
     private String estado;
     private String pago;
     private String viaje;
     private String horaRegreso;
+    private String fechaRegreso;
+    private String fechaVenta;
 
-    public DetalleVO(Long id, int idViaje, int idCliente, int idUsuario, int personas, String sube, String hora, int habitaciones, double costo, boolean liquidado, String estado, String pago, String viaje, String horaRegreso) {
+    public DetalleVO(Long id, int idViaje, int idCliente, int idUsuario, int personas, String sube, String hora, int habitaciones, double costo, double anticipo, boolean liquidado, String estado, String pago, String viaje, String horaRegreso, String fechaRegreso, String fechaVenta) {
         this.id = id;
         this.idViaje = idViaje;
         this.idCliente = idCliente;
@@ -35,14 +39,17 @@ public class DetalleVO {
         this.hora = hora;
         this.habitaciones = habitaciones;
         this.costo = costo;
+        this.anticipo = anticipo;
         this.liquidado = liquidado;
         this.estado = estado;
         this.pago = pago;
         this.viaje = viaje;
         this.horaRegreso = horaRegreso;
+        this.fechaRegreso = fechaRegreso;
+        this.fechaVenta = fechaVenta;
     }
 
-    public DetalleVO(int idViaje, int idCliente, int idUsuario, int personas, String sube, String hora, int habitaciones, double costo, boolean liquidado, String estado, String pago, String viaje, String horaRegreso) {
+    public DetalleVO(int idViaje, int idCliente, int idUsuario, int personas, String sube, String hora, int habitaciones, double costo, double anticipo, boolean liquidado, String estado, String pago, String viaje, String horaRegreso, String fechaRegreso, String fechaVenta) {
         this.idViaje = idViaje;
         this.idCliente = idCliente;
         this.idUsuario = idUsuario;
@@ -51,21 +58,48 @@ public class DetalleVO {
         this.hora = hora;
         this.habitaciones = habitaciones;
         this.costo = costo;
+        this.anticipo = anticipo;
         this.liquidado = liquidado;
         this.estado = estado;
         this.pago = pago;
         this.viaje = viaje;
         this.horaRegreso = horaRegreso;
+        this.fechaRegreso = fechaRegreso;
+        this.fechaVenta = fechaVenta;
     }
 
-    
+    public double getAnticipo() {
+        return anticipo;
+    }
+
+    public void setAnticipo(double anticipo) {
+        this.anticipo = anticipo;
+    }
+
+    public String getFechaRegreso() {
+        return fechaRegreso;
+    }
+
+    public void setFechaRegreso(String fechaRegreso) {
+        this.fechaRegreso = fechaRegreso;
+    }
+
+    public String getFechaVenta() {
+        return fechaVenta;
+    }
+
+    public void setFechaVenta(String fechaVenta) {
+        this.fechaVenta = fechaVenta;
+    }
+
+  
+
+  
 
     public DetalleVO(Long id) {
         this.id = id;
     }
-    
-    
-    
+
     public DetalleVO() {
     }
 
@@ -109,10 +143,6 @@ public class DetalleVO {
         this.horaRegreso = horaRegreso;
     }
 
-    
-  
- 
-
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -121,7 +151,6 @@ public class DetalleVO {
         this.idUsuario = idUsuario;
     }
 
-    
     public int getIdViaje() {
         return idViaje;
     }
@@ -137,7 +166,6 @@ public class DetalleVO {
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
-
 
     public int getPersonas() {
         return personas;
@@ -179,8 +207,6 @@ public class DetalleVO {
         this.liquidado = liquidado;
     }
 
-
-
     public double getCosto() {
         return costo;
     }
@@ -193,14 +219,13 @@ public class DetalleVO {
     public String toString() {
         String cadena = " personas, ";
         String cadenaHabitaciones = " habitaciones, viaje ";
-        if(personas == 1){
+        if (personas == 1) {
             cadena = " persona, ";
         }
-        if(habitaciones==1){
+        if (habitaciones == 1) {
             cadenaHabitaciones = " habitación, viaje ";
         }
-        return  id + " : " + personas + cadena + habitaciones  + cadenaHabitaciones +  viaje.toLowerCase()  ;
+        return id + " : " + personas + cadena + habitaciones + cadenaHabitaciones + viaje.toLowerCase();
     }
-    
-    
+
 }

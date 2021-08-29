@@ -2299,6 +2299,7 @@ create table usuario (
 	pass varchar(100) not null, 
     nombre varchar(100) not null,
     tipo enum("Administrador", "Coordinador") not null,
+    telefono varchar(15) not null,
     constraint pk_id primary key (id),
     constraint uq_usuario unique(usuario)
 );
@@ -2313,11 +2314,14 @@ create table detalle(
     hora time not null,
     habitacion tinyint not null default 0,
     costo double not null,
+    anticipo double default 0,
     liquidado boolean not null default false,
     estado enum("CANCELADO", "VENDIDO") not null,
     pago enum("EFECTIVO", "TARJETA", "DEPOSITO") not null, 
 	viaje enum("REDONDO", "SENCILLO") not null,
     hora_regreso time,
+    fecha_regreso date,
+    fecha_venta date not null,
     #Posiblemente las observaciones sean aquí
     constraint pk_id primary key(id),
     constraint fk_id_viaje_detalle foreign key (id_viaje) references viaje (id),
@@ -2354,7 +2358,7 @@ create table hotel_destino_viaje(
 	constraint fk_id_viaje_hotel_destino_viaje foreign key(id_viaje) references viaje(id)
 );
 
-insert into usuario values(null, "alan1606", "fbce7e488e05eb8c22dbbc98b0690c29", "Alan", "Administrador");
+insert into usuario values(null, "alan1606", "fbce7e488e05eb8c22dbbc98b0690c29", "Alan", "Administrador", "6272790112");
 
 create table detalle_hotel_destino_viaje(
 	id bigint unsigned not null auto_increment,

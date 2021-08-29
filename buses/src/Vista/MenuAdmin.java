@@ -67,6 +67,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         btnAsientos.setBackground(new java.awt.Color(255, 255, 255));
         btnAsientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/005-asientos.png"))); // NOI18N
         btnAsientos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAsientos.setNextFocusableComponent(btnDestinos);
         btnAsientos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAsientosActionPerformed(evt);
@@ -77,6 +78,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         btnDestinos.setBackground(new java.awt.Color(255, 255, 255));
         btnDestinos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/002-destino.png"))); // NOI18N
         btnDestinos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnDestinos.setNextFocusableComponent(btnViajes);
         btnDestinos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDestinosActionPerformed(evt);
@@ -87,6 +89,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         btnClientes.setBackground(new java.awt.Color(255, 255, 255));
         btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/003-cliente.png"))); // NOI18N
         btnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnClientes.setNextFocusableComponent(btnDetalles);
         btnClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClientesActionPerformed(evt);
@@ -97,6 +100,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         btnDetalles.setBackground(new java.awt.Color(255, 255, 255));
         btnDetalles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/006-informacion.png"))); // NOI18N
         btnDetalles.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnDetalles.setNextFocusableComponent(btnAnadir);
         btnDetalles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDetallesActionPerformed(evt);
@@ -107,6 +111,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         btnViajes.setBackground(new java.awt.Color(255, 255, 255));
         btnViajes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/007-viajes.png"))); // NOI18N
         btnViajes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnViajes.setNextFocusableComponent(btnHoteles);
         btnViajes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViajesActionPerformed(evt);
@@ -117,6 +122,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         btnAnadir.setBackground(new java.awt.Color(255, 255, 255));
         btnAnadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/008-anadir.png"))); // NOI18N
         btnAnadir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAnadir.setNextFocusableComponent(btnHotelesEnViaje);
         btnAnadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnadirActionPerformed(evt);
@@ -152,6 +158,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         btnHoteles.setBackground(new java.awt.Color(255, 255, 255));
         btnHoteles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/hotel.png"))); // NOI18N
         btnHoteles.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnHoteles.setNextFocusableComponent(btnCancelaciones);
         btnHoteles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHotelesActionPerformed(evt);
@@ -165,6 +172,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         btnHotelesEnViaje.setBackground(new java.awt.Color(255, 255, 255));
         btnHotelesEnViaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/hotel-viajes.png"))); // NOI18N
         btnHotelesEnViaje.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnHotelesEnViaje.setNextFocusableComponent(btnAsientos);
         btnHotelesEnViaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHotelesEnViajeActionPerformed(evt);
@@ -178,6 +186,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         btnCancelaciones.setBackground(new java.awt.Color(255, 255, 255));
         btnCancelaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/hotel.png"))); // NOI18N
         btnCancelaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCancelaciones.setNextFocusableComponent(btnClientes);
         btnCancelaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelacionesActionPerformed(evt);

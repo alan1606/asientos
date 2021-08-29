@@ -130,7 +130,11 @@ private void backArrow(){
 
         jLabel2.setText("Destino");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+
+        comboDestino.setNextFocusableComponent(comboFecha);
         jPanel2.add(comboDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 72, 240, 30));
+
+        comboFecha.setNextFocusableComponent(comboViaje);
         jPanel2.add(comboFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 122, 240, 30));
 
         jLabel3.setText("Fecha");
@@ -138,14 +142,20 @@ private void backArrow(){
 
         jLabel4.setText("Viaje");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+
+        comboViaje.setNextFocusableComponent(comboHotel);
         jPanel2.add(comboViaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 172, 240, 30));
 
         jLabel6.setText("Cantidad");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
+
+        comboHotel.setNextFocusableComponent(txtCantidad);
         jPanel2.add(comboHotel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 222, 240, 30));
 
         jLabel7.setText("Hotel");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
+
+        txtCantidad.setNextFocusableComponent(btnCrear);
         jPanel2.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 240, 30));
 
         btnGuardar.setBackground(new java.awt.Color(5, 101, 249));

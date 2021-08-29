@@ -34,10 +34,10 @@ public class UsuarioDAO {
     /*private static final String SQL_SELECT_BY_NAME = "SELECT * "
             + " FROM categoria WHERE nombre = ?";*/
     private static final String SQL_UPDATE = "UPDATE usuario "
-            + " SET pass= ?, nombre=?, tipo=? WHERE id =?";
+            + " SET pass= ?, nombre=?, tipo=?, telefono = ? WHERE id =?";
 
     private static final String SQL_INSERT = "INSERT INTO usuario "
-            + " VALUES(null,?,?,?, ?)";
+            + " VALUES(null,?,?,?,?,?)";
 
     private static final String SQL_DELETE = "DELETE FROM usuario WHERE id=?";
 
@@ -57,8 +57,9 @@ public class UsuarioDAO {
                 String pass = rs.getString("pass");
                 String nombre = rs.getString("nombre");
                 String tipo = rs.getString("tipo");
-
-                usuario = new UsuarioVO(id, usuarioName, pass, nombre, tipo);
+                String telefono = rs.getString("telefono");
+                
+                usuario = new UsuarioVO(id, usuarioName, pass, nombre, tipo, telefono);
                 usuarios.add(usuario);
             }
         } catch (SQLException ex) {
@@ -87,8 +88,9 @@ public class UsuarioDAO {
                 String pass = rs.getString("pass");
                 String nombre = rs.getString("nombre");
                 String tipo = rs.getString("tipo");
-
-                usuario = new UsuarioVO(id, usuarioName, pass, nombre, tipo);
+                String telefono = rs.getString("telefono");
+                
+                usuario = new UsuarioVO(id, usuarioName, pass, nombre, tipo, telefono);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -112,13 +114,14 @@ public class UsuarioDAO {
             stmt.setString(1, _usuario);
             rs = stmt.executeQuery();
             if (rs.next()) {
-                int id = rs.getInt("id");
+               int id = rs.getInt("id");
                 String usuarioName = rs.getString("usuario");
                 String pass = rs.getString("pass");
                 String nombre = rs.getString("nombre");
                 String tipo = rs.getString("tipo");
-
-                usuario = new UsuarioVO(id, usuarioName, pass, nombre, tipo);
+                String telefono = rs.getString("telefono");
+                
+                usuario = new UsuarioVO(id, usuarioName, pass, nombre, tipo, telefono);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -142,12 +145,13 @@ public class UsuarioDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String nickUsuario = rs.getString("usuario");
+                String usuarioName = rs.getString("usuario");
                 String pass = rs.getString("pass");
                 String nombre = rs.getString("nombre");
                 String tipo = rs.getString("tipo");
-
-                usuario = new UsuarioVO(id, nickUsuario, pass, nombre, tipo);
+                String telefono = rs.getString("telefono");
+                
+                usuario = new UsuarioVO(id, usuarioName, pass, nombre, tipo, telefono);
                 usuarios.add(usuario);
             }
         } catch (SQLException ex) {
@@ -172,13 +176,14 @@ public class UsuarioDAO {
             stmt.setString(1, _tipo);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("id");
-                String nickUsuario = rs.getString("usuario");
+               int id = rs.getInt("id");
+                String usuarioName = rs.getString("usuario");
                 String pass = rs.getString("pass");
                 String nombre = rs.getString("nombre");
                 String tipo = rs.getString("tipo");
-
-                usuario = new UsuarioVO(id, nickUsuario, pass, nombre, tipo);
+                String telefono = rs.getString("telefono");
+                
+                usuario = new UsuarioVO(id, usuarioName, pass, nombre, tipo, telefono);
                 usuarios.add(usuario);
             }
         } catch (SQLException ex) {
@@ -203,13 +208,14 @@ public class UsuarioDAO {
             stmt.setString(1, _tipo);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("id");
-                String nickUsuario = rs.getString("usuario");
+               int id = rs.getInt("id");
+                String usuarioName = rs.getString("usuario");
                 String pass = rs.getString("pass");
                 String nombre = rs.getString("nombre");
                 String tipo = rs.getString("tipo");
-
-                usuario = new UsuarioVO(id, nickUsuario, pass, nombre, tipo);
+                String telefono = rs.getString("telefono");
+                
+                usuario = new UsuarioVO(id, usuarioName, pass, nombre, tipo, telefono);
                 usuarios.add(usuario);
             }
         } catch (SQLException ex) {
@@ -233,7 +239,8 @@ public class UsuarioDAO {
             stmt.setString(2, usuario.getPass());
             stmt.setString(3, usuario.getNombre());
             stmt.setString(4, usuario.getTipo());
-
+            stmt.setString(5, usuario.getTelefono());
+            
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -254,7 +261,8 @@ public class UsuarioDAO {
             stmt.setString(1, usuario.getPass());
             stmt.setString(2, usuario.getNombre());
             stmt.setString(3, usuario.getTipo());
-            stmt.setInt(4, usuario.getId());
+            stmt.setString(4, usuario.getTelefono());
+            stmt.setInt(5, usuario.getId());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {

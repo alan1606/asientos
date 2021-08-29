@@ -25,6 +25,9 @@ public class ClienteDAO {
     private static final String SQL_SELECT_BY_ID = "SELECT * "
             + " FROM cliente WHERE id=?";
     
+    private static final String SQL_SELECT_IDS_IN_TRAVEL = "SELECT distinct(cliente.id) "
+            + " from detalle join cliente on cliente.id = detalle.id_cliente where detalle.id_viaje = ?";
+    
       private static final String SQL_SELECT_BY_TYPE = "SELECT * "
             + " FROM cliente WHERE tipo=? order by nombre";
 
@@ -97,7 +100,38 @@ public class ClienteDAO {
         return cliente;
     }
 
-     public ArrayList<ClienteVO> encontrarNombre(String _nombre) {
+    
+    public ArrayList<ClienteVO> encontrarViaje(int _idViaje) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ClienteVO cliente = null;
+        ArrayList<ClienteVO> clientes = new ArrayList<>();
+        ArrayList<Integer> ids = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement( SQL_SELECT_IDS_IN_TRAVEL);
+            stmt.setInt(1, _idViaje);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                ids.add(id);
+            }
+            for(Integer temporal: ids){
+                clientes.add(encontrar(temporal));
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return clientes;
+    }
+    
+    public ArrayList<ClienteVO> encontrarNombre(String _nombre) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -127,6 +161,7 @@ public class ClienteDAO {
         }
         return clientes;
     }
+     
      
      public ArrayList<ClienteVO> encontrarTelefono(String _telefono) {
         Connection conn = null;

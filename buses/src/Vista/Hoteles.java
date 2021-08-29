@@ -88,6 +88,7 @@ public class Hoteles extends javax.swing.JFrame {
         jPanel2.add(lbl_destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 101, -1, -1));
 
         comboDestino.setBackground(new java.awt.Color(153, 204, 255));
+        comboDestino.setNextFocusableComponent(comboHotel);
         jPanel2.add(comboDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 94, 179, 30));
 
         lbl_hotel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -100,6 +101,7 @@ public class Hoteles extends javax.swing.JFrame {
         btnAnadir.setText("Añadir");
         btnAnadir.setBorder(null);
         btnAnadir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAnadir.setNextFocusableComponent(comboDestino);
         jPanel2.add(btnAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 127, 30));
 
         lbl_back.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -114,6 +116,7 @@ public class Hoteles extends javax.swing.JFrame {
         jPanel2.add(lbl_rergesar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 21, -1, 20));
 
         comboHotel.setBackground(new java.awt.Color(153, 204, 255));
+        comboHotel.setNextFocusableComponent(txtModificar);
         jPanel2.add(comboHotel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 179, 30));
 
         btnNuevoHotel.setBackground(new java.awt.Color(5, 101, 249));
@@ -133,6 +136,7 @@ public class Hoteles extends javax.swing.JFrame {
         lbl_hotel1.setText("Modificar");
         jPanel2.add(lbl_hotel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
 
+        txtModificar.setNextFocusableComponent(btnAnadir);
         txtModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtModificarActionPerformed(evt);

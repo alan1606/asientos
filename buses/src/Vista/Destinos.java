@@ -90,6 +90,7 @@ public class Destinos extends javax.swing.JFrame {
         jPanel1.add(lbl_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 12, 30, 40));
 
         txtCiudad.setMinimumSize(new java.awt.Dimension(5, 25));
+        txtCiudad.setNextFocusableComponent(comboPais);
         jPanel1.add(txtCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 134, 250, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -110,6 +111,7 @@ public class Destinos extends javax.swing.JFrame {
         btnAnadir.setText("Añadir");
         btnAnadir.setBorder(null);
         btnAnadir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAnadir.setNextFocusableComponent(txtCiudad);
         btnAnadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnadirActionPerformed(evt);
@@ -170,7 +172,11 @@ public class Destinos extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("País:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+
+        comboPais.setNextFocusableComponent(comboEstado);
         jPanel1.add(comboPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 250, -1));
+
+        comboEstado.setNextFocusableComponent(btnAnadir);
         jPanel1.add(comboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 250, -1));
 
         btnEliminar.setBackground(new java.awt.Color(5, 101, 249));

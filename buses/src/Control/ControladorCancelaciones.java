@@ -82,6 +82,7 @@ public class ControladorCancelaciones implements ActionListener, MouseListener, 
         cargarTabla();
         habilitarBotones(false);
         this.vista.txtCliente.setEnabled(false);
+        vista.txtCliente.requestFocus();
     }
 
     @Override
@@ -239,11 +240,12 @@ public class ControladorCancelaciones implements ActionListener, MouseListener, 
         }
     }
 
-    private void cargarComboVacio(JComboBox combo) {
+    private void cargarComboVacio(JComboBox comboIngresado) {
         try {
+            JComboBox combo = new JComboBox();
             combo.removeAllItems();
             combo.addItem("SELECCIONE UNA OPCIÓN");
-            combo.setModel(combo.getModel());
+            comboIngresado.setModel(combo.getModel());
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -313,7 +315,11 @@ public class ControladorCancelaciones implements ActionListener, MouseListener, 
             //Actualización del estado del detalle a cancelado
             detalle.setEstado("CANCELADO");
             modeloDetalles.actualizar(detalle);
-            
+
+            cargarComboVacio(vista.comboTicket);
+            cargarComboVacio(vista.comboViaje);
+            clean();
+
             if (detalle.getHabitaciones() != 0) {//Hay que liberar habitaciones
                 liberarHabitaciones(detalle.getId());
             }
@@ -369,6 +375,13 @@ public class ControladorCancelaciones implements ActionListener, MouseListener, 
             modeloHotelDestinoViaje.actualizar(hotelDestino);
             System.out.println("actualizado \n" + hotelDestino);
         }
+    }
+
+    private void clean() {
+        vista.txtBuscar.setText("");
+        vista.txtCliente.setText("");
+        vista.comboTicket.setSelectedIndex(0);
+        vista.comboViaje.setSelectedIndex(0);
     }
 
 }
