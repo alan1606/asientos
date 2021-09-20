@@ -26,6 +26,9 @@ public class EstadoDAO {
     private static final String SQL_SELECT_BY_ID_PAIS = "SELECT * "
             + " FROM estado WHERE id_pais=? order by nombre";
 
+    private static final String SQL_SELECT_BY_ID = "SELECT * "
+            + " FROM estado WHERE id=? order by nombre";
+    
     /*private static final String SQL_SELECT_BY_NAME = "SELECT * "
             + " FROM categoria WHERE nombre = ?";*/
     private static final String SQL_UPDATE = "UPDATE estado "
@@ -94,6 +97,33 @@ public class EstadoDAO {
         return estados;
     }
 
+     public EstadoVO encontrarPorId(int _idEstado) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        EstadoVO estado = new EstadoVO();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_BY_ID);
+            stmt.setInt(1, _idEstado);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int idPais = rs.getInt("id_pais");
+                String nombre = rs.getString("nombre");
+
+                estado = new EstadoVO(id, idPais, nombre);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return estado;
+    }
+    
     public int insertar(EstadoVO estado) {
         Connection conn = null;
         PreparedStatement stmt = null;

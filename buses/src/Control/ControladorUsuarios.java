@@ -49,6 +49,8 @@ public class ControladorUsuarios implements ActionListener, MouseListener, KeyLi
         this.vista.radioAdministrador.addActionListener(this);
         this.vista.radioCoordinador.addActionListener(this);
         this.vista.txtSearch.addKeyListener(this);
+        this.vista.txtNombre.addKeyListener(this);
+        this.vista.btnRegistrar.addKeyListener(this);
         //Se agrega un action listener por cada objeto
     }
     
@@ -60,6 +62,7 @@ public class ControladorUsuarios implements ActionListener, MouseListener, KeyLi
         cargarTiposUsuarios();
         habilitarBotones(false);
         cargarTabla();
+        vista.txtUsuario.requestFocus();
     }
     
     private void cargarTabla() {
@@ -262,6 +265,16 @@ public class ControladorUsuarios implements ActionListener, MouseListener, KeyLi
     
     @Override
     public void keyPressed(KeyEvent ke) {
+        if(ke.getSource() == vista.btnRegistrar && ke.getKeyCode() == KeyEvent.VK_ENTER){
+            if (datosValidos() && deseaRegistrar() == 0) {
+                try {
+                    registrar();
+                    habilitarBotones(false);
+                } catch (ParseException ex) {
+                    ex.printStackTrace(System.out);
+                }
+            }
+        }
     }
     
     @Override
@@ -291,6 +304,10 @@ public class ControladorUsuarios implements ActionListener, MouseListener, KeyLi
                 cargarTabla();
             }
         }
+        else if(ke.getSource() == vista.txtNombre){
+            vista.txtNombre.setText(vista.txtNombre.getText().toUpperCase());
+        }
+        
     }
     
     private void buscarPorNombre(UsuarioVO recibido) {

@@ -58,6 +58,8 @@ public class ControladorViajes implements ActionListener, MouseListener, KeyList
         this.vista.lbl_back.addMouseListener(this);
         this.vista.comboDestinoSearch.addActionListener(this);
         this.vista.dateSearch.addPropertyChangeListener(this);
+        this.vista.txtObservaciones.addKeyListener(this);
+        this.vista.btnCrear.addKeyListener(this);
         //Se agrega un action listener por cada objeto
     }
 
@@ -402,11 +404,24 @@ public class ControladorViajes implements ActionListener, MouseListener, KeyList
 
     @Override
     public void keyPressed(KeyEvent ke) {
+        if ((ke.getSource() == vista.btnCrear || ke.getSource() == vista.txtObservaciones) && ke.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (datosValidos() && deseaRegistrar() == 0) {
+                try {
+                    registrar();
+                    habilitarBotones(false);
+                } catch (ParseException ex) {
+                    ex.printStackTrace(System.out);
+                }
+            }
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent ke) {
 
+        if (ke.getSource() == vista.txtObservaciones) {
+            vista.txtObservaciones.setText(vista.txtObservaciones.getText().toUpperCase());
+        }
     }
 
     private void buscarPorDestino(DestinoVO destino) {

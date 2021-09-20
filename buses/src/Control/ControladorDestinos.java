@@ -51,7 +51,9 @@ public class ControladorDestinos implements ActionListener, MouseListener, KeyLi
         this.vista.tablaDestinos.addMouseListener(this);
         this.vista.lbl_back.addMouseListener(this);
         this.vista.txtBuscar.addKeyListener(this);
-
+        this.vista.txtCiudad.addKeyListener(this);
+        this.vista.txtBuscar.addKeyListener(this);
+        this.vista.btnAnadir.addKeyListener(this);
         //Se agrega un action listener por cada objeto
     }
 
@@ -90,7 +92,7 @@ public class ControladorDestinos implements ActionListener, MouseListener, KeyLi
             }
         }
         if (ae.getSource() == vista.btnEliminar) {
-            if (vista.tablaDestinos.getSelectedRow()!=-1 && deseaEliminar() == 0) {
+            if (vista.tablaDestinos.getSelectedRow() != -1 && deseaEliminar() == 0) {
                 eliminar();
                 habilitarBotones(false);
             }
@@ -261,20 +263,28 @@ public class ControladorDestinos implements ActionListener, MouseListener, KeyLi
 
     @Override
     public void keyPressed(KeyEvent ke) {
+        if (ke.getSource() == vista.btnAnadir && ke.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (datosValidos() && deseaRegistrar() == 0) {
+                registrar();
+                habilitarBotones(false);
+            }
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent ke) {
         if (ke.getSource() == vista.txtBuscar) {
+            vista.txtCiudad.setText(vista.txtCiudad.getText().toUpperCase());
             if (vista.txtBuscar.getText().equals("")) {
                 cargarTabla();
-            }
-            else{
+            } else {
                 buscarPorNombre();
             }
+        } else if (ke.getSource() == vista.txtCiudad) {
+            vista.txtCiudad.setText(vista.txtCiudad.getText().toUpperCase());
         }
     }
-    
+
     private void buscarPorNombre() {
         TablaDestinos tabla = new TablaDestinos();
         tabla.cargarTabla(vista.tablaDestinos, modelo.encontrar(vista.txtBuscar.getText()));

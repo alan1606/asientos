@@ -7,12 +7,14 @@ package Control;
 
 import ClassDAO.ClienteDAO;
 import ClassDAO.DestinoDAO;
+import ClassDAO.DetalleDAO;
 import ClassDAO.EstadoDAO;
 import ClassDAO.ViajeDAO;
 import ClassVO.ClienteVO;
 import ClassVO.DestinoVO;
+import ClassVO.DetalleVO;
 import ClassVO.EstadoVO;
-import ClassVO.PaisVO;
+
 import ClassVO.UsuarioVO;
 import ClassVO.ViajeVO;
 import Reports.GenerarReporte;
@@ -27,7 +29,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -44,6 +45,7 @@ public class ControladorDetalles implements ActionListener, MouseListener {
     private DestinoDAO modeloDestinos;
     private ViajeDAO modeloViajes;
     private ClienteDAO modeloClientes;
+    private DetalleDAO modeloDetalles;
 
     public ControladorDetalles(Detalles menu, UsuarioVO usuario, DetallesAsientos asientos, DetallesTickets tickets) {
         this.usuario = usuario;
@@ -55,6 +57,7 @@ public class ControladorDetalles implements ActionListener, MouseListener {
         modeloDestinos = new DestinoDAO();
         modeloViajes = new ViajeDAO();
         modeloClientes = new ClienteDAO();
+        modeloDetalles = new DetalleDAO();
 
         this.menu.btnTickets.addActionListener(this);
         this.menu.btnAsientos.addActionListener(this);
@@ -67,6 +70,7 @@ public class ControladorDetalles implements ActionListener, MouseListener {
         this.tickets.comboFecha.addActionListener(this);
         this.tickets.comboViaje.addActionListener(this);
         this.tickets.lbl_back.addMouseListener(this);
+        this.tickets.comboDetalles.addActionListener(this);
 
         this.asientos.btnConsultar.addActionListener(this);
         this.asientos.comboCiudad.addActionListener(this);
@@ -86,6 +90,22 @@ public class ControladorDetalles implements ActionListener, MouseListener {
         menu.setVisible(true);
 
         menu.btnTickets.requestFocus();
+        try {
+            cargarComboVacio(tickets.comboDetalles);
+            cargarComboVacio(tickets.comboViaje);
+            cargarComboVacio(tickets.comboFecha);
+            cargarComboVacio(tickets.comboCiudad);
+            cargarComboVacio(tickets.comboCliente);
+        } catch (Exception e) {
+        }
+        
+        try {
+            cargarComboVacio(asientos.comboViaje);
+            cargarComboVacio(asientos.comboFecha);
+            cargarComboVacio(asientos.comboCiudad);
+        } catch (Exception e) {
+        }
+
     }
 
     @Override
@@ -94,28 +114,127 @@ public class ControladorDetalles implements ActionListener, MouseListener {
             cargarEstados();
             abrirTickets();
         } else if (e.getSource() == menu.btnAsientos) {
+            cargarEstadosAsientos();
             abrirAasientos();
         } else if (e.getSource() == tickets.comboEstado) {
             if (tickets.comboEstado.getSelectedIndex() != 0) {
                 cargarDestinos();
+                try {
+                    reiniciarCombo(tickets.comboDetalles);
+                    reiniciarCombo(tickets.comboViaje);
+                    reiniciarCombo(tickets.comboFecha);
+                    reiniciarCombo(tickets.comboCliente);
+                } catch (Exception ex) {
+                }
+            } else {
+                try {
+                    reiniciarCombo(tickets.comboCiudad);
+                    reiniciarCombo(tickets.comboDetalles);
+                    reiniciarCombo(tickets.comboViaje);
+                    reiniciarCombo(tickets.comboFecha);
+                    reiniciarCombo(tickets.comboCliente);
+                } catch (Exception ex) {
+                }
             }
         } else if (e.getSource() == tickets.comboCiudad) {
             if (tickets.comboCiudad.getSelectedIndex() != 0) {
                 cargarFechas();
+                try {
+                    reiniciarCombo(tickets.comboDetalles);
+                    reiniciarCombo(tickets.comboViaje);
+                    reiniciarCombo(tickets.comboCliente);
+                } catch (Exception ex) {
+                }
+            } else {
+                try {
+                    reiniciarCombo(tickets.comboDetalles);
+                    reiniciarCombo(tickets.comboViaje);
+                    reiniciarCombo(tickets.comboFecha);
+                    reiniciarCombo(tickets.comboCliente);
+                } catch (Exception ex) {
+                }
             }
         } else if (e.getSource() == tickets.comboFecha) {
             if (tickets.comboFecha.getSelectedIndex() != 0) {
                 cargarViajes();
+                try {
+                    reiniciarCombo(tickets.comboDetalles);
+                    reiniciarCombo(tickets.comboCliente);
+                } catch (Exception ex) {
+                }
+            } else {
+                try {
+                    reiniciarCombo(tickets.comboDetalles);
+                    reiniciarCombo(tickets.comboViaje);
+                    reiniciarCombo(tickets.comboCliente);
+                } catch (Exception ex) {
+                }
             }
         } else if (e.getSource() == tickets.comboViaje) {
             if (tickets.comboViaje.getSelectedIndex() != 0) {
                 cargarClientes();
+                try {
+                    reiniciarCombo(tickets.comboDetalles);
+                } catch (Exception ex) {
+                }
+            } else {
+                try {
+                    reiniciarCombo(tickets.comboDetalles);
+                    reiniciarCombo(tickets.comboCliente);
+                } catch (Exception ex) {
+                }
             }
         } else if (e.getSource() == tickets.btnConsultar) {
             if (datosValidos()) {
                 mostrarTickets();
             }
+        } else if (e.getSource() == tickets.comboCliente) {
+            cargarTickets();
+        } else if (e.getSource() == asientos.comboEstado) {
+            if (asientos.comboEstado.getSelectedIndex() != 0) {
+                cargarDestinosAsientos();
+                try {
+                    reiniciarCombo(asientos.comboViaje);
+                    reiniciarCombo(asientos.comboFecha);
+                } catch (Exception ex) {
+                }
+            } else {
+                try {
+                    reiniciarCombo(asientos.comboCiudad);
+                    reiniciarCombo(asientos.comboViaje);
+                    reiniciarCombo(asientos.comboFecha);
+                } catch (Exception ex) {
+                }
+            }
+        } else if (e.getSource() == asientos.comboCiudad) {
+            if (asientos.comboCiudad.getSelectedIndex() != 0) {
+                cargarFechasAsientos();
+                try {
+                    reiniciarCombo(asientos.comboViaje);
+                } catch (Exception ex) {
+                }
+            } else {
+                try {
+                    reiniciarCombo(asientos.comboFecha);
+                    reiniciarCombo(asientos.comboViaje);
+                } catch (Exception ex) {
+                }
+            }
+        } else if (e.getSource() == asientos.comboFecha) {
+            if (asientos.comboFecha.getSelectedIndex() != 0) {
+                cargarViajesAsientos();
+            } else {
+                try {
+                    reiniciarCombo(tickets.comboViaje);
+                } catch (Exception ex) {
+                }
+            }
+        } else if (e.getSource() == asientos.btnConsultar) {
+            if (datosValidosAsientos()) {
+                mostrarAsientos();
+            }
         }
+
     }
 
     @Override
@@ -283,6 +402,9 @@ public class ControladorDetalles implements ActionListener, MouseListener {
         if (tickets.comboViaje.getSelectedIndex() == 0) {
             return false;
         }
+        if (tickets.comboDetalles.getSelectedIndex() == 0) {
+            return false;
+        }
         return true;
     }
 
@@ -291,7 +413,139 @@ public class ControladorDetalles implements ActionListener, MouseListener {
         ClienteVO cliente = (ClienteVO) tickets.comboCliente.getSelectedItem();
         EstadoVO estado = (EstadoVO) tickets.comboEstado.getSelectedItem();
         DestinoVO destino = (DestinoVO) tickets.comboCiudad.getSelectedItem();
- 
-        GenerarReporte.reporteTicket(cliente.getId(), viaje.getId(), cliente.getNombre(), destino.getCiudad(), estado.getNombre(), viaje.getFecha());
+        DetalleVO detalle = (DetalleVO) tickets.comboDetalles.getSelectedItem();
+
+        GenerarReporte.reporteTicket(cliente.getId(), viaje.getId(), cliente.getNombre(), destino.getCiudad(), estado.getNombre(), viaje.getFecha(), detalle.getId());
+    }
+
+    private void cargarTickets() {
+
+        try {
+            JComboBox combo = new JComboBox();
+            combo.removeAllItems();
+            combo.addItem("SELECCIONE UNA OPCIÓN");
+
+            ClienteVO cliente = (ClienteVO) tickets.comboCliente.getSelectedItem();
+
+            ViajeVO viaje = (ViajeVO) tickets.comboViaje.getSelectedItem();
+
+            for (DetalleVO detalle : modeloDetalles.encontrar(viaje.getId(), cliente.getId())) {
+                combo.addItem(detalle);
+            }
+
+            tickets.comboDetalles.setModel(combo.getModel());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    private void cargarComboVacio(JComboBox combo) {
+        try {
+            combo.removeAllItems();
+            combo.addItem("SELECCIONE UNA OPCIÓN");
+
+            combo.setModel(combo.getModel());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    private void cargarEstadosAsientos() {
+        try {
+            JComboBox combo = new JComboBox();
+            combo.removeAllItems();
+            combo.addItem("SELECCIONE UNA OPCIÓN");
+            for (EstadoVO estado : modeloEstados.encontrar(42)) {//El pais con el id 42 es méxico
+                combo.addItem(estado);
+            }
+            asientos.comboEstado.setModel(combo.getModel());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    private void cargarDestinosAsientos() {
+        try {
+            JComboBox combo = new JComboBox();
+            combo.removeAllItems();
+            combo.addItem("SELECCIONE UNA OPCIÓN");
+            EstadoVO estado = (EstadoVO) asientos.comboEstado.getSelectedItem();
+            for (DestinoVO destino : modeloDestinos.encontrarEstado(estado.getId())) {
+                combo.addItem(destino);
+            }
+            asientos.comboCiudad.setModel(combo.getModel());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    private void cargarFechasAsientos() {
+        DestinoVO destino = (DestinoVO) asientos.comboCiudad.getSelectedItem();
+        ArrayList<ViajeVO> viajesEnDestino = modeloViajes.encontrarByDestino(destino.getId());
+        try {
+            JComboBox combo = new JComboBox();
+            combo.removeAllItems();
+            combo.addItem("SELECCIONE UNA OPCIÓN");
+
+            String actual = "";
+            String anterior = "";
+            combo.addItem(viajesEnDestino.get(0).getFecha());
+            for (int i = 1; i < viajesEnDestino.size(); i++) {
+                actual = viajesEnDestino.get(i).getFecha();
+                anterior = viajesEnDestino.get(i - 1).getFecha();
+                if (!actual.equals(anterior)) {
+                    combo.addItem(viajesEnDestino.get(i).getFecha());
+                }
+            }
+            asientos.comboFecha.setModel(combo.getModel());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    private void cargarViajesAsientos() {
+        try {
+            JComboBox combo = new JComboBox();
+            combo.removeAllItems();
+            combo.addItem("SELECCIONE UNA OPCIÓN");
+
+            DestinoVO destino = (DestinoVO) asientos.comboCiudad.getSelectedItem();
+            ArrayList<ViajeVO> viajesEnDestino = modeloViajes.encontrarByDestinoDate(destino.getId(), asientos.comboFecha.getSelectedItem().toString());
+
+            for (ViajeVO viaje : viajesEnDestino) {
+                combo.addItem(viaje);
+            }
+
+            asientos.comboViaje.setModel(combo.getModel());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    private boolean datosValidosAsientos() {
+        if (asientos.comboEstado.getSelectedIndex() == 0) {
+            return false;
+        }
+        if (asientos.comboCiudad.getSelectedIndex() == 0) {
+            return false;
+        }
+        if (asientos.comboFecha.getSelectedIndex() == 0) {
+            return false;
+        }
+        if (asientos.comboViaje.getSelectedIndex() == 0) {
+            return false;
+        }
+        return true;
+    }
+
+    private void mostrarAsientos() {
+        ViajeVO viaje = (ViajeVO) asientos.comboViaje.getSelectedItem();
+        DestinoVO destino = (DestinoVO) asientos.comboCiudad.getSelectedItem();
+
+        GenerarReporte.reporteViaje(destino.getCiudad(), viaje.getFecha(), viaje.getId());
+    }
+
+    private void reiniciarCombo(JComboBox combo) {
+        combo.setSelectedIndex(0);
     }
 }

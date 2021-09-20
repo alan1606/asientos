@@ -57,6 +57,11 @@ public class ControladorHoteles implements ActionListener, KeyListener, MouseLis
         this.vista.comboDestinoSearch.addActionListener(this);
         this.vista.btnNuevoHotel.addActionListener(this);
         this.vistaNuevoHotel.btnGuardar.addActionListener(this);
+        this.vistaNuevoHotel.btnGuardar.addKeyListener(this);
+        this.vistaNuevoHotel.btnCancelar.addActionListener(this);
+        this.vistaNuevoHotel.txtHotel.addKeyListener(this);
+        this.vista.txtModificar.addKeyListener(this);
+        this.vista.btnAnadir.addKeyListener(this);
         //Se agrega un action listener por cada objeto
     }
 
@@ -126,6 +131,9 @@ public class ControladorHoteles implements ActionListener, KeyListener, MouseLis
             vistaNuevoHotel.txtHotel.setText("");
             vistaNuevoHotel.dispose();
             iniciar();
+        } else if (ae.getSource() == vistaNuevoHotel.btnCancelar) {
+            vistaNuevoHotel.txtHotel.setText("");
+            vistaNuevoHotel.dispose();
         }
     }
 
@@ -352,11 +360,28 @@ public class ControladorHoteles implements ActionListener, KeyListener, MouseLis
 
     @Override
     public void keyPressed(KeyEvent ke) {
+        if ((ke.getSource() == vistaNuevoHotel.txtHotel || ke.getSource() == vistaNuevoHotel.btnGuardar) && ke.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (vistaNuevoHotel.txtHotel.getText().length() != 0 && deseaRegistrarHotel() == 0) {
+                registrarHotel();
+            }
+            vistaNuevoHotel.txtHotel.setText("");
+            vistaNuevoHotel.dispose();
+            iniciar();
+        } else if ((ke.getSource() == vista.txtModificar || ke.getSource() == vista.btnAnadir) && ke.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (datosValidos() && deseaRegistrar() == 0) {
+                registrar();
+                habilitarBotones(false);
+            }
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent ke) {
-
+        if (ke.getSource() == vistaNuevoHotel.txtHotel) {
+            vistaNuevoHotel.txtHotel.setText(vistaNuevoHotel.txtHotel.getText().toUpperCase());
+        } else if (ke.getSource() == vista.txtModificar) {
+            vista.txtModificar.setText(vista.txtModificar.getText().toUpperCase());
+        }
     }
 
     private void buscarPorDestino(DestinoVO destino) {

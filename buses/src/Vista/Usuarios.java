@@ -92,9 +92,17 @@ public class Usuarios extends javax.swing.JFrame {
 
         jLabel5.setText("Tipo");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, -1, -1));
+
+        txtNombre.setNextFocusableComponent(txtTelefono);
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 220, -1));
+
+        txtUsuario.setNextFocusableComponent(txtNombre);
         jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 220, -1));
+
+        comboTipo.setNextFocusableComponent(btnRegistrar);
         jPanel1.add(comboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 220, -1));
+
+        txtPasswd.setNextFocusableComponent(comboTipo);
         jPanel1.add(txtPasswd, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 220, -1));
 
         btnEliminar.setBackground(new java.awt.Color(5, 101, 249));
@@ -176,6 +184,8 @@ public class Usuarios extends javax.swing.JFrame {
 
         jLabel6.setText("Teléfono");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
+
+        txtTelefono.setNextFocusableComponent(txtPasswd);
         jPanel1.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 220, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

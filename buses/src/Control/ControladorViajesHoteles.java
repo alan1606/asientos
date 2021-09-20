@@ -55,6 +55,9 @@ public class ControladorViajesHoteles implements ActionListener, MouseListener, 
         this.vista.comboHotel.addActionListener(this);
         this.vista.tableHoteles.addMouseListener(this);
         this.vista.lbl_back.addMouseListener(this);
+        this.vista.txtCantidad.addKeyListener(this);
+        this.vista.btnCrear.addKeyListener(this);
+        vista.btnGuardar.addKeyListener(this);
         //Se agrega un action listener por cada objeto
     }
 
@@ -493,6 +496,19 @@ public class ControladorViajesHoteles implements ActionListener, MouseListener, 
 
     @Override
     public void keyPressed(KeyEvent ke) {
+        if ((ke.getSource() == vista.txtCantidad || ke.getSource() == vista.btnCrear) && ke.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (hotelExisteEnTabla(((HotelVO) vista.comboHotel.getSelectedItem()).getId())) {
+                JOptionPane.showMessageDialog(vista, "Modifique el hotel desde la tabla");
+            } else if (datosValidos()) {
+                System.out.println("aaa");
+                agregarElementoATabla();
+            }
+        } else if (ke.getSource() == vista.btnGuardar && ke.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (vista.tableHoteles.getRowCount() > 0) {
+                guardarCambios();
+                resetAll();
+            }
+        }
     }
 
     @Override

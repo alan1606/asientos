@@ -27,7 +27,7 @@ public class DetalleDAO {
             + " FROM detalle order by id desc limit 1";
 
     private static final String SQL_SELECT_BY_ID = "SELECT * "
-            + " FROM detalle WHERE id_viaje=? and id_cliente = ? and id_usuario = ?";
+            + " FROM detalle WHERE id_viaje=? and id_cliente = ? and id_usuario = ? order by id desc";
 
     private static final String SQL_SELECT_BY_ID_VIAJE_CLIENTE = "SELECT * "
             + " FROM detalle WHERE id_viaje=? and id_cliente = ? and estado = 'VENDIDO'";

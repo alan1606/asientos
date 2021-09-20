@@ -10,6 +10,7 @@ import ClassDAO.ClienteDAO;
 import ClassDAO.DestinoDAO;
 import ClassDAO.DetalleDAO;
 import ClassDAO.DetalleHotelDestinoViajeDAO;
+import ClassDAO.EstadoDAO;
 import ClassDAO.HotelDAO;
 import ClassDAO.HotelEnDestinoEnViajeDAO;
 import ClassDAO.ViajeDAO;
@@ -18,12 +19,14 @@ import ClassVO.ClienteVO;
 import ClassVO.DestinoVO;
 import ClassVO.DetalleHotelDestinoViajeVO;
 import ClassVO.DetalleVO;
+import ClassVO.EstadoVO;
 import ClassVO.HotelEnDestinoEnViajeVO;
 import ClassVO.HotelVO;
 import ClassVO.UsuarioVO;
 import ClassVO.ViajeVO;
 import Paneles.Panel47;
 import Paneles.Panel64;
+import Reports.GenerarReporte;
 import Tables.TablaHoteles;
 import Vista.Asientos;
 import Vista.MenuAdmin;
@@ -74,16 +77,17 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
     private boolean camion64 = false;
     private DetalleHotelDestinoViajeDAO modeloDetalleHotelDestinoViaje;
     private String fechaActual;
-    
-    
+    private EstadoDAO modeloEstados;
+
     public ControladorAsientos(Asientos vista, UsuarioVO usuario) {
         this.vista = vista;
         this.usuario = usuario;
 
         modelo = new AsientoDAO();
+        modeloEstados = new EstadoDAO();
 
         fechaActual = dateToString(new Date().getTime());
-        
+
         this.vista.btnComprar.addActionListener(this);
         this.vista.comboTipoViaje.addActionListener(this);
         this.vista.comboFormaPago.addActionListener(this);
@@ -101,7 +105,9 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         this.vista.btnQuitarHotel.addActionListener(this);
         this.vista.lbl_back.addMouseListener(this);
         this.vista.comboHoraSalida.addActionListener(this);
-        
+        this.vista.txtSube.addKeyListener(this);
+        this.vista.btnComprar.addKeyListener(this);
+
         //Se agrega un action listener por cada objeto
     }
 
@@ -126,6 +132,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         this.vista.btnAgregarHotel.setEnabled(nuevoEstado);
         this.vista.btnQuitarHotel.setEnabled(nuevoEstado);
         this.vista.tableHoteles.setEnabled(nuevoEstado);
+        this.vista.dateFechaRegreso.setEnabled(nuevoEstado);
     }
 
     private void cargarTiposDeViaje() {
@@ -203,6 +210,12 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
                 } else {
                     registrarViajeSencillo();
                 }
+                if (deseaVerTicket() == 0) {
+                    mostrarTicket();
+                }
+                //Actualizar disponibilidad en los hoteles
+                cargarPlantilla();
+                clean();
             }
         } else if (ae.getSource() == vista.comboDestino) {
             if (vista.comboDestino.getSelectedIndex() != 0) {
@@ -869,8 +882,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         String viaje = "REDONDO";
         String horaRegreso = vista.comboHoraRegreso.getSelectedItem().toString();
         String fechaRegreso = vista.dateFechaRegreso.getFechaSeleccionada();
-        JOptionPane.showMessageDialog(null, fechaRegreso);
-        
+
         DetalleVO detalle = new DetalleVO(idViaje, cliente.getId(), usuario.getId(), satisfactorios, sube, hora, habitaciones, costo, anticipo, true, "VENDIDO", formaPago, viaje, horaRegreso, fechaRegreso, fechaActual);
         if (modeloDetalle.insertar(detalle) == 0) {
             JOptionPane.showMessageDialog(vista, "Ha ocurrido un error al registrar el detalle");
@@ -880,9 +892,6 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
             crearDetalleCompraDeHabitaciones(modeloDetalle.encontrarUltimo().getId());
         }
 
-        //Actualizar disponibilidad en los hoteles
-        cargarPlantilla();
-        clean();
     }
 
     private int calcularHabitacionesVendidas() {
@@ -930,12 +939,11 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
             }
         }
 
-        DetalleVO detalle = new DetalleVO(idViaje, cliente.getId(), usuario.getId(), satisfactorios, sube, hora, habitaciones, costo, anticipo, true, "VENDIDO", formaPago, viaje, horaRegreso, fechaActual, fechaActual);
+        DetalleVO detalle = new DetalleVO(idViaje, cliente.getId(), usuario.getId(), satisfactorios, sube, hora, habitaciones, costo, anticipo, true, "VENDIDO", formaPago, viaje, null, null, fechaActual);
         if (modeloDetalle.insertar(detalle) == 0) {
             JOptionPane.showMessageDialog(vista, "Ha ocurrido un error al registrar el detalle");
         }
-        cargarPlantilla();
-        clean();
+
     }
 
     private boolean datosValidos() {
@@ -1092,11 +1100,22 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
 
     @Override
     public void keyPressed(KeyEvent ke) {
+        if (ke.getSource() == vista.btnComprar && ke.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (datosValidos() && deseaComprar() == 0) {
+                if (vista.comboTipoViaje.getSelectedIndex() == 1) {
+                    registrarViajeRedondo();
+                } else {
+                    registrarViajeSencillo();
+                }
+            }
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent ke) {
-
+        if (ke.getSource() == vista.txtSube) {
+            vista.txtSube.setText(vista.txtSube.getText().toUpperCase());
+        }
     }
 
     private void limpiarTabla() {
@@ -1140,6 +1159,21 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String strDate = dateFormat.format(date);
         return strDate;
+    }
+
+    private int deseaVerTicket() {
+        int dialog = JOptionPane.YES_NO_OPTION;
+        return (JOptionPane.showConfirmDialog(null, "¿Desea ver el ticket? ", "Ticket", dialog));
+    }
+
+    private void mostrarTicket() {
+        ViajeVO viaje = modeloViajes.encontrar(Integer.parseInt(vista.comboId.getSelectedItem().toString()));
+        ClienteVO cliente = (ClienteVO) vista.comboCliente.getSelectedItem();
+        DestinoVO destino = (DestinoVO) vista.comboDestino.getSelectedItem();
+        EstadoVO estado = modeloEstados.encontrarPorId(destino.getIdEstado());
+        DetalleVO detalle = modeloDetalle.encontrar(viaje.getId(), cliente.getId(), usuario.getId());
+
+        GenerarReporte.reporteTicket(cliente.getId(), viaje.getId(), cliente.getNombre(), destino.getCiudad(), estado.getNombre(), viaje.getFecha(), detalle.getId());
     }
 
 }

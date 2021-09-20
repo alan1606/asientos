@@ -46,7 +46,8 @@ public class ControladorClientes implements ActionListener, MouseListener, KeyLi
         this.vista.tablaClientes.addMouseListener(this);
         this.vista.lbl_back.addMouseListener(this);
         this.vista.txtBuscar.addKeyListener(this);
-
+        this.vista.txtNombre.addKeyListener(this);
+        this.vista.btnAnadir.addKeyListener(this);
         //Se agrega un action listener por cada objeto
     }
 
@@ -59,7 +60,7 @@ public class ControladorClientes implements ActionListener, MouseListener, KeyLi
         cargarTabla();
         habilitarBotones(false);
         vista.txtNombre.requestFocus();
-        
+
     }
 
     private void cargarCombobox() {
@@ -262,6 +263,12 @@ public class ControladorClientes implements ActionListener, MouseListener, KeyLi
 
     @Override
     public void keyPressed(KeyEvent ke) {
+        if (ke.getSource() == vista.btnAnadir && ke.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (datosValidos() && deseaRegistrar() == 0) {
+                registrar();
+                habilitarBotones(false);
+            }
+        }
     }
 
     @Override
@@ -276,6 +283,8 @@ public class ControladorClientes implements ActionListener, MouseListener, KeyLi
             } else {
                 buscarPorTelefono();
             }
+        } else if (ke.getSource() == vista.txtNombre) {
+            this.vista.txtNombre.setText(vista.txtNombre.getText().toUpperCase());
         }
     }
 }

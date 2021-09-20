@@ -69,6 +69,8 @@ public class DetallesTickets extends javax.swing.JFrame {
         lbl_back = new javax.swing.JLabel();
         lbl_rergesar = new javax.swing.JLabel();
         btnConsultar = new rojerusan.RSButtonHover();
+        comboDetalles = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,34 +78,34 @@ public class DetallesTickets extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         comboEstado.setNextFocusableComponent(comboCiudad);
-        jPanel1.add(comboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 240, -1));
+        jPanel1.add(comboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 240, -1));
 
         comboCiudad.setNextFocusableComponent(comboFecha);
-        jPanel1.add(comboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 240, -1));
+        jPanel1.add(comboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 240, -1));
 
         jLabel2.setText("Ciudad:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
 
         comboFecha.setNextFocusableComponent(comboViaje);
-        jPanel1.add(comboFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 240, -1));
+        jPanel1.add(comboFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 240, -1));
 
         jLabel3.setText("Fecha:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 40, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 40, -1));
 
         comboViaje.setNextFocusableComponent(comboCliente);
-        jPanel1.add(comboViaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 240, -1));
+        jPanel1.add(comboViaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 240, -1));
 
         jLabel4.setText("Viaje:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
 
         comboCliente.setNextFocusableComponent(btnConsultar);
-        jPanel1.add(comboCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 240, -1));
+        jPanel1.add(comboCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 240, -1));
 
         jLabel5.setText("Cliente:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
 
         jLabel1.setText("Estado:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
         lbl_back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -123,7 +125,13 @@ public class DetallesTickets extends javax.swing.JFrame {
                 btnConsultarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, 240, -1));
+        jPanel1.add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, 240, -1));
+
+        comboDetalles.setNextFocusableComponent(btnConsultar);
+        jPanel1.add(comboDetalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 240, -1));
+
+        jLabel6.setText("Ticket:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -133,7 +141,9 @@ public class DetallesTickets extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -187,6 +197,7 @@ public class DetallesTickets extends javax.swing.JFrame {
     public rojerusan.RSButtonHover btnConsultar;
     public javax.swing.JComboBox<String> comboCiudad;
     public javax.swing.JComboBox<String> comboCliente;
+    public javax.swing.JComboBox<String> comboDetalles;
     public javax.swing.JComboBox<String> comboEstado;
     public javax.swing.JComboBox<String> comboFecha;
     public javax.swing.JComboBox<String> comboViaje;
@@ -195,6 +206,7 @@ public class DetallesTickets extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JLabel lbl_back;
     private javax.swing.JLabel lbl_rergesar;

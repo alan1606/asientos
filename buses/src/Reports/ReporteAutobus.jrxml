@@ -9,19 +9,30 @@
 	<parameter name="destino" class="java.lang.String"/>
 	<parameter name="fecha" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select asiento.numero, cliente.nombre,  cliente.telefono from asiento 
+		<![CDATA[select asiento.numero, cliente.nombre, detalle.viaje, group_concat(" ", hotel.nombre, " " ,d.habitaciones) as habitaciones, detalle.sube, DATE_FORMAT(detalle.hora, "%I:%i %p") as hora, cliente.telefono from asiento 
 join cliente on asiento.id_cliente = cliente.id
+join viaje on viaje.id = asiento.id_viaje
+left join detalle on detalle.id_viaje = viaje.id and cliente.id = detalle.id_cliente
+left join detalle_hotel_destino_viaje d on  d.id_detalle = detalle.id
+left join hotel_destino_viaje h on h.id = d.id_hotel_destino_viaje
+left join hotel on hotel.id = h.id_hotel
+left join destino on destino.id = h.id_destino
 where asiento.id_viaje = $P{idViaje}
+group by (asiento.id)
 order by asiento.numero;]]>
 	</queryString>
 	<field name="numero" class="java.lang.Integer"/>
 	<field name="nombre" class="java.lang.String"/>
+	<field name="viaje" class="java.lang.String"/>
+	<field name="habitaciones" class="java.lang.String"/>
+	<field name="sube" class="java.lang.String"/>
+	<field name="hora" class="java.lang.String"/>
 	<field name="telefono" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="41" splitType="Stretch">
+		<band height="42" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="570" height="41"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -34,7 +45,7 @@ order by asiento.numero;]]>
 	<columnHeader>
 		<band height="20" splitType="Stretch">
 			<staticText>
-				<reportElement x="55" y="0" width="83" height="20"/>
+				<reportElement x="0" y="0" width="48" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -48,7 +59,7 @@ order by asiento.numero;]]>
 				<text><![CDATA[Número]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="138" y="0" width="242" height="20"/>
+				<reportElement x="48" y="0" width="172" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -62,7 +73,7 @@ order by asiento.numero;]]>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="380" y="0" width="129" height="20"/>
+				<reportElement x="508" y="0" width="62" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -75,12 +86,60 @@ order by asiento.numero;]]>
 				</textElement>
 				<text><![CDATA[Telefono]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="220" y="0" width="56" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Viaje]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="406" y="0" width="67" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Sube]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="0" width="130" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Habitaciones]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="473" y="0" width="35" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Hora]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement x="55" y="0" width="83" height="20"/>
+				<reportElement x="0" y="0" width="48" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -92,7 +151,7 @@ order by asiento.numero;]]>
 				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{numero}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="138" y="0" width="242" height="20"/>
+				<reportElement x="48" y="0" width="172" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -104,7 +163,7 @@ order by asiento.numero;]]>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="380" y="0" width="129" height="20"/>
+				<reportElement x="508" y="0" width="62" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -114,6 +173,54 @@ order by asiento.numero;]]>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="0" width="56" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{viaje}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="0" width="130" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{habitaciones}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="406" y="0" width="67" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{sube}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="473" y="0" width="35" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{hora}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

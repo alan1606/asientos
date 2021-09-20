@@ -70,6 +70,7 @@ public class ControladorCancelaciones implements ActionListener, MouseListener, 
         this.vista.lbl_back.addMouseListener(this);
         this.vista.tablaClientes.addMouseListener(this);
         this.vista.btnCancelar.addActionListener(this);
+        this.vista.btnCancelar.addKeyListener(this);
         //No voy a poner listeners sobre clientes ni sobre asientos, porque son datos obtenidos
 
     }
@@ -144,6 +145,14 @@ public class ControladorCancelaciones implements ActionListener, MouseListener, 
 
     @Override
     public void keyPressed(KeyEvent e) {
+        if(e.getSource() == vista.btnCancelar && e.getKeyCode() == KeyEvent.VK_ENTER){
+            if (vista.comboTicket.getSelectedIndex() != 0) {
+                if (deseaProceder() == 0) {
+                    DetalleVO detalle = (DetalleVO) vista.comboTicket.getSelectedItem();
+                    procesar(detalle, obtenerIdDeComboViaje(), obtenerIdDeTxtCliente());
+                }
+            }
+        }
     }
 
     @Override
