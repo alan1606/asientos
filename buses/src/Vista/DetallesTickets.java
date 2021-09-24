@@ -26,8 +26,8 @@ public class DetallesTickets extends javax.swing.JFrame {
         backArrow();
     }
 
-    private void icono() {
-        setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
+    private void icono(){
+        setIconImage(new ImageIcon(getClass().getResource("../Assets/vista_ventana.jpg")).getImage());
     }
 
     private void backArrow() {

@@ -18,7 +18,7 @@ public class BienvenidoAdmin extends javax.swing.JDialog {
     }
     
     private void icono(){
-        setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("../Assets/vista_ventana.jpg")).getImage());
     }
 
     /**

@@ -12,7 +12,9 @@ public class Conexion {
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/asientos?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
     private static final String JDBC_USER = "root";
     private static final String JDBC_PASSWORD = "1231606";
-
+//    private static final String JDBC_URL = "jdbc:mysql://192.168.1.29:3306/asientos?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+//    private static final String JDBC_USER = "swuser";
+//    private static final String JDBC_PASSWORD = "ñ@swcontraseña"; //1231606
     private static Connection singleConnection;
 
     public static Connection getConnection() throws SQLException {
@@ -21,6 +23,7 @@ public class Conexion {
             singleConnection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Fallo en la conexión al servidor. Por favor reintente más tarde");
         }
         return singleConnection;
     }
@@ -38,6 +41,7 @@ public class Conexion {
             stmt.close();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
+
         }
     }
 

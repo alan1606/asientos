@@ -24,10 +24,10 @@ public class Clientes extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         backArrow();
         //bgImage();
-        //icono();
+        icono();
     }
     private void icono(){
-        setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("../Assets/vista_ventana.jpg")).getImage());
     }
     private void bgImage(){
         try {

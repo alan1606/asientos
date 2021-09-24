@@ -152,7 +152,7 @@ public class Cancelaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_lbl_backMouseClicked
 
     private void icono(){
-        setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("../Assets/vista_ventana.jpg")).getImage());
     }
     
     private void backArrow(){

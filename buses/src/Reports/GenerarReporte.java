@@ -17,8 +17,8 @@ public class GenerarReporte {
         Connection conn = null;
         try {
             conn = Conexion.getConnection();
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(System.getProperty("user.dir") + "\\src\\Reports\\ReporteTicket.jasper");
-            
+           JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(System.getProperty("user.dir") + "\\src\\Reports\\ReporteTicket.jasper");
+            //JasperReport reporte = (JasperReport) JRLoader.loadObject(System.getProperty("user.dir" + "\\src\\Reports\\ReporteTixket.jasper"));
             
             Map parametro = new HashMap();
             parametro.put("idCliente", idCliente);
@@ -43,7 +43,7 @@ public class GenerarReporte {
         Connection conn = null;
         try {
             conn = Conexion.getConnection();
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(System.getProperty("user.dir") + "\\src\\Reports\\ReporteAutobus.jasper");
+            JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(System.getProperty("user.dir") + "\\src\\Reports\\ReporteAutobus.jasper");
             
             
             Map parametro = new HashMap();

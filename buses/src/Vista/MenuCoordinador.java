@@ -32,8 +32,8 @@ public class MenuCoordinador extends javax.swing.JFrame {
         // icono();
     }
 
-    private void icono() {
-        setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
+    private void icono(){
+        setIconImage(new ImageIcon(getClass().getResource("../Assets/vista_ventana.jpg")).getImage());
     }
 
     /**
@@ -66,18 +66,13 @@ public class MenuCoordinador extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnAsientos = new javax.swing.JButton();
-        btnDestinos = new javax.swing.JButton();
         btnClientes = new javax.swing.JButton();
         btnDetalles = new javax.swing.JButton();
-        btnViajes = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        btnHoteles = new javax.swing.JButton();
-        jLabel17 = new javax.swing.JLabel();
+        btn_info = new javax.swing.JButton();
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/005-asientos.png"))); // NOI18N
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -216,7 +211,7 @@ public class MenuCoordinador extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
@@ -233,87 +228,51 @@ public class MenuCoordinador extends javax.swing.JFrame {
         btnAsientos.setBackground(new java.awt.Color(255, 255, 255));
         btnAsientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/005-asientos.png"))); // NOI18N
         btnAsientos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnAsientos.setNextFocusableComponent(btnDestinos);
         btnAsientos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAsientosActionPerformed(evt);
             }
         });
-        jPanel3.add(btnAsientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
-
-        btnDestinos.setBackground(new java.awt.Color(255, 255, 255));
-        btnDestinos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/002-destino.png"))); // NOI18N
-        btnDestinos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnDestinos.setNextFocusableComponent(btnViajes);
-        btnDestinos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDestinosActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnDestinos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, -1, -1));
+        jPanel3.add(btnAsientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
 
         btnClientes.setBackground(new java.awt.Color(255, 255, 255));
         btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/003-cliente.png"))); // NOI18N
         btnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnClientes.setNextFocusableComponent(btnDetalles);
-        jPanel3.add(btnClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+        jPanel3.add(btnClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
 
         btnDetalles.setBackground(new java.awt.Color(255, 255, 255));
         btnDetalles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/006-informacion.png"))); // NOI18N
         btnDetalles.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnDetalles.setNextFocusableComponent(btnHoteles);
-        jPanel3.add(btnDetalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, -1));
-
-        btnViajes.setBackground(new java.awt.Color(255, 255, 255));
-        btnViajes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/007-viajes.png"))); // NOI18N
-        btnViajes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnViajes.setNextFocusableComponent(btnClientes);
-        btnViajes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViajesActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnViajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
+        jPanel3.add(btnDetalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
 
         jLabel11.setText("Asientos");
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 100, 50, -1));
-
-        jLabel12.setText("Destinos");
-        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 50, -1));
-
-        jLabel13.setText("Viajes");
-        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 40, -1));
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 60, -1));
 
         jLabel14.setText("Clientes");
-        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 220, 50, -1));
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 60, -1));
 
         jLabel15.setText("Detalles de");
-        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 90, -1));
+        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 100, -1));
 
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("compra");
-        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 50, -1));
+        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 80, -1));
 
-        btnHoteles.setBackground(new java.awt.Color(255, 255, 255));
-        btnHoteles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/hotel.png"))); // NOI18N
-        btnHoteles.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnHoteles.setNextFocusableComponent(btnAsientos);
-        btnHoteles.addActionListener(new java.awt.event.ActionListener() {
+        btn_info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/002-info.png"))); // NOI18N
+        btn_info.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHotelesActionPerformed(evt);
+                btn_infoActionPerformed(evt);
             }
         });
-        jPanel3.add(btnHoteles, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, -1, -1));
-
-        jLabel17.setText("Hoteles");
-        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, -1, -1));
+        jPanel3.add(btn_info, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, 20, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,17 +289,9 @@ public class MenuCoordinador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAsientosActionPerformed
 
-    private void btnDestinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDestinosActionPerformed
+    private void btn_infoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_infoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnDestinosActionPerformed
-
-    private void btnViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViajesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnViajesActionPerformed
-
-    private void btnHotelesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHotelesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHotelesActionPerformed
+    }//GEN-LAST:event_btn_infoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -380,10 +331,8 @@ public class MenuCoordinador extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAsientos;
     public javax.swing.JButton btnClientes;
-    public javax.swing.JButton btnDestinos;
     public javax.swing.JButton btnDetalles;
-    public javax.swing.JButton btnHoteles;
-    public javax.swing.JButton btnViajes;
+    private javax.swing.JButton btn_info;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -394,12 +343,9 @@ public class MenuCoordinador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

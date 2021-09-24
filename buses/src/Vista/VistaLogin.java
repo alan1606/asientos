@@ -11,11 +11,13 @@ public class VistaLogin extends javax.swing.JFrame {
 
     public VistaLogin() {
         initComponents();
-       
+        icono();
         //setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
 
     }
-
+    private void icono(){
+        setIconImage(new ImageIcon(getClass().getResource("../Assets/vista_ventana.jpg")).getImage());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

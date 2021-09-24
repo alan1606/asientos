@@ -22,7 +22,7 @@ public class NuevoHotel extends javax.swing.JFrame {
         icono();
     }
     private void icono(){
-        setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("../Assets/vista_ventana.jpg")).getImage());
     }
     private void closeWindow(){
     this.dispose();

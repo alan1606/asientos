@@ -257,7 +257,7 @@ public class Asientos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnComprarActionPerformed
 
     private void icono(){
-        setIconImage(new ImageIcon(getClass().getResource("../Assets/logo3.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("../Assets/vista_ventana.jpg")).getImage());
     }
     
     private void backArrow(){
