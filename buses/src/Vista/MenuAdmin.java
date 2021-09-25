@@ -18,7 +18,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
         RSAnimation.setBajar(-230, (alto/2)-(this.getHeight()/2), 2, 2, this);
         this.setLocationRelativeTo(this);
-        //icono();
+        icono();
     }
     private void icono(){
         setIconImage(new ImageIcon(getClass().getResource("../Assets/vista_ventana.jpg")).getImage());
@@ -61,6 +61,7 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú del administrador");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -198,6 +199,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         jLabel13.setText("Hoteles");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 50, -1));
 
+        btn_info.setBackground(new java.awt.Color(255, 255, 255));
         btn_info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/002-info.png"))); // NOI18N
         btn_info.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -336,7 +338,7 @@ public class MenuAdmin extends javax.swing.JFrame {
     public javax.swing.JButton btnHoteles;
     public javax.swing.JButton btnHotelesEnViaje;
     public javax.swing.JButton btnViajes;
-    private javax.swing.JButton btn_info;
+    public javax.swing.JButton btn_info;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -29,7 +29,7 @@ public class MenuCoordinador extends javax.swing.JFrame {
         int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
         RSAnimation.setBajar(-230, (alto / 2) - (this.getHeight() / 2), 2, 2, this);
         this.setLocationRelativeTo(null);
-        // icono();
+        icono();
     }
 
     private void icono(){
@@ -195,6 +195,7 @@ public class MenuCoordinador extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú");
+        setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -259,6 +260,7 @@ public class MenuCoordinador extends javax.swing.JFrame {
         jLabel16.setText("compra");
         jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 80, -1));
 
+        btn_info.setBackground(new java.awt.Color(255, 255, 255));
         btn_info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/002-info.png"))); // NOI18N
         btn_info.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -332,7 +334,7 @@ public class MenuCoordinador extends javax.swing.JFrame {
     public javax.swing.JButton btnAsientos;
     public javax.swing.JButton btnClientes;
     public javax.swing.JButton btnDetalles;
-    private javax.swing.JButton btn_info;
+    public javax.swing.JButton btn_info;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

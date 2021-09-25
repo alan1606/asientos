@@ -14,6 +14,7 @@ import Vista.Detalles;
 import Vista.DetallesAsientos;
 import Vista.DetallesTickets;
 import Vista.Hoteles;
+import Vista.Inforomacion;
 import Vista.MenuAdmin;
 import Vista.Usuarios;
 import Vista.Viajes;
@@ -45,6 +46,7 @@ public class ControladorMenuAdmin implements ActionListener, KeyListener {
         this.vista.btnHoteles.addActionListener(this);
         this.vista.btnHotelesEnViaje.addActionListener(this);
         this.vista.btnCancelaciones.addActionListener(this);
+        this.vista.btn_info.addActionListener(this);
 
         //Se agrega un action listener por cada objeto
     }
@@ -84,8 +86,15 @@ public class ControladorMenuAdmin implements ActionListener, KeyListener {
         else if(ae.getSource() == vista.btnCancelaciones){
             abrirCancelaciones();
         }
+        else if (ae.getSource() == vista.btn_info){
+            abrirInfo();
+        }
     }
-
+    private void abrirInfo(){
+        vista.dispose();
+        ControladorInfo info = new ControladorInfo(new Inforomacion(), usuario);
+        info.Iniciar();
+    }
     private void abrirHotelesEnViaje(){
         vista.dispose();
         ControladorViajesHoteles viajesHoteles = new ControladorViajesHoteles(new ViajesHoteles(), usuario);
