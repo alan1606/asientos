@@ -175,7 +175,7 @@ public class DetalleDAO {
         return detalle;
     }
 
-    public DetalleVO encontrar(int _id) {
+    public DetalleVO encontrar(Long _id) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -183,7 +183,7 @@ public class DetalleDAO {
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT_BY_ID_UNIQUE);
-            stmt.setInt(1, _id);
+            stmt.setLong(1, _id);
             rs = stmt.executeQuery();
             if (rs.next()) {
                Long id = rs.getLong("id");

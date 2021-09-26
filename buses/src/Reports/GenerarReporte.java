@@ -1,5 +1,7 @@
 package Reports;
 
+import ClassDAO.DetalleDAO;
+import ClassVO.DetalleVO;
 import Conexion.Conexion;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -10,16 +12,22 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.util.*;
 import net.sf.jasperreports.view.JasperViewer;
 
-
 public class GenerarReporte {
 
     public static void reporteTicket(int idCliente, int idViaje, String cliente, String ciudad, String estado, String fecha, Long idDetalle) {
+        String reporteDir = "ReporteTicket.jasper";
+        DetalleDAO modelo = new DetalleDAO();
+        DetalleVO detalle = modelo.encontrar(idDetalle);
+
         Connection conn = null;
+        if (detalle.getViaje().equals("SENCILLO")) {
+            reporteDir = "ReporteTicketSencillo.jasper";
+        }
         try {
             conn = Conexion.getConnection();
-           JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(System.getProperty("user.dir") + "\\src\\Reports\\ReporteTicket.jasper");
+            JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(System.getProperty("user.dir") + "\\src\\Reports\\" + reporteDir);
             //JasperReport reporte = (JasperReport) JRLoader.loadObject(System.getProperty("user.dir" + "\\src\\Reports\\ReporteTixket.jasper"));
-            
+
             Map parametro = new HashMap();
             parametro.put("idCliente", idCliente);
             parametro.put("idViaje", idViaje);
@@ -44,8 +52,7 @@ public class GenerarReporte {
         try {
             conn = Conexion.getConnection();
             JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(System.getProperty("user.dir") + "\\src\\Reports\\ReporteAutobus.jasper");
-            
-            
+
             Map parametro = new HashMap();
             parametro.put("idViaje", idViaje);
             parametro.put("destino", destino);
@@ -61,6 +68,5 @@ public class GenerarReporte {
             Conexion.close(conn);
         }
     }
-    
-    
+
 }

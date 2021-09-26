@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="396" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.7715610000000037"/>
-	<property name="ireport.x" value="123"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="3.138428376721009"/>
+	<property name="ireport.x" value="43"/>
+	<property name="ireport.y" value="105"/>
 	<parameter name="idCliente" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -109,21 +109,14 @@ where detalle.id_cliente = $P{idCliente} and detalle.id_viaje = $P{idViaje} and 
 				<textFieldExpression class="java.lang.String"><![CDATA["POR ANTICIPO A CUENTA DE"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="-1" y="64" width="98" height="16"/>
+				<reportElement x="0" y="64" width="98" height="16"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="12" isBold="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA["PARTIENDO DE "]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="-1" y="84" width="113" height="16"/>
-				<textElement verticalAlignment="Bottom">
-					<font size="12" isBold="false"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["REGRESANDO DE "]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="0" y="103" width="116" height="17"/>
+				<reportElement x="0" y="82" width="116" height="17"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="12" isBold="false"/>
 				</textElement>
@@ -158,14 +151,14 @@ where detalle.id_cliente = $P{idCliente} and detalle.id_viaje = $P{idViaje} and 
 				<textFieldExpression class="java.lang.String"><![CDATA["RECIBIMOS DEL CLIENTE "]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="-1" y="24" width="119" height="16"/>
+				<reportElement x="0" y="24" width="119" height="16"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="SansSerif" size="12" isBold="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA["LA CANTIDAD DE $"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="118" y="20" width="90" height="20"/>
+				<reportElement x="124" y="20" width="90" height="20"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
@@ -179,49 +172,14 @@ where detalle.id_cliente = $P{idCliente} and detalle.id_viaje = $P{idViaje} and 
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{pago} + ""]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="116" y="100" width="445" height="20"/>
+				<reportElement x="116" y="80" width="445" height="19"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{observaciones} + ""]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="113" y="80" width="206" height="20"/>
-				<textElement verticalAlignment="Bottom">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{ciudad} + ""]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="363" y="80" width="77" height="20"/>
-				<textElement verticalAlignment="Bottom">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{fecha_regreso} + ""]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="485" y="80" width="56" height="20"/>
-				<textElement verticalAlignment="Bottom">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{hora_regreso} + ""]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="319" y="84" width="44" height="16"/>
-				<textElement verticalAlignment="Bottom">
-					<font size="12" isBold="false"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["EL DÍA "]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="440" y="82" width="45" height="18"/>
-				<textElement verticalAlignment="Bottom">
-					<font size="12" isBold="false"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["A LAS "]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="97" y="60" width="222" height="20"/>
+				<reportElement x="98" y="60" width="222" height="20"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -270,7 +228,7 @@ where detalle.id_cliente = $P{idCliente} and detalle.id_viaje = $P{idViaje} and 
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{asientos} + ""]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="180" y="40" width="29" height="20"/>
+				<reportElement x="181" y="40" width="28" height="20"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
