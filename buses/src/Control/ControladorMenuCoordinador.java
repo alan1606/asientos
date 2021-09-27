@@ -13,7 +13,9 @@ import Vista.Destinos;
 import Vista.Hoteles;
 import Vista.Inforomacion;
 import Vista.MenuCoordinador;
-import Vista.Viajes;
+import Vista.Detalles;
+import Vista.DetallesAsientos;
+import Vista.DetallesTickets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -108,7 +110,9 @@ public class ControladorMenuCoordinador implements ActionListener, KeyListener {
     }
 
     private void abrirDetalles() {
-
+        vista.dispose();
+        ControladorDetalles detalles = new ControladorDetalles(new Detalles(), usuario, new DetallesAsientos(), new DetallesTickets());
+        detalles.iniciar();
     }
 
     @Override
