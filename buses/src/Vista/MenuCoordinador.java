@@ -33,7 +33,10 @@ public class MenuCoordinador extends javax.swing.JFrame {
     }
 
     private void icono(){
-        setIconImage(new ImageIcon(getClass().getResource("../Assets/vista_ventana.jpg")).getImage());
+        try {
+            setIconImage(new ImageIcon(getClass().getResource("/Assets/vista_ventana.jpg")).getImage());
+        } catch (Exception e) {
+        }
     }
 
     /**

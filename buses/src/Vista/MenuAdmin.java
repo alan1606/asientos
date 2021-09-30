@@ -21,7 +21,10 @@ public class MenuAdmin extends javax.swing.JFrame {
         icono();
     }
     private void icono(){
-        setIconImage(new ImageIcon(getClass().getResource("../Assets/vista_ventana.jpg")).getImage());
+        try {
+            setIconImage(new ImageIcon(getClass().getResource("/Assets/vista_ventana.jpg")).getImage());
+        } catch (Exception e) {
+        }
     }
     
     /**

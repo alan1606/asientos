@@ -25,7 +25,10 @@ public class Inforomacion extends javax.swing.JFrame {
         backArrow();
     }
     private void icono(){
-        setIconImage(new ImageIcon(getClass().getResource("../Assets/vista_ventana.jpg")).getImage());
+        try {
+            setIconImage(new ImageIcon(getClass().getResource("/Assets/vista_ventana.jpg")).getImage());
+        } catch (Exception e) {
+        }
     }
     private void backArrow(){
         try {
@@ -79,13 +82,13 @@ public class Inforomacion extends javax.swing.JFrame {
         jLabel3.setText("Versión del sistema:");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jLabel4.setText("1.0.1 (Beta)");
+        jLabel4.setText("1.0.2 (Beta)");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel5.setText("Versión DAUI:");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jLabel6.setText("1.0.2");
+        jLabel6.setText("1.0.2.1");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Información de los desarrolladores");

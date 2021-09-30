@@ -16,7 +16,11 @@ public class VistaLogin extends javax.swing.JFrame {
 
     }
     private void icono(){
-        setIconImage(new ImageIcon(getClass().getResource("../Assets/vista_ventana.jpg")).getImage());
+        try {
+            setIconImage(new ImageIcon(getClass().getResource("/Assets/vista_ventana.jpg")).getImage());
+        } catch (Exception e) {
+        }
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,6 +44,7 @@ public class VistaLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 

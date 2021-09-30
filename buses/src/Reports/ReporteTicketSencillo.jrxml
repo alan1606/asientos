@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="240" pageHeight="585" columnWidth="200" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.2100000000000035"/>
+	<property name="ireport.zoom" value="1.9487171000000065"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="145"/>
+	<property name="ireport.y" value="419"/>
 	<parameter name="idCliente" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -79,7 +79,7 @@ where detalle.id_cliente = $P{idCliente} and detalle.id_viaje = $P{idViaje} and 
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="287" splitType="Stretch">
+		<band height="299" splitType="Stretch">
 			<textField>
 				<reportElement x="-3" y="100" width="181" height="16"/>
 				<textElement verticalAlignment="Bottom">
@@ -200,7 +200,7 @@ where detalle.id_cliente = $P{idCliente} and detalle.id_viaje = $P{idViaje} and 
 				<textFieldExpression><![CDATA[$F{usuario} + ""]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="122" y="237" width="136" height="20"/>
+				<reportElement x="0" y="246" width="136" height="20"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="SansSerif" size="10" isBold="true" isUnderline="true"/>
 				</textElement>
@@ -270,7 +270,7 @@ where detalle.id_cliente = $P{idCliente} and detalle.id_viaje = $P{idViaje} and 
 				<textFieldExpression><![CDATA["FOLIO: " + $F{folio}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="20" y="256" width="152" height="31"/>
+				<reportElement x="21" y="268" width="152" height="31"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="10" isBold="false"/>
 				</textElement>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="240" pageHeight="650" columnWidth="200" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="240" pageHeight="670" columnWidth="200" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.771561000000005"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="648"/>
 	<parameter name="idCliente" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -79,7 +79,7 @@ where detalle.id_cliente = $P{idCliente} and detalle.id_viaje = $P{idViaje} and 
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="364" splitType="Stretch">
+		<band height="381" splitType="Stretch">
 			<textField>
 				<reportElement x="-10" y="12" width="146" height="20"/>
 				<textElement textAlignment="Right">
@@ -249,7 +249,7 @@ where detalle.id_cliente = $P{idCliente} and detalle.id_viaje = $P{idViaje} and 
 				<textFieldExpression><![CDATA[$F{usuario} + ""]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="118" y="303" width="136" height="20"/>
+				<reportElement x="1" y="314" width="199" height="20"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="SansSerif" size="10" isBold="true" isUnderline="true"/>
 				</textElement>
@@ -298,7 +298,7 @@ where detalle.id_cliente = $P{idCliente} and detalle.id_viaje = $P{idViaje} and 
 				<textFieldExpression><![CDATA["VENDEDOR: "]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="11" y="325" width="189" height="38"/>
+				<reportElement x="6" y="343" width="189" height="38"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="10" isBold="false" isUnderline="true"/>
 				</textElement>
