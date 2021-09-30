@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="240" pageHeight="585" columnWidth="200" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.9487171000000065"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="419"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="idCliente" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -58,23 +58,19 @@ where detalle.id_cliente = $P{idCliente} and detalle.id_viaje = $P{idViaje} and 
 	</background>
 	<columnHeader>
 		<band height="108" splitType="Stretch">
-			<image>
-				<reportElement x="21" y="-11" width="170" height="83"/>
-				<imageExpression><![CDATA["C:\\Users\\alxyg\\Documents\\NetBeansProjects\\asientos\\buses\\src\\Assets\\logo_ticket.jpg"]]></imageExpression>
-			</image>
 			<textField>
 				<reportElement x="16" y="58" width="175" height="26"/>
 				<textElement textAlignment="Center">
 					<font fontName="Book Antiqua" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Blvd. Revolución esq. con Falcón #805 Col. Centro Torreón Coah."]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["Blvd. Revolución esq. con Falcón #805 Col. Centro Torreón Coah."]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="3" y="78" width="194" height="30"/>
 				<textElement textAlignment="Center">
 					<font fontName="Book Antiqua" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Tel. (871) 716-72-75 Cel. 8711-87-09-86 y 8713-15-61-23"]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["Tel. (871) 716-72-75 Cel. 8711-87-09-86 y 8713-15-61-23"]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnHeader>
@@ -85,196 +81,196 @@ where detalle.id_cliente = $P{idCliente} and detalle.id_viaje = $P{idViaje} and 
 				<textElement verticalAlignment="Bottom">
 					<font size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["POR ANTICIPO A CUENTA DE"]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["POR ANTICIPO A CUENTA DE"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="-3" y="139" width="98" height="16"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["PARTIENDO DE "]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["PARTIENDO DE "]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="-2" y="171" width="116" height="17"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["OBSERVACIONES: "]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["OBSERVACIONES: "]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="-3" y="237" width="141" height="20"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="10" isBold="false" isItalic="true" isUnderline="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["LUGARES ASIGNADOS: "]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["LUGARES ASIGNADOS: "]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="-3" y="213" width="124" height="16"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["MÉTODO DE PAGO: "]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["MÉTODO DE PAGO: "]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="0" y="69" width="197" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="10" isBold="true" isUnderline="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{cliente}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{cliente}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="-3" y="53" width="160" height="16"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="SansSerif" size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["RECIBIMOS DEL CLIENTE "]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["RECIBIMOS DEL CLIENTE "]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="-3" y="84" width="119" height="16"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="SansSerif" size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["LA CANTIDAD DE $"]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["LA CANTIDAD DE $"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="101" y="80" width="90" height="20"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="SansSerif" size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{anticipo} + ""]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{anticipo} + ""]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="121" y="209" width="100" height="20"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{pago} + ""]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pago} + ""]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="0" y="180" width="200" height="25"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{observaciones} + ""]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{observaciones} + ""]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="79" y="135" width="121" height="20"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{sube} + ""]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{sube} + ""]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="41" y="151" width="77" height="20"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{fecha} + ""]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{fecha} + ""]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="144" y="152" width="56" height="20"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{hora} + ""]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{hora} + ""]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="-3" y="155" width="49" height="16"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["EL DÍA "]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["EL DÍA "]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="106" y="155" width="45" height="17"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["A LAS "]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["A LAS "]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="78" y="223" width="197" height="20"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="SansSerif" size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{usuario} + ""]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{usuario} + ""]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="0" y="246" width="136" height="20"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="SansSerif" size="10" isBold="true" isUnderline="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{asientos} + ""]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{asientos} + ""]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="144" y="96" width="28" height="20"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="SansSerif" size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{numeroP} + ""]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{numeroP} + ""]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="-3" y="113" width="83" height="16"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["LUGAR(ES) A "]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["LUGAR(ES) A "]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="71" y="108" width="149" height="20"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="SansSerif" size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{ciudad} + ""]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ciudad} + ""]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="-3" y="127" width="59" height="16"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["EN VIAJE "]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["EN VIAJE "]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="56" y="123" width="73" height="20"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="SansSerif" size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{viaje} + ""]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{viaje} + ""]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="-2" y="227" width="80" height="16"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["VENDEDOR: "]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["VENDEDOR: "]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="9" y="33" width="141" height="20"/>
 				<textElement>
 					<font size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["TELÉFONO: " + $F{telefono}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["TELÉFONO: " + $F{telefono}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="3" y="13" width="144" height="20"/>
 				<textElement textAlignment="Right">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["FECHA: " + $F{fecha_venta}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["FECHA: " + $F{fecha_venta}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="35" y="1" width="115" height="20"/>
 				<textElement textAlignment="Right">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["FOLIO: " + $F{folio}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["FOLIO: " + $F{folio}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="21" y="268" width="152" height="31"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["________________________ FIRMA DEL CLIENTE"]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["________________________ FIRMA DEL CLIENTE"]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -285,56 +281,56 @@ where detalle.id_cliente = $P{idCliente} and detalle.id_viaje = $P{idViaje} and 
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["**EN CASO DE CANCELACIÓN NO SE REEMBOLSA EL ANTICIPO**"]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["**EN CASO DE CANCELACIÓN NO SE REEMBOLSA EL ANTICIPO**"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="-1" y="3" width="50" height="17"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["TOTAL: "]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["TOTAL: "]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="0" y="24" width="71" height="16"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["ANTICIPO: "]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["ANTICIPO: "]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="0" y="43" width="81" height="17"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["RESTANTE: "]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["RESTANTE: "]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="39" y="0" width="100" height="20"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="SansSerif" size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{costo} + ""]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{costo} + ""]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="59" y="20" width="100" height="20"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="SansSerif" size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{anticipo} + ""]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{anticipo} + ""]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="67" y="40" width="180" height="20"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="SansSerif" size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[($F{costo} - $F{anticipo}) + ""]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{costo} - $F{anticipo}) + ""]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="3" y="90" width="197" height="31"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["**QUEDA SUJETO A LA DISPONIBILIDAD DEL HOTEL**"]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["**QUEDA SUJETO A LA DISPONIBILIDAD DEL HOTEL**"]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>
