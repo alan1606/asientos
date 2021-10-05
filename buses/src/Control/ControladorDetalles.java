@@ -29,6 +29,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -71,6 +72,7 @@ public class ControladorDetalles implements ActionListener, MouseListener {
         this.tickets.comboViaje.addActionListener(this);
         this.tickets.lbl_back.addMouseListener(this);
         this.tickets.comboDetalles.addActionListener(this);
+        this.tickets.checkFolio.addActionListener(this);
 
         this.asientos.btnConsultar.addActionListener(this);
         this.asientos.comboCiudad.addActionListener(this);
@@ -78,6 +80,7 @@ public class ControladorDetalles implements ActionListener, MouseListener {
         this.asientos.comboFecha.addActionListener(this);
         this.asientos.comboViaje.addActionListener(this);
         this.asientos.lbl_back.addMouseListener(this);
+
     }
 
     public void iniciar() {
@@ -98,13 +101,16 @@ public class ControladorDetalles implements ActionListener, MouseListener {
             cargarComboVacio(tickets.comboCliente);
         } catch (Exception e) {
         }
-        
+
         try {
             cargarComboVacio(asientos.comboViaje);
             cargarComboVacio(asientos.comboFecha);
             cargarComboVacio(asientos.comboCiudad);
         } catch (Exception e) {
         }
+
+        tickets.checkFolio.setSelected(true);
+        habilitarBusquedaFolio(true);
 
     }
 
@@ -185,9 +191,18 @@ public class ControladorDetalles implements ActionListener, MouseListener {
                 }
             }
         } else if (e.getSource() == tickets.btnConsultar) {
-            if (datosValidos()) {
-                mostrarTickets();
+            if (!tickets.checkFolio.isSelected()) {
+                if (datosValidosConsultaGrande()) {
+                    mostrarTickets();
+                }
+            } else {
+                if (folioExiste()) {
+                    mostrarTickets();
+                } else {
+                    JOptionPane.showMessageDialog(null, "El folio no existe o está mal digitado");
+                }
             }
+
         } else if (e.getSource() == tickets.comboCliente) {
             cargarTickets();
         } else if (e.getSource() == asientos.comboEstado) {
@@ -233,6 +248,8 @@ public class ControladorDetalles implements ActionListener, MouseListener {
             if (datosValidosAsientos()) {
                 mostrarAsientos();
             }
+        } else if (e.getSource() == tickets.checkFolio) {
+            habilitarBusquedaFolio(tickets.checkFolio.isSelected());
         }
 
     }
@@ -386,7 +403,7 @@ public class ControladorDetalles implements ActionListener, MouseListener {
         }
     }
 
-    private boolean datosValidos() {
+    private boolean datosValidosConsultaGrande() {
         if (tickets.comboCiudad.getSelectedIndex() == 0) {
             return false;
         }
@@ -409,13 +426,24 @@ public class ControladorDetalles implements ActionListener, MouseListener {
     }
 
     private void mostrarTickets() {
-        ViajeVO viaje = (ViajeVO) tickets.comboViaje.getSelectedItem();
-        ClienteVO cliente = (ClienteVO) tickets.comboCliente.getSelectedItem();
-        EstadoVO estado = (EstadoVO) tickets.comboEstado.getSelectedItem();
-        DestinoVO destino = (DestinoVO) tickets.comboCiudad.getSelectedItem();
-        DetalleVO detalle = (DetalleVO) tickets.comboDetalles.getSelectedItem();
 
-        GenerarReporte.reporteTicket(cliente.getId(), viaje.getId(), cliente.getNombre(), destino.getCiudad(), estado.getNombre(), viaje.getFecha(), detalle.getId());
+        if (tickets.checkFolio.isSelected()) {
+            //Se genera un reporte buscando por su folio
+            DetalleVO detalle = modeloDetalles.encontrar(Long.parseLong(tickets.txtFolio.getText()));
+            ClienteVO cliente = modeloClientes.encontrar(detalle.getIdCliente());
+            ViajeVO viaje = modeloViajes.encontrar(detalle.getIdViaje());
+            DestinoVO destino = modeloDestinos.encontrar(viaje.getIdDestino());
+            EstadoVO estado = modeloEstados.encontrarPorId(destino.getIdEstado());
+            GenerarReporte.reporteTicket(cliente.getId(), viaje.getId(), cliente.getNombre(), destino.getCiudad(), estado.getNombre(), viaje.getFecha(), detalle.getId());
+        } else {
+            //Se genera por los otros campos
+            ViajeVO viaje = (ViajeVO) tickets.comboViaje.getSelectedItem();
+            ClienteVO cliente = (ClienteVO) tickets.comboCliente.getSelectedItem();
+            EstadoVO estado = (EstadoVO) tickets.comboEstado.getSelectedItem();
+            DestinoVO destino = (DestinoVO) tickets.comboCiudad.getSelectedItem();
+            DetalleVO detalle = (DetalleVO) tickets.comboDetalles.getSelectedItem();
+            GenerarReporte.reporteTicket(cliente.getId(), viaje.getId(), cliente.getNombre(), destino.getCiudad(), estado.getNombre(), viaje.getFecha(), detalle.getId());
+        }
     }
 
     private void cargarTickets() {
@@ -547,5 +575,35 @@ public class ControladorDetalles implements ActionListener, MouseListener {
 
     private void reiniciarCombo(JComboBox combo) {
         combo.setSelectedIndex(0);
+    }
+
+    private void habilitarBusquedaFolio(boolean b) {
+        System.out.println(b);
+        tickets.txtFolio.setEnabled(b);
+        b = !b; //El valor se va a convertir en su negación, para deshabilitar o habilitar todo lo demás
+
+        tickets.comboEstado.setEnabled(b);
+        tickets.comboCiudad.setEnabled(b);
+        tickets.comboFecha.setEnabled(b);
+        tickets.comboViaje.setEnabled(b);
+        tickets.comboCliente.setEnabled(b);
+        tickets.comboDetalles.setEnabled(b);
+    }
+
+    private boolean folioExiste() {
+        Long id = -1l;
+        if (tickets.txtFolio.getText().equals("")) {
+            return false;
+        }
+        try {
+            id = Long.parseLong(tickets.txtFolio.getText());
+        } catch (Exception e) {
+            return false;
+        }
+        DetalleVO encontrado = modeloDetalles.encontrar(id);
+        if (encontrado == null) {
+            return false;
+        }
+        return true;
     }
 }

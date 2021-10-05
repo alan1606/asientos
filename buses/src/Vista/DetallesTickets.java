@@ -74,6 +74,8 @@ public class DetallesTickets extends javax.swing.JFrame {
         btnConsultar = new rojerusan.RSButtonHover();
         comboDetalles = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
+        checkFolio = new javax.swing.JCheckBox();
+        txtFolio = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,34 +83,34 @@ public class DetallesTickets extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         comboEstado.setNextFocusableComponent(comboCiudad);
-        jPanel1.add(comboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 240, -1));
+        jPanel1.add(comboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 240, -1));
 
         comboCiudad.setNextFocusableComponent(comboFecha);
-        jPanel1.add(comboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 240, -1));
+        jPanel1.add(comboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 240, -1));
 
         jLabel2.setText("Ciudad:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
 
         comboFecha.setNextFocusableComponent(comboViaje);
-        jPanel1.add(comboFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 240, -1));
+        jPanel1.add(comboFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 240, -1));
 
         jLabel3.setText("Fecha:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 40, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 40, -1));
 
         comboViaje.setNextFocusableComponent(comboCliente);
-        jPanel1.add(comboViaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 240, -1));
+        jPanel1.add(comboViaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 240, -1));
 
         jLabel4.setText("Viaje:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
 
         comboCliente.setNextFocusableComponent(btnConsultar);
-        jPanel1.add(comboCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 240, -1));
+        jPanel1.add(comboCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, 240, -1));
 
         jLabel5.setText("Cliente:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, -1));
 
         jLabel1.setText("Estado:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
 
         lbl_back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -128,13 +130,18 @@ public class DetallesTickets extends javax.swing.JFrame {
                 btnConsultarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, 240, -1));
+        jPanel1.add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 470, 240, -1));
 
         comboDetalles.setNextFocusableComponent(btnConsultar);
-        jPanel1.add(comboDetalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 240, -1));
+        jPanel1.add(comboDetalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 240, -1));
 
         jLabel6.setText("Ticket:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, -1, -1));
+
+        checkFolio.setBackground(new java.awt.Color(255, 255, 255));
+        checkFolio.setText("Por folio");
+        jPanel1.add(checkFolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
+        jPanel1.add(txtFolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 240, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,7 +152,7 @@ public class DetallesTickets extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -198,6 +205,7 @@ public class DetallesTickets extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public rojerusan.RSButtonHover btnConsultar;
+    public javax.swing.JCheckBox checkFolio;
     public javax.swing.JComboBox<String> comboCiudad;
     public javax.swing.JComboBox<String> comboCliente;
     public javax.swing.JComboBox<String> comboDetalles;
@@ -214,5 +222,6 @@ public class DetallesTickets extends javax.swing.JFrame {
     public javax.swing.JLabel lbl_back;
     private javax.swing.JLabel lbl_rergesar;
     private rojerusan.RSComboMetroBeanInfo rSComboMetroBeanInfo1;
+    public javax.swing.JTextField txtFolio;
     // End of variables declaration//GEN-END:variables
 }
