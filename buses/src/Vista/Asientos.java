@@ -60,7 +60,6 @@ public class Asientos extends javax.swing.JFrame {
         comboNoAsientos = new javax.swing.JComboBox<>();
         comboId = new javax.swing.JComboBox<>();
         comboTipoCliente = new javax.swing.JComboBox<>();
-        comboCliente = new javax.swing.JComboBox<>();
         comboHoteles = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableHoteles = new javax.swing.JTable();
@@ -78,6 +77,10 @@ public class Asientos extends javax.swing.JFrame {
         txtAnticipo = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         dateFechaRegreso = new rojerusan.RSDateChooser();
+        jPanel2 = new javax.swing.JPanel();
+        checkTelefono = new javax.swing.JCheckBox();
+        txtTelefono = new javax.swing.JTextField();
+        comboCliente = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,13 +102,13 @@ public class Asientos extends javax.swing.JFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
 
         jLabel2.setText("Id del viaje");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 90, 20));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 90, 20));
 
         jLabel3.setText("Fecha");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, 10));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, 10));
 
         jLabel4.setText("Número de asientos del viaje");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 190, 20));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 190, 20));
 
         javax.swing.GroupLayout contenedorLayout = new javax.swing.GroupLayout(contenedor);
         contenedor.setLayout(contenedorLayout);
@@ -121,22 +124,22 @@ public class Asientos extends javax.swing.JFrame {
         jPanel1.add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 480, 670));
 
         jLabel5.setText("Número de asientos a comprar");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 180, 20));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, 180, 20));
 
         jLabel6.setText("Tipo de cliente");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, 10));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, 10));
 
         jLabel7.setText("Cliente");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 50, 20));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 50, 20));
 
         jLabel8.setText("Habitaciones");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, 180, 20));
 
         jLabel9.setText("Sube(n) en");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 530, 80, 20));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 570, 80, 20));
 
         txtSube.setNextFocusableComponent(comboTipoViaje);
-        jPanel1.add(txtSube, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 550, 330, 30));
+        jPanel1.add(txtSube, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 590, 330, 30));
 
         lblCosto.setText("Costo");
         jPanel1.add(lblCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 80, 20));
@@ -159,22 +162,19 @@ public class Asientos extends javax.swing.JFrame {
         jPanel1.add(comboDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 330, -1));
 
         comboAsientosAComprar.setNextFocusableComponent(txtSube);
-        jPanel1.add(comboAsientosAComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 330, -1));
+        jPanel1.add(comboAsientosAComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 330, -1));
 
         comboFecha.setNextFocusableComponent(comboNoAsientos);
-        jPanel1.add(comboFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 330, -1));
+        jPanel1.add(comboFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 330, -1));
 
         comboNoAsientos.setNextFocusableComponent(comboId);
-        jPanel1.add(comboNoAsientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 330, -1));
+        jPanel1.add(comboNoAsientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 330, -1));
 
         comboId.setNextFocusableComponent(comboTipoCliente);
-        jPanel1.add(comboId, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 330, -1));
+        jPanel1.add(comboId, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 330, -1));
 
         comboTipoCliente.setNextFocusableComponent(comboCliente);
-        jPanel1.add(comboTipoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 330, -1));
-
-        comboCliente.setNextFocusableComponent(comboAsientosAComprar);
-        jPanel1.add(comboCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 330, -1));
+        jPanel1.add(comboTipoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 330, -1));
 
         comboHoteles.setNextFocusableComponent(comboNumeroHabitaciones);
         jPanel1.add(comboHoteles, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 240, -1));
@@ -211,10 +211,10 @@ public class Asientos extends javax.swing.JFrame {
         jPanel1.add(comboFormaPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, 140, 30));
 
         jLabel14.setText("Tipo de viaje");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 600, 80, 20));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 630, 80, 20));
 
         comboTipoViaje.setNextFocusableComponent(txtCosto);
-        jPanel1.add(comboTipoViaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 620, 330, -1));
+        jPanel1.add(comboTipoViaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 650, 330, -1));
 
         jLabel12.setText("Hora de regreso");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, 80, 20));
@@ -233,6 +233,42 @@ public class Asientos extends javax.swing.JFrame {
 
         dateFechaRegreso.setNextFocusableComponent(comboHoraRegreso);
         jPanel1.add(dateFechaRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, -1, -1));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Busqueda Por Teléfono", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(0, 112, 192))); // NOI18N
+
+        checkTelefono.setSelected(true);
+        checkTelefono.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        checkTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkTelefonoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(checkTelefono)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkTelefono))
+                .addContainerGap())
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 330, 60));
+
+        comboCliente.setNextFocusableComponent(comboAsientosAComprar);
+        jPanel1.add(comboCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 330, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -255,6 +291,10 @@ public class Asientos extends javax.swing.JFrame {
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnComprarActionPerformed
+
+    private void checkTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkTelefonoActionPerformed
 
     private void icono(){
         try {
@@ -317,6 +357,7 @@ public class Asientos extends javax.swing.JFrame {
     public javax.swing.JButton btnAgregarHotel;
     public rojerusan.RSButtonMetro btnComprar;
     public javax.swing.JButton btnQuitarHotel;
+    private javax.swing.JCheckBox checkTelefono;
     public javax.swing.JComboBox<String> comboAsientosAComprar;
     public javax.swing.JComboBox<String> comboCliente;
     public javax.swing.JComboBox<String> comboDestino;
@@ -347,6 +388,7 @@ public class Asientos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     public javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCosto;
     private javax.swing.JLabel lblCosto1;
@@ -356,5 +398,6 @@ public class Asientos extends javax.swing.JFrame {
     public javax.swing.JTextField txtAnticipo;
     public javax.swing.JTextField txtCosto;
     public javax.swing.JTextField txtSube;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }
