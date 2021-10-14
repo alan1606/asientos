@@ -63,7 +63,6 @@ public class Asientos extends javax.swing.JFrame {
         comboHoteles = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableHoteles = new javax.swing.JTable();
-        btnAgregarHotel = new javax.swing.JButton();
         comboNumeroHabitaciones = new javax.swing.JComboBox<>();
         btnQuitarHotel = new javax.swing.JButton();
         comboHoraSalida = new javax.swing.JComboBox<>();
@@ -80,7 +79,9 @@ public class Asientos extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         checkTelefono = new javax.swing.JCheckBox();
         txtTelefono = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
         comboCliente = new javax.swing.JComboBox<>();
+        btnAgregarHotel1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -183,15 +184,7 @@ public class Asientos extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 400, 320, 110));
 
-        btnAgregarHotel.setBackground(new java.awt.Color(5, 101, 249));
-        btnAgregarHotel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnAgregarHotel.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregarHotel.setText("Agregar");
-        btnAgregarHotel.setBorder(null);
-        btnAgregarHotel.setNextFocusableComponent(btnComprar);
-        jPanel1.add(btnAgregarHotel, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 350, 70, 30));
-
-        comboNumeroHabitaciones.setNextFocusableComponent(btnAgregarHotel);
+        comboNumeroHabitaciones.setNextFocusableComponent(btnBuscar);
         jPanel1.add(comboNumeroHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 310, 70, -1));
 
         btnQuitarHotel.setBackground(new java.awt.Color(5, 101, 249));
@@ -245,23 +238,31 @@ public class Asientos extends javax.swing.JFrame {
             }
         });
 
+        btnBuscar.setText("Buscar");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(checkTelefono)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(btnBuscar))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(checkTelefono))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(checkTelefono))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtTelefono)
+                            .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -269,6 +270,14 @@ public class Asientos extends javax.swing.JFrame {
 
         comboCliente.setNextFocusableComponent(comboAsientosAComprar);
         jPanel1.add(comboCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 330, -1));
+
+        btnAgregarHotel1.setBackground(new java.awt.Color(5, 101, 249));
+        btnAgregarHotel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnAgregarHotel1.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregarHotel1.setText("Agregar");
+        btnAgregarHotel1.setBorder(null);
+        btnAgregarHotel1.setNextFocusableComponent(btnComprar);
+        jPanel1.add(btnAgregarHotel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 350, 70, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -354,10 +363,11 @@ public class Asientos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnAgregarHotel;
+    public javax.swing.JButton btnAgregarHotel1;
+    public javax.swing.JButton btnBuscar;
     public rojerusan.RSButtonMetro btnComprar;
     public javax.swing.JButton btnQuitarHotel;
-    private javax.swing.JCheckBox checkTelefono;
+    public javax.swing.JCheckBox checkTelefono;
     public javax.swing.JComboBox<String> comboAsientosAComprar;
     public javax.swing.JComboBox<String> comboCliente;
     public javax.swing.JComboBox<String> comboDestino;
@@ -398,6 +408,6 @@ public class Asientos extends javax.swing.JFrame {
     public javax.swing.JTextField txtAnticipo;
     public javax.swing.JTextField txtCosto;
     public javax.swing.JTextField txtSube;
-    private javax.swing.JTextField txtTelefono;
+    public javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

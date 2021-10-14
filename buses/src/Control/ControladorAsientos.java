@@ -31,11 +31,13 @@ import Tables.TablaHoteles;
 import Vista.Asientos;
 import Vista.MenuAdmin;
 import Vista.MenuCoordinador;
+import java.awt.Toolkit;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -50,6 +52,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 //clean,registrar, habitacionesvalidas, hora valida
@@ -101,13 +104,14 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         this.vista.comboCliente.addActionListener(this);
         this.vista.comboAsientosAComprar.addActionListener(this);
         this.vista.comboHoteles.addActionListener(this);
-        this.vista.btnAgregarHotel.addActionListener(this);
+        this.vista.btnBuscar.addActionListener(this);
         this.vista.btnQuitarHotel.addActionListener(this);
         this.vista.lbl_back.addMouseListener(this);
         this.vista.comboHoraSalida.addActionListener(this);
         this.vista.txtSube.addKeyListener(this);
         this.vista.btnComprar.addKeyListener(this);
-
+        this.vista.checkTelefono.addActionListener(this);
+        this.vista.txtTelefono.addActionListener(this);
         //Se agrega un action listener por cada objeto
     }
 
@@ -122,6 +126,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         cargarFormasDePago();
         cargarHorasDeRegreso();
         deshabilitarElementosDebidoAViajeSencillo(false);
+        iniciarBusqueda();
         vista.comboDestino.requestFocus();
     }
 
@@ -129,12 +134,42 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         this.vista.comboHoraRegreso.setEnabled(nuevoEstado);
         this.vista.comboHoteles.setEnabled(nuevoEstado);
         this.vista.comboNumeroHabitaciones.setEnabled(nuevoEstado);
-        this.vista.btnAgregarHotel.setEnabled(nuevoEstado);
+        //this.vista.btnBuscar.setEnabled(nuevoEstado);
         this.vista.btnQuitarHotel.setEnabled(nuevoEstado);
         this.vista.tableHoteles.setEnabled(nuevoEstado);
         this.vista.dateFechaRegreso.setEnabled(nuevoEstado);
     }
 
+    //Opciones de busqueda por telefono
+    private void iniciarBusqueda(){
+        vista.checkTelefono.setSelected(true);
+        habilitarBusquedaTelefono(true);
+        SNumeros(vista.txtTelefono);
+    }
+    private void habilitarBusquedaTelefono(boolean a){
+        try {
+            System.out.println(a);
+            vista.txtTelefono.setEnabled(a);
+            vista.btnBuscar.setEnabled(a);
+            a = !a;
+            vista.comboCliente.setEnabled(a);
+        } catch (Exception e) {
+        }
+    }
+    private void SNumeros(JTextField a){
+        try {
+            a.addKeyListener(new KeyAdapter(){
+            public void keyTyped(KeyEvent e){
+                char a = e.getKeyChar();
+                if(Character.isAlphabetic(a)){
+                    JOptionPane.showMessageDialog(null, "Solo ingresar números");
+                    e.consume();
+                }
+            }
+        });
+        } catch (Exception e) {
+        }
+    }
     private void cargarTiposDeViaje() {
         try {
             JComboBox combo = new JComboBox();
@@ -276,7 +311,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
                     cargarHotelDestinoViaje((HotelVO) vista.comboHoteles.getSelectedItem(), (DestinoVO) vista.comboDestino.getSelectedItem(), Integer.parseInt(vista.comboId.getSelectedItem().toString()));
                 }
             }
-        } else if (ae.getSource() == vista.btnAgregarHotel) {
+        } else if (ae.getSource() == vista.btnBuscar) {
             if (vista.comboHoteles.getSelectedIndex() != 0 && vista.comboNumeroHabitaciones.getSelectedIndex() != 0 && vista.comboDestino.getSelectedIndex() != 0 && vista.comboId.getSelectedIndex() != 0) {
 
                 agregarATablaHabitaciones(
@@ -301,6 +336,8 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
             } else {
                 deshabilitarElementosDebidoAViajeSencillo(false);
             }
+        } else if (ae.getSource() == vista.checkTelefono){
+            habilitarBusquedaTelefono(vista.checkTelefono.isSelected());
         }
     }
 
