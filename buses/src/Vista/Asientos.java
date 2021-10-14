@@ -81,7 +81,7 @@ public class Asientos extends javax.swing.JFrame {
         txtTelefono = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         comboCliente = new javax.swing.JComboBox<>();
-        btnAgregarHotel1 = new javax.swing.JButton();
+        btnAgregarHotel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -271,13 +271,13 @@ public class Asientos extends javax.swing.JFrame {
         comboCliente.setNextFocusableComponent(comboAsientosAComprar);
         jPanel1.add(comboCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 330, -1));
 
-        btnAgregarHotel1.setBackground(new java.awt.Color(5, 101, 249));
-        btnAgregarHotel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnAgregarHotel1.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregarHotel1.setText("Agregar");
-        btnAgregarHotel1.setBorder(null);
-        btnAgregarHotel1.setNextFocusableComponent(btnComprar);
-        jPanel1.add(btnAgregarHotel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 350, 70, 30));
+        btnAgregarHotel.setBackground(new java.awt.Color(5, 101, 249));
+        btnAgregarHotel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnAgregarHotel.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregarHotel.setText("Agregar");
+        btnAgregarHotel.setBorder(null);
+        btnAgregarHotel.setNextFocusableComponent(btnComprar);
+        jPanel1.add(btnAgregarHotel, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 350, 70, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -363,7 +363,7 @@ public class Asientos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnAgregarHotel1;
+    public javax.swing.JButton btnAgregarHotel;
     public javax.swing.JButton btnBuscar;
     public rojerusan.RSButtonMetro btnComprar;
     public javax.swing.JButton btnQuitarHotel;

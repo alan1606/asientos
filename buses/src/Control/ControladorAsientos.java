@@ -104,6 +104,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         this.vista.comboCliente.addActionListener(this);
         this.vista.comboAsientosAComprar.addActionListener(this);
         this.vista.comboHoteles.addActionListener(this);
+        this.vista.btnAgregarHotel.addActionListener(this);
         this.vista.btnBuscar.addActionListener(this);
         this.vista.btnQuitarHotel.addActionListener(this);
         this.vista.lbl_back.addMouseListener(this);
@@ -134,7 +135,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         this.vista.comboHoraRegreso.setEnabled(nuevoEstado);
         this.vista.comboHoteles.setEnabled(nuevoEstado);
         this.vista.comboNumeroHabitaciones.setEnabled(nuevoEstado);
-        //this.vista.btnBuscar.setEnabled(nuevoEstado);
+        this.vista.btnAgregarHotel.setEnabled(nuevoEstado);
         this.vista.btnQuitarHotel.setEnabled(nuevoEstado);
         this.vista.tableHoteles.setEnabled(nuevoEstado);
         this.vista.dateFechaRegreso.setEnabled(nuevoEstado);

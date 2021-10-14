@@ -690,7 +690,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="btnAgregarHotel1">
+        <Component class="javax.swing.JButton" name="btnAgregarHotel">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f9" green="65" red="5" type="rgb"/>
