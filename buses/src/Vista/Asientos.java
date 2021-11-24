@@ -79,7 +79,6 @@ public class Asientos extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         checkTelefono = new javax.swing.JCheckBox();
         txtTelefono = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
         comboCliente = new javax.swing.JComboBox<>();
         btnAgregarHotel = new javax.swing.JButton();
 
@@ -184,7 +183,6 @@ public class Asientos extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 400, 320, 110));
 
-        comboNumeroHabitaciones.setNextFocusableComponent(btnBuscar);
         jPanel1.add(comboNumeroHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 310, 70, -1));
 
         btnQuitarHotel.setBackground(new java.awt.Color(5, 101, 249));
@@ -238,8 +236,6 @@ public class Asientos extends javax.swing.JFrame {
             }
         });
 
-        btnBuscar.setText("Buscar");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -247,9 +243,8 @@ public class Asientos extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(checkTelefono)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(btnBuscar))
+                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,9 +255,7 @@ public class Asientos extends javax.swing.JFrame {
                         .addComponent(checkTelefono))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(5, 5, 5)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtTelefono)
-                            .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(txtTelefono)))
                 .addContainerGap())
         );
 
@@ -364,7 +357,6 @@ public class Asientos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAgregarHotel;
-    public javax.swing.JButton btnBuscar;
     public rojerusan.RSButtonMetro btnComprar;
     public javax.swing.JButton btnQuitarHotel;
     public javax.swing.JCheckBox checkTelefono;

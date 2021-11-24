@@ -3,8 +3,7 @@ import ClassVO.UsuarioVO;
 import Vista.MenuAdmin;
 import Vista.MenuCoordinador;
 import Vista.Inforomacion;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -51,7 +50,6 @@ public class ControladorInfo implements MouseListener{
 
     @Override
     public void mouseReleased(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -60,7 +58,6 @@ public class ControladorInfo implements MouseListener{
 
     @Override
     public void mouseExited(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

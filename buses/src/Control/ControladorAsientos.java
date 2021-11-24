@@ -31,7 +31,6 @@ import Tables.TablaHoteles;
 import Vista.Asientos;
 import Vista.MenuAdmin;
 import Vista.MenuCoordinador;
-import java.awt.Toolkit;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Image;
@@ -43,7 +42,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -105,14 +103,13 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         this.vista.comboAsientosAComprar.addActionListener(this);
         this.vista.comboHoteles.addActionListener(this);
         this.vista.btnAgregarHotel.addActionListener(this);
-        this.vista.btnBuscar.addActionListener(this);
         this.vista.btnQuitarHotel.addActionListener(this);
         this.vista.lbl_back.addMouseListener(this);
         this.vista.comboHoraSalida.addActionListener(this);
         this.vista.txtSube.addKeyListener(this);
         this.vista.btnComprar.addKeyListener(this);
         this.vista.checkTelefono.addActionListener(this);
-        this.vista.txtTelefono.addActionListener(this);
+        this.vista.txtTelefono.addKeyListener(this);
         //Se agrega un action listener por cada objeto
     }
 
@@ -142,35 +139,35 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
     }
 
     //Opciones de busqueda por telefono
-    private void iniciarBusqueda(){
+    private void iniciarBusqueda() {
         vista.checkTelefono.setSelected(true);
         habilitarBusquedaTelefono(true);
         SNumeros(vista.txtTelefono);
     }
-    private void habilitarBusquedaTelefono(boolean a){
+
+    private void habilitarBusquedaTelefono(boolean a) {
         try {
             System.out.println(a);
             vista.txtTelefono.setEnabled(a);
-            vista.btnBuscar.setEnabled(a);
-            a = !a;
-            vista.comboCliente.setEnabled(a);
         } catch (Exception e) {
         }
     }
-    private void SNumeros(JTextField a){
+
+    private void SNumeros(JTextField a) {
         try {
-            a.addKeyListener(new KeyAdapter(){
-            public void keyTyped(KeyEvent e){
-                char a = e.getKeyChar();
-                if(Character.isAlphabetic(a)){
-                    JOptionPane.showMessageDialog(null, "Solo ingresar números");
-                    e.consume();
+            a.addKeyListener(new KeyAdapter() {
+                public void keyTyped(KeyEvent e) {
+                    char a = e.getKeyChar();
+                    if (Character.isAlphabetic(a)) {
+                        JOptionPane.showMessageDialog(null, "Solo ingresar números");
+                        e.consume();
+                    }
                 }
-            }
-        });
+            });
         } catch (Exception e) {
         }
     }
+
     private void cargarTiposDeViaje() {
         try {
             JComboBox combo = new JComboBox();
@@ -298,7 +295,13 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
             }
         } else if (ae.getSource() == vista.comboTipoCliente) {
             if (vista.comboTipoCliente.getSelectedIndex() != 0) {
-                cargarClientes();
+                if (vista.txtTelefono.getText().equals("")) {
+                    cargarClientes();
+                } else {
+                    cargarClientesLikeTelefono(vista.txtTelefono.getText(), vista.comboTipoCliente.getSelectedItem().toString());
+                }
+            } else {
+                cargarClientesVacio();
             }
         } else if (ae.getSource() == vista.comboAsientosAComprar) {
             if (vista.comboAsientosAComprar.getSelectedIndex() != 0) {
@@ -312,7 +315,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
                     cargarHotelDestinoViaje((HotelVO) vista.comboHoteles.getSelectedItem(), (DestinoVO) vista.comboDestino.getSelectedItem(), Integer.parseInt(vista.comboId.getSelectedItem().toString()));
                 }
             }
-        } else if (ae.getSource() == vista.btnBuscar) {
+        } else if (ae.getSource() == vista.btnAgregarHotel) {
             if (vista.comboHoteles.getSelectedIndex() != 0 && vista.comboNumeroHabitaciones.getSelectedIndex() != 0 && vista.comboDestino.getSelectedIndex() != 0 && vista.comboId.getSelectedIndex() != 0) {
 
                 agregarATablaHabitaciones(
@@ -337,8 +340,14 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
             } else {
                 deshabilitarElementosDebidoAViajeSencillo(false);
             }
-        } else if (ae.getSource() == vista.checkTelefono){
+        } else if (ae.getSource() == vista.checkTelefono) {
             habilitarBusquedaTelefono(vista.checkTelefono.isSelected());
+            if (!vista.checkTelefono.isSelected()) {
+                vista.txtTelefono.setText("");
+                if(vista.comboTipoCliente.getSelectedIndex()!=0){
+                   cargarClientes();
+                }
+            }
         }
     }
 
@@ -494,6 +503,23 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
             combo.removeAllItems();
             combo.addItem("SELECCIONE UNA OPCIÓN");
             for (ClienteVO cliente : modeloCliente.encontrarPorTipo(vista.comboTipoCliente.getSelectedItem().toString().toUpperCase())) {
+                if (cliente.getId() != 1) {
+                    combo.addItem(cliente);
+                }
+            }
+            vista.comboCliente.setModel(combo.getModel());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    private void cargarClientesLikeTelefono(String telefono, String tipoCliente) {
+        modeloCliente = new ClienteDAO();
+        try {
+            JComboBox combo = new JComboBox();
+            combo.removeAllItems();
+            combo.addItem("SELECCIONE UNA OPCIÓN");
+            for (ClienteVO cliente : modeloCliente.encontrarLikeTelefonoTipo(telefono, tipoCliente)) {
                 if (cliente.getId() != 1) {
                     combo.addItem(cliente);
                 }
@@ -875,6 +901,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         vista.txtAnticipo.setText("");
         vista.dateFechaRegreso.setLimpiarFecha(true);
         vista.txtSube.setText("");
+        vista.txtTelefono.setText("");
         iniciarCombosVacios();
 
     }
@@ -1153,6 +1180,11 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
     public void keyReleased(KeyEvent ke) {
         if (ke.getSource() == vista.txtSube) {
             vista.txtSube.setText(vista.txtSube.getText().toUpperCase());
+        } else if (ke.getSource() == vista.txtTelefono) {
+            if (!vista.txtTelefono.getText().equals("") && vista.comboTipoCliente.getSelectedIndex() != 0) {
+                //Si hay texto y se seleccionó un tipo de cliente
+                cargarClientesLikeTelefono(vista.txtTelefono.getText(), vista.comboTipoCliente.getSelectedItem().toString());
+            }
         }
     }
 
@@ -1212,6 +1244,17 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         DetalleVO detalle = modeloDetalle.encontrar(viaje.getId(), cliente.getId(), usuario.getId());
 
         GenerarReporte.reporteTicket(cliente.getId(), viaje.getId(), cliente.getNombre(), destino.getCiudad(), estado.getNombre(), viaje.getFecha(), detalle.getId());
+    }
+
+    private void cargarClientesVacio() {
+        try {
+            JComboBox combo = new JComboBox();
+            combo.removeAllItems();
+            combo.addItem("SELECCIONE UNA OPCIÓN");
+            vista.comboCliente.setModel(combo.getModel());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
 }
