@@ -78,7 +78,7 @@ public class ControladorViajes implements ActionListener, MouseListener, KeyList
 
     private void cargarTabla() {
         TablaViajes tabla = new TablaViajes();
-        tabla.cargarTabla(vista.tableViajes, modelo.listar());
+        tabla.cargarTabla(vista.tableViajes, modelo.listarConNombreDestino());
     }
 
     private void cargarAsientos() {

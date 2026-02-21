@@ -16,6 +16,10 @@ public class ViajeVO {
     private String fecha;
     private int noAsientos; 
     private String observaciones;
+    //Modificacion para mostrar destino de viaje
+    private String nombreDestino;
+
+   
     
     public ViajeVO() {
     }
@@ -43,6 +47,24 @@ public class ViajeVO {
         this.noAsientos = noAsientos;
         this.observaciones = observaciones;
     }
+//constructor con todos los campos
+    public ViajeVO(int id, String nombreDestino, int idDestino, String fecha, int noAsientos, String observaciones ) {
+        this.id = id;
+        this.nombreDestino = nombreDestino;
+        this.idDestino = idDestino;
+        this.fecha = fecha;
+        this.noAsientos = noAsientos;
+        this.observaciones = observaciones;
+    }
+
+    public ViajeVO(int id, String nombreDestino, String fecha, int noAsientos) {
+        this.id = id;
+        this.fecha = fecha;
+        this.nombreDestino = nombreDestino;
+        this.noAsientos = noAsientos;
+    }
+    
+    
 
     
     
@@ -76,6 +98,13 @@ public class ViajeVO {
 
     public void setNoAsientos(int noAsientos) {
         this.noAsientos = noAsientos;
+    }
+     public String getNombreDestino() {
+        return nombreDestino;
+    }
+
+    public void setNombreDestino(String nombreDestino) {
+        this.nombreDestino = nombreDestino;
     }
 
     @Override

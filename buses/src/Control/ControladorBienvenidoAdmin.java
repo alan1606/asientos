@@ -50,16 +50,16 @@ public class ControladorBienvenidoAdmin implements ActionListener, KeyListener {
 
     private void abrirMenu(){
     try {
-                int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
-                int centro=(alto / 2) - (vista.getHeight() / 2);
-                RSAnimation.setSubir(centro, -1*vista.getHeight(), 2, 2, vista);
-                Thread.sleep(500);
+//                int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+//                int centro=(alto / 2) - (vista.getHeight() / 2);
+//                RSAnimation.setSubir(centro, -1*vista.getHeight(), 2, 2, vista);
+//                Thread.sleep(500);
                 vista.dispose();
                 MenuAdmin menu = new MenuAdmin();
                 ControladorMenuAdmin controladorMenuAdmin = new ControladorMenuAdmin(menu, usuario);
                 controladorMenuAdmin.iniciar();
 
-            } catch (InterruptedException ex) {
+            } catch (Exception ex) {
                 Logger.getLogger(BienvenidoAdmin.class.getName()).log(Level.SEVERE, null, ex);
             }
     }

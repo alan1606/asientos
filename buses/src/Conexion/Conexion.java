@@ -9,12 +9,12 @@ import javax.swing.JOptionPane;
 
 public class Conexion {
 
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/asientos?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3307/asientos?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
     private static final String JDBC_USER = "root";
-    private static final String JDBC_PASSWORD = "1231606";
+    private static final String JDBC_PASSWORD = "rootpassword";
 //    private static final String JDBC_URL = "jdbc:mysql://192.168.1.29:3306/asientos?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
 //    private static final String JDBC_USER = "swuser";
-//    private static final String JDBC_PASSWORD = "ñ@swcontraseña"; //1231606
+//    private static final String JDBC_PASSWORD = "ñ@contraseña"; //1231606
     private static Connection singleConnection;
 
     public static Connection getConnection() throws SQLException {

@@ -23,7 +23,7 @@ public class NuevoHotel extends javax.swing.JFrame {
     }
     private void icono(){
         try {
-            setIconImage(new ImageIcon(getClass().getResource("/Assets/vista_ventana.jpg")).getImage());
+            setIconImage(new ImageIcon(getClass().getResource("/Assets/icon.png")).getImage());
         } catch (Exception e) {
         }
     }
@@ -71,9 +71,8 @@ public class NuevoHotel extends javax.swing.JFrame {
 
         btnGuardar.setBackground(new java.awt.Color(5, 101, 249));
         btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("Guardar");
-        btnGuardar.setBorder(null);
+        btnGuardar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 1, true));
         btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGuardar.setNextFocusableComponent(txtHotel);
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -86,9 +85,8 @@ public class NuevoHotel extends javax.swing.JFrame {
 
         btnCancelar.setBackground(new java.awt.Color(5, 101, 249));
         btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelar.setText("Cancelar");
-        btnCancelar.setBorder(null);
+        btnCancelar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 1, true));
         btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

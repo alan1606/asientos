@@ -28,7 +28,7 @@ public class DetallesTickets extends javax.swing.JFrame {
 
     private void icono(){
         try {
-            setIconImage(new ImageIcon(getClass().getResource("/Assets/vista_ventana.jpg")).getImage());
+            setIconImage(new ImageIcon(getClass().getResource("/Assets/icon.png")).getImage());
         } catch (Exception e) {
         }
     }
@@ -124,7 +124,10 @@ public class DetallesTickets extends javax.swing.JFrame {
         lbl_rergesar.setText("Regresar");
         jPanel1.add(lbl_rergesar, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 30, -1, 20));
 
+        btnConsultar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 255)));
         btnConsultar.setText("Consultar");
+        btnConsultar.setColorText(new java.awt.Color(0, 0, 0));
+        btnConsultar.setColorTextHover(new java.awt.Color(0, 0, 0));
         btnConsultar.setNextFocusableComponent(comboEstado);
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

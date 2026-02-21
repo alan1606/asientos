@@ -49,9 +49,7 @@ public class ControladorBienvenidoCoordinador implements ActionListener, KeyList
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void keyTyped(KeyEvent e) { }
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -66,15 +64,15 @@ public class ControladorBienvenidoCoordinador implements ActionListener, KeyList
 
     private void abrirMenu() {
         try {
-            int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
-            RSAnimation.setSubir((alto / 2) - (vista.getHeight() / 2), -1 * vista.getHeight(), 2, 2, vista);
-            Thread.sleep(500);
+//            int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+//            RSAnimation.setSubir((alto / 2) - (vista.getHeight() / 2), -1 * vista.getHeight(), 2, 2, vista);
+//            Thread.sleep(500);
             vista.dispose();
             MenuCoordinador menu = new MenuCoordinador();
             ControladorMenuCoordinador controladorMenuCoordinador = new ControladorMenuCoordinador(menu, usuario);
             controladorMenuCoordinador.iniciar();
 
-        } catch (InterruptedException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(BienvenidoCoordinador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

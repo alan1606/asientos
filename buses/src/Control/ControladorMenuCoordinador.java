@@ -6,6 +6,7 @@
 package Control;
 
 import ClassVO.UsuarioVO;
+import Vista.Abonos;
 import Vista.Asientos;
 
 import Vista.Clientes;
@@ -16,10 +17,17 @@ import Vista.MenuCoordinador;
 import Vista.Detalles;
 import Vista.DetallesAsientos;
 import Vista.DetallesTickets;
+import components.InfoMenu;
+import components.controllers.ControllerInfoMenu;
+import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JMenuItem;
 
 /**
  *
@@ -27,9 +35,9 @@ import java.awt.event.KeyListener;
  */
 public class ControladorMenuCoordinador implements ActionListener, KeyListener {
 
-    private MenuCoordinador vista;
-    private UsuarioVO usuario;
-
+    private final MenuCoordinador vista;
+    private final UsuarioVO usuario;
+ 
     public ControladorMenuCoordinador(MenuCoordinador vista, UsuarioVO usuario) {
         this.vista = vista;
         this.usuario = usuario;
@@ -39,7 +47,7 @@ public class ControladorMenuCoordinador implements ActionListener, KeyListener {
         //this.vista.btnViajes.addActionListener(this);
         this.vista.btnClientes.addActionListener(this);
         this.vista.btnDetalles.addActionListener(this);
-        //this.vista.btnHoteles.addActionListener(this);
+        this.vista.btnAbonos.addActionListener(this);
         this.vista.btn_info.addActionListener(this);
         //Se agrega un action listener por cada objeto
     }
@@ -48,6 +56,8 @@ public class ControladorMenuCoordinador implements ActionListener, KeyListener {
         vista.setTitle("Menú de coordinador");
         vista.setVisible(true);
         vista.btnAsientos.requestFocus();
+        cargarUsuario();
+        cargarLandingPanel();
     }
 
     @Override
@@ -64,16 +74,32 @@ public class ControladorMenuCoordinador implements ActionListener, KeyListener {
         if (ae.getSource() == vista.btnClientes) {
             abrirClientes();
         }
+        if (ae.getSource() == vista.btnAbonos) {
+            abrirAbonos();
+        }
         if (ae.getSource() == vista.btnDetalles) {
             abrirDetalles();
         }
         if (ae.getSource() == vista.btn_info){
             abrirInfo();
         }
-//        if (ae.getSource() == vista.btnHoteles) {
-//            abrirHoteles();
-//        }
+        
     }
+    private void cargarUsuario(){
+        vista.lblUsername.setText(this.usuario.getNombre());
+    }
+    private void cargarLandingPanel(){
+        Component c = new InfoMenu();
+        //ControllerInfoMenu infoMenuPanel = new ControllerInfoMenu((InfoMenu) c);
+        ControllerInfoMenu panelVentas = new ControllerInfoMenu((InfoMenu) c);
+        panelVentas.iniciar();
+        vista.landingPanel.removeAll();
+        //vista.landingPanel.add(infoMenuPane, BorderLayout.CENTER);
+        vista.landingPanel.add(c, BorderLayout.CENTER);
+        vista.landingPanel.revalidate();
+        vista.landingPanel.repaint();
+    }
+
     private void abrirInfo(){
         vista.dispose();
         ControladorInfo info = new ControladorInfo(new Inforomacion(), usuario);
@@ -83,6 +109,11 @@ public class ControladorMenuCoordinador implements ActionListener, KeyListener {
         vista.dispose();
         ControladorAsientos asientos = new ControladorAsientos(new Asientos(), usuario);
         asientos.iniciar();
+    }
+    private void abrirAbonos(){
+        vista.dispose();
+        ControladorAbonos abono = new ControladorAbonos(new Abonos(), usuario);
+        abono.iniciar();
     }
 
 //    private void abrirHoteles() {
@@ -117,7 +148,6 @@ public class ControladorMenuCoordinador implements ActionListener, KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

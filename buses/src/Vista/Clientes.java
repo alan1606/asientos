@@ -28,7 +28,7 @@ public class Clientes extends javax.swing.JFrame {
     }
     private void icono(){
         try {
-            setIconImage(new ImageIcon(getClass().getResource("/Assets/vista_ventana.jpg")).getImage());
+            setIconImage(new ImageIcon(getClass().getResource("/Assets/icon.png")).getImage());
         } catch (Exception e) {
         }
     }
@@ -174,27 +174,24 @@ public class Clientes extends javax.swing.JFrame {
 
         btnAnadir.setBackground(new java.awt.Color(5, 101, 249));
         btnAnadir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnAnadir.setForeground(new java.awt.Color(255, 255, 255));
         btnAnadir.setText("Añadir");
-        btnAnadir.setBorder(null);
+        btnAnadir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 1, true));
         btnAnadir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAnadir.setNextFocusableComponent(txtNombre);
         jPanel1.add(btnAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, 87, 30));
 
         btnModificar.setBackground(new java.awt.Color(5, 101, 249));
         btnModificar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnModificar.setForeground(new java.awt.Color(255, 255, 255));
         btnModificar.setText("Modificar");
-        btnModificar.setBorder(null);
+        btnModificar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 1, true));
         btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 87, 28));
         jPanel1.add(lbl_bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 470));
 
         btnEliminar.setBackground(new java.awt.Color(5, 101, 249));
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("Eliminar");
-        btnEliminar.setBorder(null);
+        btnEliminar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 1, true));
         btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 87, 28));
 

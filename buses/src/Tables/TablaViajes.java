@@ -23,7 +23,9 @@ public class TablaViajes {
             }
         };
         dt.addColumn("Id");
-        dt.addColumn("Destino");
+        // modificacion
+        dt.addColumn("Ciudad");
+        dt.addColumn("Id Destino");
         dt.addColumn("Fecha");
         dt.addColumn("Asientos");
         dt.addColumn("Observaciones");
@@ -31,13 +33,14 @@ public class TablaViajes {
         ViajeVO viaje = new ViajeVO();
 
         for (int i = 0; i < list.size(); i++) {
-            Object fila[] = new Object[5];
+            Object fila[] = new Object[6];
             viaje = list.get(i);
             fila[0] = viaje.getId();
-            fila[1] = viaje.getIdDestino();
-            fila[2] = viaje.getFecha();
-            fila[3] = viaje.getNoAsientos();
-            fila[4] = viaje.getObservaciones();
+            fila[1] = viaje.getNombreDestino();
+            fila[2] = viaje.getIdDestino();
+            fila[3] = viaje.getFecha();
+            fila[4] = viaje.getNoAsientos();
+            fila[5] = viaje.getObservaciones();
             dt.addRow(fila);
         }
         tabla.setModel(dt);

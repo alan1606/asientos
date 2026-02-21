@@ -9,6 +9,8 @@ import ClassDAO.UsuarioDAO;
 import ClassVO.UsuarioVO;
 import Vista.BienvenidoAdmin;
 import Vista.BienvenidoCoordinador;
+import Vista.MenuAdmin;
+import Vista.MenuCoordinador;
 import Vista.VistaLogin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -107,15 +109,21 @@ public class ControladorLogin implements ActionListener, KeyListener {
     }
 
     private void abrirBienvenidoAdmin() { //Debería instanciar controladores y vistas, pasar "cookie de usuario"
-        BienvenidoAdmin vAdmin = new BienvenidoAdmin(vista, true);
-        ControladorBienvenidoAdmin controladorBienvenidoAdmin = new ControladorBienvenidoAdmin(vAdmin, usuario);
-        controladorBienvenidoAdmin.iniciar();
+        MenuAdmin vAdmin = new MenuAdmin();
+        ControladorMenuAdmin controladorAdmin = new ControladorMenuAdmin(vAdmin, usuario);
+        controladorAdmin.iniciar();
+//        BienvenidoAdmin vAdmin = new BienvenidoAdmin(vista, true);
+//        ControladorBienvenidoAdmin controladorBienvenidoAdmin = new ControladorBienvenidoAdmin(vAdmin, usuario);
+//        controladorBienvenidoAdmin.iniciar();
     }
 
     private void abrirBienvenidoCoordinador() { //Debería instanciar controladores y vistas, pasar "cookie de usuario"
-        BienvenidoCoordinador vCoordinador = new BienvenidoCoordinador(vista, true);
-        ControladorBienvenidoCoordinador controladorBienvenidoCoordinador= new ControladorBienvenidoCoordinador(vCoordinador, usuario);
-        controladorBienvenidoCoordinador.iniciar();
+        MenuCoordinador vCoordinador = new MenuCoordinador();
+        ControladorMenuCoordinador controladorCoordinador = new ControladorMenuCoordinador(vCoordinador, usuario);
+        controladorCoordinador.iniciar();
+       // BienvenidoCoordinador vCoordinador = new BienvenidoCoordinador(vista, true);
+        //ControladorBienvenidoCoordinador controladorBienvenidoCoordinador= new ControladorBienvenidoCoordinador(vCoordinador, usuario);
+        //controladorBienvenidoCoordinador.iniciar();
     }
 
     private void clean() {

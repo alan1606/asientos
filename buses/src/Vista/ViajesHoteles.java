@@ -27,7 +27,7 @@ public class ViajesHoteles extends javax.swing.JFrame {
     }
     private void icono(){
         try {
-            setIconImage(new ImageIcon(getClass().getResource("/Assets/vista_ventana.jpg")).getImage());
+            setIconImage(new ImageIcon(getClass().getResource("/Assets/icon.png")).getImage());
         } catch (Exception e) {
         }
     }
@@ -96,16 +96,15 @@ private void backArrow(){
 
         btnCrear.setBackground(new java.awt.Color(5, 101, 249));
         btnCrear.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnCrear.setForeground(new java.awt.Color(255, 255, 255));
         btnCrear.setText("Agregar");
-        btnCrear.setBorder(null);
+        btnCrear.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 1, true));
         btnCrear.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 100, 30));
 
         btnModificar.setBackground(new java.awt.Color(0, 102, 255));
         btnModificar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnModificar.setForeground(new java.awt.Color(255, 255, 255));
         btnModificar.setText("Modificar");
+        btnModificar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 1, true));
         jPanel2.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 100, 30));
 
         tableHoteles.setModel(new javax.swing.table.DefaultTableModel(
@@ -122,8 +121,8 @@ private void backArrow(){
 
         btnEliminar.setBackground(new java.awt.Color(0, 102, 255));
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("Eliminar");
+        btnEliminar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 1, true));
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -163,9 +162,8 @@ private void backArrow(){
 
         btnGuardar.setBackground(new java.awt.Color(5, 101, 249));
         btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("Guardar");
-        btnGuardar.setBorder(null);
+        btnGuardar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 1, true));
         btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 420, 100, 30));
 

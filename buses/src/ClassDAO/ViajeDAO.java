@@ -50,6 +50,15 @@ public class ViajeDAO {
     
    private static final String SQL_SELECT_BY_CLIENT = "SELECT distinct(viaje.id), viaje.id_destino, viaje.fecha, viaje.no_asientos, viaje.observaciones "
             + " from viaje join detalle on viaje.id = detalle.id_viaje where detalle.id_cliente = ?;";
+   
+   //consulta con join para mostrar el nombre del destino
+   private static final String SQL_SELECT_ALL_WITH_JOIN_DESTINO_NAME = "SELECT v.id, d.ciudad, v.id_destino, v.fecha, v.no_asientos, v.observaciones"
+            + " FROM viaje v LEFT JOIN destino d ON v.id_destino = d.id;";
+   
+   //consulta para proximos viajes
+   private static final String SQL_SELECT_UPCOMING_TRAEVELS = "SELECT v.id, d.ciudad, v.fecha, COUNT(a.id) as asientos_disponibles FROM viaje v LEFT JOIN destino d ON v.id_destino = d.id "
+           + "LEFT JOIN asiento a ON a.id_viaje = v.id AND a.disponible = 1 "
+           + "WHERE v.fecha >= CURDATE() GROUP BY v.id, d.ciudad, v.fecha ORDER BY v.fecha ASC;";
     
     public ArrayList<ViajeVO> listar() {
         Connection conn = null;
@@ -78,6 +87,69 @@ public class ViajeDAO {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
+        return viajes;
+    }
+    //metodo lista con destino
+    public ArrayList<ViajeVO> listarConNombreDestino(){
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ViajeVO viaje = null;
+        ArrayList<ViajeVO> viajes = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_ALL_WITH_JOIN_DESTINO_NAME);
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                int id = rs.getInt("id");
+                String nombreDestino = rs.getString("ciudad");
+                int idDestino = rs.getInt("id_destino");
+                String fecha = rs.getString("fecha");
+                int noAsientos = rs.getInt("no_asientos");
+                String observaciones = rs.getString("observaciones");
+                
+                viaje = new ViajeVO(id, nombreDestino , idDestino, fecha, noAsientos, observaciones);
+                viajes.add(viaje);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        
+        return viajes;
+    }
+    public ArrayList<ViajeVO> listarProximosViajes(){
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ViajeVO viaje = null;
+        ArrayList<ViajeVO> viajes = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_UPCOMING_TRAEVELS);
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                int id = rs.getInt("id");
+                String nombreDestino = rs.getString("ciudad");
+                //int idDestino = rs.getInt("id_destino");
+                String fecha = rs.getString("fecha");
+                int asientosDisponibles = rs.getInt("asientos_disponibles");
+                //String observaciones = rs.getString("observaciones");
+                
+                viaje = new ViajeVO(id, nombreDestino, fecha, asientosDisponibles);
+                viajes.add(viaje);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        
         return viajes;
     }
     

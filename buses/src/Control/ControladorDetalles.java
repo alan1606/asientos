@@ -18,6 +18,7 @@ import ClassVO.EstadoVO;
 import ClassVO.UsuarioVO;
 import ClassVO.ViajeVO;
 import Reports.GenerarReporte;
+import Reports.GenerarReporteOpenPDF;
 import Vista.Detalles;
 import Vista.DetallesAsientos;
 import Vista.DetallesTickets;
@@ -435,6 +436,8 @@ public class ControladorDetalles implements ActionListener, MouseListener {
             DestinoVO destino = modeloDestinos.encontrar(viaje.getIdDestino());
             EstadoVO estado = modeloEstados.encontrarPorId(destino.getIdEstado());
             GenerarReporte.reporteTicket(cliente.getId(), viaje.getId(), cliente.getNombre(), destino.getCiudad(), estado.getNombre(), viaje.getFecha(), detalle.getId());
+            //reporte generado con openPDF
+           // GenerarReporteOpenPDF.reporteTicket(cliente.getId(), viaje.getId(), cliente.getNombre(), destino.getCiudad(), estado.getNombre(), viaje.getFecha(), detalle.getId());
         } else {
             //Se genera por los otros campos
             ViajeVO viaje = (ViajeVO) tickets.comboViaje.getSelectedItem();

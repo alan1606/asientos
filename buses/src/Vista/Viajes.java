@@ -27,7 +27,7 @@ public class Viajes extends javax.swing.JFrame {
     }
     private void icono(){
         try {
-            setIconImage(new ImageIcon(getClass().getResource("/Assets/vista_ventana.jpg")).getImage());
+            setIconImage(new ImageIcon(getClass().getResource("/Assets/icon.png")).getImage());
         } catch (Exception e) {
         }
     }
@@ -108,19 +108,18 @@ private void backArrow(){
         });
         jPanel2.add(lbl_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 30, 40));
 
-        btnCrear.setBackground(new java.awt.Color(5, 101, 249));
+        btnCrear.setBackground(new java.awt.Color(0, 102, 255));
         btnCrear.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnCrear.setForeground(new java.awt.Color(255, 255, 255));
         btnCrear.setText("Crear viaje");
-        btnCrear.setBorder(null);
+        btnCrear.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 255)));
         btnCrear.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCrear.setNextFocusableComponent(comboDestino);
         jPanel2.add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 100, 30));
 
         btnModificar.setBackground(new java.awt.Color(0, 102, 255));
         btnModificar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnModificar.setForeground(new java.awt.Color(255, 255, 255));
         btnModificar.setText("Modificar");
+        btnModificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 255)));
         jPanel2.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 100, 30));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -134,20 +133,20 @@ private void backArrow(){
         lbl_fecha2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl_fecha2.setText("Fecha");
         jPanel3.add(lbl_fecha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
-        jPanel3.add(comboDestinoSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 400, -1));
+        jPanel3.add(comboDestinoSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 490, -1));
 
         dateSearch.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 dateSearchPropertyChange(evt);
             }
         });
-        jPanel3.add(dateSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 400, -1));
+        jPanel3.add(dateSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 490, -1));
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 490, 130));
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 590, 130));
 
         jScrollPane2.setViewportView(tableViajes);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 490, 360));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 590, 360));
 
         comboDestino.setNextFocusableComponent(dateFecha);
         jPanel2.add(comboDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, -1, -1));
@@ -160,8 +159,8 @@ private void backArrow(){
 
         btnEliminar.setBackground(new java.awt.Color(0, 102, 255));
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("Eliminar");
+        btnEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 255)));
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -180,7 +179,9 @@ private void backArrow(){
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 983, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

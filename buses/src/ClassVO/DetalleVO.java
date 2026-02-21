@@ -29,6 +29,25 @@ public class DetalleVO {
     private String fechaRegreso;
     private String fechaVenta;
 
+
+
+    //atributos para los los joins de abonos
+    private String ciudad;
+    private String telefono;
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+    
+
+
+    private String nombreCliente;
+    private String nombreVendedor;
+
     public DetalleVO(Long id, int idViaje, int idCliente, int idUsuario, int personas, String sube, String hora, int habitaciones, double costo, double anticipo, boolean liquidado, String estado, String pago, String viaje, String horaRegreso, String fechaRegreso, String fechaVenta) {
         this.id = id;
         this.idViaje = idViaje;
@@ -66,6 +85,19 @@ public class DetalleVO {
         this.horaRegreso = horaRegreso;
         this.fechaRegreso = fechaRegreso;
         this.fechaVenta = fechaVenta;
+    }
+//constructor para vista ventas
+    public DetalleVO(Long id, String fechaVenta, String fechaRegreso, String ciudad, String nombreCliente, String nombreVendedor, int habitaciones, double costo, double anticipo, int personas) {
+        this.id = id;
+        this.fechaVenta = fechaVenta;
+        this.fechaRegreso = fechaRegreso;
+        this.ciudad = ciudad;
+        this.nombreCliente = nombreCliente;
+        this.nombreVendedor = nombreVendedor;
+        this.habitaciones = habitaciones;
+        this.costo = costo;
+        this.anticipo = anticipo;
+        this.personas = personas;
     }
 
     public double getAnticipo() {
@@ -214,7 +246,28 @@ public class DetalleVO {
     public void setCosto(double costo) {
         this.costo = costo;
     }
+    public String getNombreVendedor() {
+        return nombreVendedor;
+    }
 
+    public void setNombreVendedor(String nombreVendedor) {
+        this.nombreVendedor = nombreVendedor;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
+    }
     @Override
     public String toString() {
         String cadena = " personas, ";

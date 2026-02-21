@@ -6,6 +6,7 @@
 package Control;
 
 import ClassVO.UsuarioVO;
+import Vista.Abonos;
 import Vista.Asientos;
 import Vista.Cancelaciones;
 import Vista.Clientes;
@@ -19,6 +20,10 @@ import Vista.MenuAdmin;
 import Vista.Usuarios;
 import Vista.Viajes;
 import Vista.ViajesHoteles;
+import components.InfoMenu;
+import components.controllers.ControllerInfoMenu;
+import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -47,7 +52,7 @@ public class ControladorMenuAdmin implements ActionListener, KeyListener {
         this.vista.btnHotelesEnViaje.addActionListener(this);
         this.vista.btnCancelaciones.addActionListener(this);
         this.vista.btn_info.addActionListener(this);
-
+        this.vista.btnAbonos.addActionListener(this);
         //Se agrega un action listener por cada objeto
     }
 
@@ -55,6 +60,8 @@ public class ControladorMenuAdmin implements ActionListener, KeyListener {
         vista.setTitle("Menú de administrador");
         vista.setVisible(true);
         vista.btnAsientos.requestFocus();
+        cargarLandingPanel();
+        cargarUsuario();
     }
 
     @Override
@@ -88,7 +95,23 @@ public class ControladorMenuAdmin implements ActionListener, KeyListener {
         }
         else if (ae.getSource() == vista.btn_info){
             abrirInfo();
+        } else if(ae.getSource() == vista.btnAbonos){
+            abrirAbonos();
         }
+    }
+    private void cargarUsuario(){
+        vista.lblUsername.setText(this.usuario.getNombre());
+    }
+    private void cargarLandingPanel(){
+        Component c = new InfoMenu();
+        //ControllerInfoMenu infoMenuPanel = new ControllerInfoMenu((InfoMenu) c);
+        ControllerInfoMenu panelVentas = new ControllerInfoMenu((InfoMenu) c);
+        panelVentas.iniciar();
+        vista.landingPanel.removeAll();
+        //vista.landingPanel.add(infoMenuPane, BorderLayout.CENTER);
+        vista.landingPanel.add(c, BorderLayout.CENTER);
+        vista.landingPanel.revalidate();
+        vista.landingPanel.repaint();
     }
     private void abrirInfo(){
         vista.dispose();
@@ -163,6 +186,12 @@ public class ControladorMenuAdmin implements ActionListener, KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    private void abrirAbonos() {
+        vista.dispose();
+        ControladorAbonos abonos = new ControladorAbonos(new Abonos(), usuario);
+        abonos.iniciar();
     }
 
 }

@@ -5,6 +5,7 @@
  */
 package Control;
 
+import ClassDAO.AbonosDAO;
 import ClassDAO.AsientoDAO;
 import ClassDAO.ClienteDAO;
 import ClassDAO.DestinoDAO;
@@ -14,6 +15,7 @@ import ClassDAO.EstadoDAO;
 import ClassDAO.HotelDAO;
 import ClassDAO.HotelEnDestinoEnViajeDAO;
 import ClassDAO.ViajeDAO;
+import ClassVO.AbonosVO;
 import ClassVO.AsientoVO;
 import ClassVO.ClienteVO;
 import ClassVO.DestinoVO;
@@ -956,7 +958,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
             //Buscar detalle registrado
             crearDetalleCompraDeHabitaciones(modeloDetalle.encontrarUltimo().getId());
         }
-
+        generarAbono();
     }
 
     private int calcularHabitacionesVendidas() {
@@ -1008,7 +1010,7 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         if (modeloDetalle.insertar(detalle) == 0) {
             JOptionPane.showMessageDialog(vista, "Ha ocurrido un error al registrar el detalle");
         }
-
+        generarAbono();
     }
 
     private boolean datosValidos() {
@@ -1244,6 +1246,20 @@ public class ControladorAsientos implements ActionListener, KeyListener, MouseLi
         DetalleVO detalle = modeloDetalle.encontrar(viaje.getId(), cliente.getId(), usuario.getId());
 
         GenerarReporte.reporteTicket(cliente.getId(), viaje.getId(), cliente.getNombre(), destino.getCiudad(), estado.getNombre(), viaje.getFecha(), detalle.getId());
+    }
+    private void generarAbono(){
+        ViajeVO viaje = modeloViajes.encontrar(Integer.parseInt(vista.comboId.getSelectedItem().toString()));
+        ClienteVO cliente = (ClienteVO) vista.comboCliente.getSelectedItem();
+        DestinoVO destino = (DestinoVO) vista.comboDestino.getSelectedItem();
+        EstadoVO estado = modeloEstados.encontrarPorId(destino.getIdEstado());
+        DetalleVO detalle = modeloDetalle.encontrar(viaje.getId(), cliente.getId(), usuario.getId());
+        AbonosVO abono = new AbonosVO();
+        abono.setIdDetalle(detalle.getId());
+        abono.setMetodoPago(detalle.getPago());
+        abono.setMonto(detalle.getAnticipo());
+        abono.setIdUsuario(usuario.getId());
+        AbonosDAO insertarAbono = new AbonosDAO();
+        insertarAbono.insertar(abono);
     }
 
     private void cargarClientesVacio() {

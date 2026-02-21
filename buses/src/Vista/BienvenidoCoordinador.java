@@ -6,7 +6,7 @@
 package Vista;
 
 import javax.swing.ImageIcon;
-import rojerusan.RSAnimation;
+//import rojerusan.RSAnimation;
 
 /**
  *
@@ -20,15 +20,15 @@ public class BienvenidoCoordinador extends javax.swing.JDialog {
     public BienvenidoCoordinador(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
-        RSAnimation.setBajar(-1*this.getHeight(), (alto / 2) - (this.getHeight() / 2), 2, 2, this);
+        //int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+        //RSAnimation.setBajar(-1*this.getHeight(), (alto / 2) - (this.getHeight() / 2), 2, 2, this);
         this.setLocationRelativeTo(this);
         // icono();
     }
 
     private void icono(){
         try {
-            setIconImage(new ImageIcon(getClass().getResource("/Assets/vista_ventana.jpg")).getImage());
+            setIconImage(new ImageIcon(getClass().getResource("/Assets/icon.png")).getImage());
         } catch (Exception e) {
         }
     }
@@ -55,12 +55,12 @@ public class BienvenidoCoordinador extends javax.swing.JDialog {
 
         lblNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblNombre.setText("Nombre del Coordinador");
-        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 155, -1));
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 250, -1));
 
         jLabel1.setFont(new java.awt.Font("Open Sans", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Bienvenido Coordinador");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 360, 65));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 360, 65));
 
         btnAceptar.setBackground(new java.awt.Color(0, 102, 255));
         btnAceptar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -71,16 +71,18 @@ public class BienvenidoCoordinador extends javax.swing.JDialog {
                 btnAceptarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 190, 40));
+        jPanel1.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 190, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/001-usuario-4.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, 140));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, 140));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

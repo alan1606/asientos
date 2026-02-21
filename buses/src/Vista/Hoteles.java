@@ -27,7 +27,7 @@ public class Hoteles extends javax.swing.JFrame {
     }
     private void icono(){
         try {
-            setIconImage(new ImageIcon(getClass().getResource("/Assets/vista_ventana.jpg")).getImage());
+            setIconImage(new ImageIcon(getClass().getResource("/Assets/icon.png")).getImage());
         } catch (Exception e) {
         }
     }
@@ -100,9 +100,8 @@ public class Hoteles extends javax.swing.JFrame {
 
         btnAnadir.setBackground(new java.awt.Color(5, 101, 249));
         btnAnadir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnAnadir.setForeground(new java.awt.Color(255, 255, 255));
         btnAnadir.setText("Añadir");
-        btnAnadir.setBorder(null);
+        btnAnadir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 1, true));
         btnAnadir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAnadir.setNextFocusableComponent(comboDestino);
         jPanel2.add(btnAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 127, 30));
@@ -124,9 +123,8 @@ public class Hoteles extends javax.swing.JFrame {
 
         btnNuevoHotel.setBackground(new java.awt.Color(5, 101, 249));
         btnNuevoHotel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnNuevoHotel.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevoHotel.setText("Crear nuevo hotel");
-        btnNuevoHotel.setBorder(null);
+        btnNuevoHotel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 1, true));
         btnNuevoHotel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnNuevoHotel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,17 +165,15 @@ public class Hoteles extends javax.swing.JFrame {
 
         btnBorrar.setBackground(new java.awt.Color(5, 101, 249));
         btnBorrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnBorrar.setForeground(new java.awt.Color(255, 255, 255));
         btnBorrar.setText("Borrar");
-        btnBorrar.setBorder(null);
+        btnBorrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 1, true));
         btnBorrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel3.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, 110, 30));
 
         btnModificar.setBackground(new java.awt.Color(5, 101, 249));
         btnModificar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnModificar.setForeground(new java.awt.Color(255, 255, 255));
         btnModificar.setText("Modificar");
-        btnModificar.setBorder(null);
+        btnModificar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 1, true));
         btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel3.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 110, 30));
 

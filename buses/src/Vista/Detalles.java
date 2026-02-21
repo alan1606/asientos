@@ -28,7 +28,7 @@ public class Detalles extends javax.swing.JFrame {
 
     private void icono(){
         try {
-            setIconImage(new ImageIcon(getClass().getResource("/Assets/vista_ventana.jpg")).getImage());
+            setIconImage(new ImageIcon(getClass().getResource("/Assets/icon.png")).getImage());
         } catch (Exception e) {
         }
     }
@@ -77,10 +77,18 @@ public class Detalles extends javax.swing.JFrame {
             }
         });
 
+        btnTickets.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 1, true));
+        btnTickets.setForeground(new java.awt.Color(0, 0, 0));
         btnTickets.setText("Ticket");
+        btnTickets.setColorText(new java.awt.Color(0, 0, 0));
+        btnTickets.setColorTextHover(new java.awt.Color(0, 0, 0));
         btnTickets.setNextFocusableComponent(btnAsientos);
 
+        btnAsientos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 1, true));
+        btnAsientos.setForeground(new java.awt.Color(0, 0, 0));
         btnAsientos.setText("Asientos");
+        btnAsientos.setColorText(new java.awt.Color(0, 0, 0));
+        btnAsientos.setColorTextHover(new java.awt.Color(0, 0, 0));
         btnAsientos.setNextFocusableComponent(btnTickets);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
