@@ -24,3 +24,5 @@ hs_err_pid*
 /buses/nbproject/private/
 /buses/build/
 /buses/dist/
+/buses/out/
+*.pdf
